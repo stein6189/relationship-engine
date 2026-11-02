@@ -30,3 +30,36 @@
 10. **Next 15.5.28 (patched 15.x backport line)** instead of 15.0.3 — 15.0.3
     has known security advisories (incl. a middleware authorization bypass);
     Vercel may refuse vulnerable versions. React stays 18.3.1.
+11. **Vercel deployment could not be created from this session** — the Vercel
+    connector returned 403 (no permission to create projects) and no
+    `VERCEL_TOKEN`/CLI was available. Import steps are in `PROGRESS.md`.
+12. **E2E tests use the pre-installed `playwright` library as plain Node
+    scripts** (`tests/e2e/*.mjs`) instead of adding `@playwright/test` — no new
+    dependency, same browser. A mock Anthropic server
+    (`tests/e2e/mock-anthropic.mjs`) tests the live path (slow, invalid JSON,
+    wrong number) through the real SDK via `ANTHROPIC_BASE_URL`.
+13. **Albers meeting notes gained two lines** (loss capacity; experience:
+    direct angel investments, no funds). Without them the suitability statement
+    could not honestly state loss capacity, and the verifier would have to
+    flag it. The questionnaire still says "none", so the consistency check
+    still finds the contradiction (DATA.md intent kept).
+14. **The suitability statement is written to the client in the second
+    person** ("You told us…"), because it is delivered to the client app. RM
+    instructions go to `openPoints` only. `draft_suitability` prompt → v2.
+15. **Re-engagement messages are `personal_outreach`**, approved one by one,
+    not in the batch (RULES.md §7). Batch approval needs an inline
+    confirmation.
+16. **Funding stays in "Signed" until first close.** A client's transfer
+    instruction on 6 Nov does not make the commitment funded on 15 Dec.
+17. **Keller tax:** the RULES.md value €10,154 (26.375% on the full gain) is
+    kept and labelled "simplified estimate"; the UI also shows ≈ €7,108 with
+    the 30% partial exemption for equity funds (InvStG). Daniel to decide which
+    number to speak in the demo.
+18. **Platform revenue in the Keller options table** is labelled "internal,
+    not a decision criterion" to avoid looking like a conflict of interest.
+19. **Clients over the digital cap (60)** stay in "No action" but are
+    labelled "Over digital capacity — first in line next month".
+20. **Store renders after localStorage is loaded** (short "Loading…"), so no
+    screen shows or acts on a stale initial state.
+21. **Client actions in Keller's app never execute anything**: "Sounds good —
+    let's set it up" only tells Jonas; the loan stays a concept.

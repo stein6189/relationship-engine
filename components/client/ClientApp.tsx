@@ -335,9 +335,9 @@ function MobileCosts() {
       <p className="text-[13px] text-slate-600">For a commitment of {eur(ALBERS_COMMITMENT)}. Calculated from the fund terms — the same figures Jonas sees.</p>
       <ul className="divide-y divide-slate-100">
         {rows.map((r) => <li key={r.label} className="flex items-baseline justify-between gap-3 py-2"><span>{r.label}</span><span className="tnum shrink-0 text-right font-medium">{eur(r.eurEarly!)} <span className="text-[12px] font-normal text-slate-500">· {pct(r.pct!, 2)} a year</span></span></li>)}
-        <li className="flex items-baseline justify-between gap-3 py-2 font-semibold"><span>Total per year, years 1–5</span><span className="tnum">{eur(c.totalEarlyEur)} · {pct(c.totalPctEarly, 2)}</span></li>
-        <li className="flex items-baseline justify-between gap-3 py-2"><span>Total per year, years 6–10</span><span className="tnum">{eur(c.totalLateEur)}</span></li>
-        <li className="flex items-baseline justify-between gap-3 py-2 font-semibold"><span>Total over 10 years (illustration)</span><span className="tnum">{eur(c.tenYearTotalEur)}</span></li>
+        <li className="flex items-baseline justify-between gap-3 py-2 font-semibold"><span>Per year, years 1–5</span><span className="tnum">{eur(c.totalEarlyEur)}</span></li>
+        <li className="flex items-baseline justify-between gap-3 py-2"><span>Per year, years 6–10</span><span className="tnum">{eur(c.totalLateEur)}</span></li>
+        <li className="flex items-baseline justify-between gap-3 py-2 font-semibold"><span>10 years in total (illustration)</span><span className="tnum">{eur(c.tenYearTotalEur)}</span></li>
       </ul>
       <p className="text-[13px] leading-relaxed text-slate-600">If the fund does well, the fund manager also keeps a share of the profit: 20% of gains above 8% a year (“carried interest”). This depends on results, so it has no fixed amount.</p>
       <p className="text-[13px] leading-relaxed text-slate-600">Costs reduce your return. Illustration: at a gross return of 12% a year, costs reduce the net return to about 9% a year.</p>

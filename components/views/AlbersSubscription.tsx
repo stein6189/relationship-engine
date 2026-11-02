@@ -74,7 +74,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
             {rules.checks.map((k) => (
               <li key={k.id} className="flex items-start justify-between gap-2 border-b border-slate-100 pb-1">
                 <span>{k.label}<span className="ml-1 text-[11px] text-slate-500">{k.kind === 'legal' ? 'legal' : k.kind === 'internal' ? 'internal guardrail' : 'human judgment'}</span></span>
-                <span className="flex shrink-0 items-center gap-1.5"><span className="tnum text-xs text-slate-500">{k.detail}</span>{k.pass === null ? <Badge tone="amber">RM</Badge> : k.pass ? <Badge tone="green">✓</Badge> : <Badge tone="red">✗</Badge>}</span>
+                <span className="flex shrink-0 items-center gap-1.5"><span className="tnum text-xs text-slate-500">{k.detail}{k.id === 'quest' && a.contradictionReviewed ? ' · update pending' : ''}</span>{k.pass === null ? <Badge tone="amber">RM</Badge> : k.pass ? <Badge tone="green">✓</Badge> : <Badge tone="red">✗</Badge>}</span>
               </li>
             ))}
           </ul>
