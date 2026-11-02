@@ -94,7 +94,7 @@ export function AlbersAdvice({ embedded }: { embedded?: boolean }) {
     const rules = albersRuleResults(a.attested);
     const changes: AuditRecord['changes'] = [
       ...all.filter((x) => a.edits[x.id] !== undefined && !a.removed.includes(x.id)).map((x) => ({ id: x.id, before: x.text, after: a.edits[x.id] })),
-      ...all.filter((x) => a.removed.includes(x.id)).map((x) => ({ id: x.id, before: a.edits[x.id] ?? x.text, after: null })),
+      ...all.filter((x) => a.removed.includes(x.id) && !x.test).map((x) => ({ id: x.id, before: a.edits[x.id] ?? x.text, after: null })),
       ...(a.edits.msg !== undefined ? [{ id: 'clientMessage', before: a.draft.clientMessage.body, after: a.edits.msg }] : []),
       ...(a.edits.crm !== undefined ? [{ id: 'crmNote', before: a.draft.crmNote, after: a.edits.crm }] : []),
     ];
@@ -275,7 +275,8 @@ export function AuditDrawer({ open, onClose, audit }: { open: boolean; onClose: 
           <dt className="text-slate-500">Approved at</dt><dd>{simStamp(audit.approvedAt, SIM_TODAY)}</dd>
           <dt className="text-slate-500">Draft</dt><dd>{audit.draftModel} · prompt {audit.draftPrompt}</dd>
           <dt className="text-slate-500">Verifier</dt><dd>{audit.verifyModel} · prompt {audit.verifyPrompt}</dd>
-          <dt className="text-slate-500">Verifier result</dt><dd>{v.filter((r: any) => r.verdict === 'supported').length} supported · {v.filter((r: any) => r.verdict !== 'supported').length} flagged (incl. removed)</dd>
+          <dt className="text-slate-500">Verifier result</dt><dd>{v.filter((r: any) => r.verdict === 'supported' && r.sentenceId !== 'test').length} supported · {v.filter((r: any) => r.verdict !== 'supported' && r.sentenceId !== 'test').length} flagged</dd>
+          <dt className="text-slate-500">Verifier test</dt><dd>{v.some((r: any) => r.sentenceId === 'test') ? 'Test case run: labelled test sentence (not AI output) inserted, flagged by verifier and number guard, removed before approval' : 'not run'}</dd>
           <dt className="text-slate-500">Number guard</dt><dd>{audit.guardPass ? 'pass' : 'FAIL'}</dd>
           <dt className="text-slate-500">Approved despite flags</dt><dd>{audit.reviewedDespiteFlags ? 'yes — RM ticked “reviewed and accept”' : 'no'}</dd>
           <dt className="text-slate-500">Cost disclosure</dt><dd>code · RULES.md §6</dd>
@@ -302,7 +303,7 @@ export function AuditDrawer({ open, onClose, audit }: { open: boolean; onClose: 
           <div className="text-xs font-semibold uppercase text-slate-500">Journey after approval</div>
           <ul className="mt-1 space-y-0.5 text-xs" data-testid="audit-journey">
             <li>RM attestation: {s.albers.attestedAt ? `${simStamp(s.albers.attestedAt, SIM_TODAY)} · Jonas Weber` : 'pending'}</li>
-            {s.albers.clarification && s.albers.attested && <li>Contradiction resolved: {s.albers.clarification}</li>}
+            {s.albers.questionnaireUpdatedAt && <li>Contradiction clarified + questionnaire updated (“none” → “some, direct, no funds”): {simStamp(s.albers.questionnaireUpdatedAt, SIM_TODAY)} · client said: {s.albers.clarification}</li>}
             <li>Client acknowledged statement + costs: {s.albers.ackAt ? simStamp(s.albers.ackAt, SIM_TODAY) : 'pending'}</li>
             <li>Client signed: {s.albers.signedAt ? simStamp(s.albers.signedAt, SIM_TODAY) : 'pending'}</li>
             <li>Transfer for first call instructed: {s.albers.fundedAt ? simStamp(s.albers.fundedAt, SIM_TODAY) : 'pending'}</li>

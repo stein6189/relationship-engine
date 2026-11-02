@@ -24,6 +24,10 @@ export function subscriptionSteps(a: DemoState['albers']): Step[] {
   ];
 }
 
+export function prefilledFields(a: { audit?: unknown; attested: boolean }) {
+  return PREFILLED_FIELDS.map((f) => f.source === 'approved advice record' && !a.audit ? { ...f, value: 'pending advice approval' } : f.source === 'qualification step' && !a.attested ? { ...f, value: 'pending RM qualification' } : f);
+}
+
 export const PREFILLED_FIELDS = [
   { field: 'Full name', value: 'Claudia Albers', source: 'client record' },
   { field: 'Address', value: 'Munich (on file)', source: 'client record' },

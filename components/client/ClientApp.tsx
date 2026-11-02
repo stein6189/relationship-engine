@@ -12,7 +12,7 @@ import { eur, fmtDate, pct } from '@/lib/rules/format';
 import { liquidityGap } from '@/lib/rules/liquidity';
 import { SIM_TODAY } from '@/lib/rules/config';
 import { SUGGESTED, cacheKeyFor, ADVICE_REPLY } from '@/lib/clientQa';
-import { subscriptionSteps, PREFILLED_FIELDS, firstCallEur, firstClose } from '@/lib/subscription';
+import { subscriptionSteps, prefilledFields, firstCallEur, firstClose } from '@/lib/subscription';
 import { exAnteCosts } from '@/lib/rules/costs';
 import { ALBERS_COMMITMENT } from '@/lib/facts';
 import { Timeline } from '@/components/views/Client360';
@@ -111,7 +111,7 @@ function Home({ id, go }: { id: string; go: (t: Tab) => void }) {
         <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-teal-100 font-semibold text-accent-dark">JW</span>
         <div className="flex-1">
           <div className="text-[15px] font-semibold">Jonas Weber, your advisor</div>
-          <div className="text-[14px] text-slate-600">{id === 'albers' ? (s.albers.audit ? 'Thank you for meeting on 5 Nov. Your documents are ready to read.' : 'Thank you for meeting on 5 Nov. Jonas is preparing your documents.') : plannedContact ? 'Jonas will contact you personally this month.' : 'No action needed. Jonas sends you a short update every quarter.'}</div>
+          <div className="text-[14px] text-slate-600">{id === 'albers' ? (s.albers.audit ? 'Your documents from the meeting on 5 Nov are ready to read.' : 'Jonas is preparing your documents from your meeting on 5 Nov.') : plannedContact ? 'Jonas will contact you personally this month.' : 'No action needed. Jonas sends you a short update every quarter.'}</div>
         </div>
       </Panel>
 
@@ -279,7 +279,7 @@ function Invest() {
       {docsReady && (
         <Section title="Your documents">
           <Panel>
-            <ul className="space-y-1.5 text-[13px]">{PREFILLED_FIELDS.map((f) => <li key={f.field} className="flex justify-between gap-2"><span className="text-slate-500">{f.field}</span><span className="text-right font-medium">{f.value}</span></li>)}</ul>
+            <ul className="space-y-1.5 text-[13px]">{prefilledFields(a).map((f) => <li key={f.field} className="flex justify-between gap-2"><span className="text-slate-500">{f.field}</span><span className="text-right font-medium">{f.value}</span></li>)}</ul>
             <p className="mt-2 text-[12px] text-slate-400">Filled in from your data. Tell Jonas if anything is wrong.</p>
           </Panel>
         </Section>

@@ -23,4 +23,4 @@ export function cacheKeyFor(clientId: string, q: string): string {
   return `${clientId}_other`;
 }
 
-export const ADVICE_REPLY = "That's a decision about your investments, so I've passed it to Jonas. He'll get back to you shortly.";
+export const ADVICE_REPLY = "That's a decision about your investments, so we've passed your question to Jonas. He'll get back to you shortly.";

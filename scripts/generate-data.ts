@@ -294,7 +294,7 @@ for (const a of digital) {
   let body = `Dear ${c.firstName}, a short update: your portfolio stands at ${value}, ${ytd} so far this year. ${goalLine} Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas`;
   if (c.id === 'hofmann') {
     facts.push({ id: 'f3', label: 'retirement goal year', value: '2030' });
-    body = `Dear Monika, your quarterly update: your portfolio stands at ${value}, ${ytd} so far this year. Your portfolio stays invested as agreed for your retirement income from 2030. No action needed — as agreed, I'll only call if something changes. Best, Jonas`;
+    body = `Dear Monika, your quarterly update: your portfolio stands at ${value}, ${ytd} so far this year. Your portfolio stays invested as agreed for your retirement income from 2030. No action needed — I'll only call if something changes, as you prefer. Best, Jonas`;
   } else if (trigger === 'distribution_received') {
     const d = a.signals.find((s) => s.type === 'distribution_received')!;
     facts.push({ id: 'f3', label: 'distribution amount', value: '€' + (d.amountEur ?? 0).toLocaleString('en-GB') });

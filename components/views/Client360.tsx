@@ -85,11 +85,11 @@ export function Timeline({ items, side }: { items: TimelineItem[]; side: 'rm' | 
           </div>
           {t.text && <p className="text-xs leading-snug text-slate-600">{t.text}</p>}
           {side === 'rm' && (
-            <div className="mt-0.5 flex gap-1 text-[10px]">
-              <span className={t.seenByClient ? 'text-sky-700' : 'text-slate-400'}>{t.seenByClient ? '● seen by client' : '○ not visible to client'}</span>
-              <span className="text-slate-300">·</span>
-              <span className={t.seenByRm ? 'text-accent' : 'text-slate-400'}>{t.seenByRm ? '● seen by RM' : '○ RM not aware'}</span>
-              {t.kind === 'view' && <span className="text-slate-400">· client action, not shown in the app · behavioural signal for the RM only — never used in client messages</span>}
+            <div className="mt-0.5 flex flex-wrap gap-x-1.5 whitespace-nowrap text-[10px]">
+              {t.kind === 'view' ? <span className="text-slate-500">◆ client action · RM only — never shown in the app or used in client messages</span>
+                : t.kind === 'note' ? <span className="text-slate-500">◆ RM only — not visible to the client</span>
+                : t.kind === 'sent' || t.kind === 'document' ? <><span className="text-sky-700">● delivered to the client app</span><span className="text-accent">● sent by RM</span></>
+                : <><span className="text-sky-700">● visible to client</span><span className="text-accent">● visible to RM</span></>}
             </div>
           )}
         </li>

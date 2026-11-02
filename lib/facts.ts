@@ -63,6 +63,7 @@ export function kellerFacts(): Fact[] {
     { id: 'k_interest', label: `Interest for ${KELLER_BRIDGE_MONTHS} months`, value: eur(br.interestEur) },
     { id: 'k_rate', label: 'Interest rate (assumption)', value: pct(br.rate) },
     { id: 'k_tax', label: 'Estimated tax if ETFs are sold', value: eur(sell.taxEur) },
+    { id: 'k_taxpe', label: 'Estimated tax with 30% partial exemption', value: eur(sell.taxWithPartialExemptionEur) },
     { id: 'k_feelost', label: 'Platform fee lost p.a. if sold', value: eur(sell.feeLostPaEur) },
     { id: 'k_aum', label: 'Assets with us', value: eur(c.aumEur) },
     { id: 'k_stated', label: 'Stated investable wealth', value: eur(c.statedInvestableEur) },

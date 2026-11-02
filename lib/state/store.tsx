@@ -33,7 +33,7 @@ export interface DemoState {
     testInserted: boolean; reviewedAccept: boolean; audit?: AuditRecord; consistency?: any; consistencyMeta?: AiMeta; attested: boolean;
     ack: boolean; signed: boolean; funded: boolean;
     verifySnapshot?: Record<string, string>; finalStatement?: string; contradictionReviewed?: boolean;
-    clarification?: string; attestedAt?: string; ackAt?: string; signedAt?: string; fundedAt?: string;
+    clarification?: string; questionnaireUpdated?: boolean; questionnaireUpdatedAt?: string; attestedAt?: string; ackAt?: string; signedAt?: string; fundedAt?: string;
   };
   keller: { option?: 'sell' | 'bridge' | 'transfer'; draft?: any; draftMeta?: AiMeta; messageApproved: boolean; clientConfirmed: boolean; explanations: Record<string, any> };
 }

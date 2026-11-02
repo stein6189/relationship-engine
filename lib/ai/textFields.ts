@@ -5,7 +5,7 @@ export function textOf(task: TaskId, out: any): string {
   if (!out) return '';
   switch (task) {
     case 'draft_touchpoint': return `${out.subject}\n${out.body}`;
-    case 'route_client_question': return out.clientAnswer ?? '';
+    case 'route_client_question': return `${out.clientAnswer ?? ''}\n${out.rmDraft ?? ''}`;
     case 'explain_option': return out.sentence ?? '';
     case 'meeting_brief': return (out.sentences ?? []).map((s: { text: string }) => s.text).join('\n');
     case 'draft_suitability':

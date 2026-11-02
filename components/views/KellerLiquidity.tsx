@@ -90,7 +90,7 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
     setK({ option: opt, draft: undefined, draftMeta: undefined, messageApproved: false, clientConfirmed: false });
     const r = await ai<any>('draft_touchpoint', {
       cacheKey: `keller_${opt}`, client: { firstName: c.firstName, tonePreference: 'direct, brief' }, trigger: `capital_call_gap · RM proposes: ${OPTION_LABEL[opt]}`, facts,
-      history: ['client asked twice why Atlas Growth V shows a loss', `RM chose option: ${opt}`], note: 'The RM has chosen this option and approves the message. Explain the call and the option; state risks plainly.',
+      history: ['client asked twice why Atlas Growth V shows a loss', `RM chose option: ${opt}`], note: 'The RM has chosen this option and will approve the message. Write the client message in the RM voice (messageType advisory: RM-owned proposal, not AI advice). Explain the call and the option; state costs, risks and conditions plainly.',
     }, { clientId: 'keller', label: `Capital call message · ${opt}` });
     setK({ option: opt, draft: r.output, draftMeta: r.meta, messageApproved: false });
     setBody(null);

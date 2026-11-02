@@ -65,6 +65,7 @@ await step('7 · verifier test → red; remove; approve; audit complete', async 
   const audit = await page.getByTestId('audit-record').innerText();
   for (const k of ['Approved by', 'Draft', 'Verifier', 'Sources used', 'AI draft vs final', 'Rule checks']) expect(audit.toLowerCase().includes(k.toLowerCase()), 'audit has ' + k);
   expect(/test/.test(audit), 'removed test sentence in diff');
+  expect(!/AI draft vs final \(1 change/i.test(audit), 'test sentence not presented as AI change');
   await shot(page, P + '07b-audit');
   await page.getByRole('button', { name: 'Close' }).click();
 });
@@ -76,7 +77,9 @@ await step('8 · split view: checklist, contradiction, attestation, acknowledgme
   expect((await page.getByTestId('step-5').innerText()).includes('€40,000'), 'first call €40,000');
   await page.getByTestId('ctab-invest').click();
   expect(await page.getByTestId('client-sign').isDisabled(), 'sign locked before steps');
-  await page.getByTestId('contradiction-reviewed').check();
+  expect(await page.getByTestId('attest').isDisabled(), 'attestation blocked while contradiction open');
+  await page.getByTestId('use-notes').click();
+  await page.getByTestId('update-questionnaire').click();
   await page.getByTestId('attest-tick').check();
   await page.getByTestId('attest').click();
   await page.getByTestId('doc-costs').click();

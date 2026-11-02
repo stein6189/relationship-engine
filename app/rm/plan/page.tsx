@@ -102,7 +102,7 @@ function Pipeline() {
               <div className="text-[11px] font-medium text-slate-500">{st}</div>
               <div className="tnum text-sm font-semibold">{eurShort(items.reduce((x, o) => x + o.amountEur, 0))}</div>
               <div className="mt-1 space-y-0.5">
-                {items.map((o) => <div key={o.clientId} className={clsx('truncate text-[11px]', o.clientId === 'albers' ? 'font-semibold text-accent' : 'text-slate-600')} data-testid={o.clientId === 'albers' ? `pipeline-albers-${st}` : undefined}>{clientById(o.clientId)?.name} · {o.product}{o.clientId === 'albers' && s.albers.funded ? ' · funding instructed for 15 Dec' : ''}</div>)}
+                {items.map((o) => <div key={o.clientId} className={clsx('text-[11px]', o.clientId === 'albers' ? 'font-semibold text-accent' : 'truncate text-slate-600')} data-testid={o.clientId === 'albers' ? `pipeline-albers-${st}` : undefined}>{clientById(o.clientId)?.name} · {o.product}{o.clientId === 'albers' && <span className="block font-normal text-slate-500">5 Nov conversation{s.albers.attested ? ' → 6 Nov qualified' : ''}{s.albers.signed ? ' → 6 Nov signed' : ''}{s.albers.funded ? ' · funding 15 Dec' : ''}</span>}</div>)}
               </div>
             </div>
           );
@@ -229,7 +229,7 @@ export default function PlanPage() {
         <span className="text-xs text-slate-500">✦ = read by AI (source · confidence). ▲▼ feedback on signals and drafts is stored to tune prompts and thresholds — no model training.</span>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.35fr_1fr_1fr]">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,1fr)]">
         <section data-testid="lane-rm">
           <SectionTitle right={<Badge tone="teal">{rmAll.length} of {RM_SLOTS} slots</Badge>}>RM conversation</SectionTitle>
           <div className="space-y-2">{rm.map((a) => <ClientCard key={a.clientId} a={a} onOverride={setMoving} />)}</div>

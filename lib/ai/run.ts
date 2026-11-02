@@ -53,7 +53,8 @@ export async function runTask(task: TaskId, input: { cacheKey: string; facts?: F
   const p = promptIndex[task];
   const base = { task, promptId: task, promptVersion: p?.version ?? 'v1', cacheKey: input.cacheKey, timestamp: new Date().toISOString() };
   const finish = (output: unknown, meta: Omit<AiMeta, 'guard' | 'latencyMs' | keyof typeof base>) => {
-    const g = input.facts ? numberGuard(textOf(task, output), input.facts) : undefined;
+    const text = textOf(task, output).trim();
+    const g = input.facts && text ? numberGuard(text, input.facts) : undefined;
     const full: AiMeta = { ...base, ...meta, latencyMs: Date.now() - started, guard: g && { pass: g.pass, unsupported: g.unsupported.map((u) => u.raw), checked: g.checked } };
     return { output, meta: full };
   };

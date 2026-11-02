@@ -6,12 +6,12 @@ import { useStore } from '@/lib/state/store';
 import { useAi } from '@/lib/ai/client';
 import { clientById } from '@/lib/data';
 import { albersRuleResults, albersAllFacts } from '@/lib/albers';
-import { subscriptionSteps, PREFILLED_FIELDS, firstCallEur, firstClose, type StepState } from '@/lib/subscription';
+import { subscriptionSteps, prefilledFields, firstCallEur, firstClose, type StepState } from '@/lib/subscription';
 import { eur, fmtDate } from '@/lib/rules/format';
 import { AiMetaBadge } from '@/components/AiMetaBadge';
 import { Badge, Button, Card, SectionTitle, Spinner, Term } from '@/components/ui';
 
-const CLARIFY_DEFAULT = 'Meeting 5 Nov: client invested directly in startups as an angel investor (one exit in 2019); no investments in private equity funds. Questionnaire to be corrected from "none" to "some (direct, no funds)".';
+const CLARIFY_FROM_NOTES = 'Meeting notes 5 Nov: client invested directly in startups as an angel investor (one exit in 2019); no investments in private equity funds so far.';
 
 export function StepDot({ state, n }: { state: StepState; n: number }) {
   return <span className={clsx('grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-semibold', state === 'done' ? 'bg-green-600 text-white' : state === 'open' ? 'bg-accent text-white' : 'bg-slate-200 text-slate-500')}>{state === 'done' ? '✓' : state === 'locked' ? '🔒︎' : n}</span>;
@@ -43,7 +43,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
 
   const findings: any[] = a.consistency?.findings ?? [];
   const rulesPass = rules.allRulesPass;
-  const canAttest = rulesPass && !!a.consistency && (findings.length === 0 && !a.consistency.invalid || (a.contradictionReviewed && !!(a.clarification ?? '').trim())) && attestTick;
+  const canAttest = rulesPass && !!a.consistency && ((findings.length === 0 && !a.consistency.invalid) || (findings.length > 0 ? !!a.questionnaireUpdated : !!a.contradictionReviewed)) && attestTick;
 
   return (
     <div className="space-y-4" data-testid="subscription">
@@ -74,7 +74,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
             {rules.checks.map((k) => (
               <li key={k.id} className="flex items-start justify-between gap-2 border-b border-slate-100 pb-1">
                 <span>{k.label}<span className="ml-1 text-[11px] text-slate-500">{k.kind === 'legal' ? 'legal' : k.kind === 'internal' ? 'internal guardrail' : 'human judgment'}</span></span>
-                <span className="flex shrink-0 items-center gap-1.5"><span className="tnum text-xs text-slate-500">{k.detail}{k.id === 'quest' && a.contradictionReviewed ? ' · update pending' : ''}</span>{k.pass === null ? <Badge tone="amber">RM</Badge> : k.pass ? <Badge tone="green">✓</Badge> : <Badge tone="red">✗</Badge>}</span>
+                <span className="flex shrink-0 items-center gap-1.5"><span className="tnum text-xs text-slate-500">{k.id === 'quest' && findings.length > 0 ? (a.questionnaireUpdated ? 'updated after clarification' : 'contradiction open') : k.detail}</span>{k.id === 'quest' && findings.length > 0 && !a.questionnaireUpdated ? <Badge tone="amber">!</Badge> : k.pass === null ? <Badge tone="amber">RM</Badge> : k.pass ? <Badge tone="green">✓</Badge> : <Badge tone="red">✗</Badge>}</span>
               </li>
             ))}
           </ul>
@@ -93,14 +93,17 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
                 {f.conflictingEvidence.map((e: any) => <div key={e.sourceId} className="mt-1">But <span className="font-mono text-xs">{e.sourceId}</span>: <i>“{e.quote}”</i></div>)}
                 <div className="mt-1 text-xs text-slate-700">{f.whyItMatters}</div>
                 <div className="mt-1 text-xs">Ask the client: “{f.suggestedQuestionForClient}”</div>
-                {!a.attested ? (
+                {!a.questionnaireUpdated ? (
                   <div className="mt-2 space-y-1">
                     <label className="block text-xs font-medium">What did the client say? (recorded in the audit record)
-                      <textarea aria-label="Clarification" className="mt-0.5 h-14 w-full rounded border border-amber-300 bg-white p-1.5 text-xs font-normal" value={a.clarification ?? CLARIFY_DEFAULT} onChange={(e) => setA({ clarification: e.target.value })} data-testid="clarification" />
+                      <textarea aria-label="Clarification" placeholder="Write the client's answer…" className="mt-0.5 h-14 w-full rounded border border-amber-300 bg-white p-1.5 text-xs font-normal" value={a.clarification ?? ''} onChange={(e) => setA({ clarification: e.target.value })} data-testid="clarification" />
                     </label>
-                    <label className="flex items-center gap-2 text-xs"><input type="checkbox" checked={!!a.contradictionReviewed} onChange={(e) => setA({ contradictionReviewed: e.target.checked, clarification: a.clarification ?? CLARIFY_DEFAULT })} data-testid="contradiction-reviewed" /> Clarified with the client. Questionnaire update is logged as pending.</label>
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <button className="text-[11px] text-accent underline" onClick={() => setA({ clarification: CLARIFY_FROM_NOTES })} data-testid="use-notes">Insert from meeting notes (5 Nov)</button>
+                      <Button className="text-xs" variant="primary" disabled={(a.clarification ?? '').trim().length < 10} onClick={() => setA({ questionnaireUpdated: true, contradictionReviewed: true, questionnaireUpdatedAt: new Date().toISOString() })} data-testid="update-questionnaire">Update questionnaire: “none” → “some (direct, no funds)”</Button>
+                    </div>
                   </div>
-                ) : <div className="mt-2 text-xs"><b>Clarified:</b> {a.clarification} <Badge tone="amber">questionnaire update pending</Badge></div>}
+                ) : <div className="mt-2 text-xs" data-testid="clarified"><b>Clarified:</b> {a.clarification} <Badge tone="green">questionnaire updated</Badge></div>}
               </div>
             ))}
             {!busy && <Button className="mt-2 text-xs" variant="ghost" onClick={runCheck} disabled={a.attested}>Re-run check</Button>}
@@ -109,12 +112,12 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
           <Card className={clsx('p-4', a.attested && 'border-green-300 bg-green-50/40')} data-testid="attestation">
             <SectionTitle>RM attestation</SectionTitle>
             {a.attested ? (
-              <p className="text-sm"><Badge tone="green">Attested</Badge> by Jonas Weber · {fmtDate('2026-11-06')}. Albers moved to “Qualified” in the pipeline.</p>
+              <p className="text-sm"><Badge tone="green">Attested</Badge> by Jonas Weber · {fmtDate('2026-11-06')}. Step 1 done.</p>
             ) : (
               <>
                 <label className="flex items-start gap-2 text-sm"><input type="checkbox" className="mt-1" checked={attestTick} onChange={(e) => setAttestTick(e.target.checked)} data-testid="attest-tick" /> I am sufficiently satisfied that the client can make their own investment decisions and understands the risks.</label>
                 <div className="mt-2 flex items-center justify-between gap-2">
-                  <span className="text-[11px] text-slate-500">{!rulesPass ? 'A rule check failed.' : findings.length && !a.contradictionReviewed ? 'Review the contradiction first.' : 'Never automated — this is your judgment.'}</span>
+                  <span className="text-[11px] text-slate-500">{!rulesPass ? 'A rule check failed.' : findings.length && !a.questionnaireUpdated ? 'Clarify the contradiction and update the questionnaire first.' : 'Never automated — this is your judgment.'}</span>
                   <Button variant="primary" disabled={!canAttest} onClick={() => setA({ attested: true, attestedAt: new Date().toISOString() })} data-testid="attest">Complete qualification</Button>
                 </div>
               </>
@@ -130,7 +133,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
         </Card>
         <Card className="p-4">
           <SectionTitle>3 · Documents (pre-filled)</SectionTitle>
-          <table className="w-full text-xs"><tbody>{PREFILLED_FIELDS.map((f) => <tr key={f.field} className="border-b border-slate-100"><td className="py-0.5 text-slate-500">{f.field}</td><td className="py-0.5">{f.value}</td><td className="py-0.5 text-right text-[10px] text-slate-400">{f.source}</td></tr>)}</tbody></table>
+          <table className="w-full text-xs"><tbody>{prefilledFields(a).map((f) => <tr key={f.field} className="border-b border-slate-100"><td className="py-0.5 text-slate-500">{f.field}</td><td className="py-0.5">{f.value}</td><td className="py-0.5 text-right text-[10px] text-slate-400">{f.source}</td></tr>)}</tbody></table>
         </Card>
         <Card className="p-4">
           <SectionTitle>4–5 · Signature and funding</SectionTitle>

@@ -6,7 +6,7 @@
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "category": "advice",
-  "clientAnswer": "That's a decision about your investments, so I've passed it to Jonas. He'll get back to you shortly.",
+  "clientAnswer": "That's a decision about your investments, so we've passed your question to Jonas. He'll get back to you shortly.",
   "rmDraft": "Thomas asks whether to sell ETFs to pay the call. Options are prepared in the liquidity view: selling would trigger an estimated €10,154 in tax; a 3-month bridge would cost about €1,238 in interest. Suggest discussing on the call.",
   "factsUsed": [
    "k_tax",

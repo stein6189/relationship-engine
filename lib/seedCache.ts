@@ -2146,7 +2146,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Monika, your quarterly update: your portfolio stands at €700,000, +6.2% so far this year. Your portfolio stays invested as agreed for your retirement income from 2030. No action needed — as agreed, I'll only call if something changes. Best, Jonas",
+  "body": "Dear Monika, your quarterly update: your portfolio stands at €700,000, +6.2% so far this year. Your portfolio stays invested as agreed for your retirement income from 2030. No action needed — I'll only call if something changes, as you prefer. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -2184,8 +2184,8 @@ export const seedCache: Record<string, CacheEntry> = {
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your capital call on 1 Dec 2026",
-  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 still needs to be covered. My proposal: bridge this for 3 months with a loan against your ETFs, at an estimated interest cost of €1,238, so your ETFs stay invested. The Meridian distribution expected in February is not confirmed; if it comes later, the loan runs longer. If markets fall sharply you may need to add collateral. Tell me in the app if you would like to go ahead and I will call you to set it up. Best, Jonas",
-  "messageType": "personal_outreach",
+  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 still needs to be covered. My proposal: bridge this for 3 months with a loan against your ETFs, at an assumed rate of 4.5% a year — about €1,238 in interest — so your ETFs stay invested. This would need a separate credit agreement. The Meridian distribution expected in February is not confirmed; if it comes later, the loan runs longer. If markets fall sharply you may need to add collateral. Tell me in the app if you would like to go ahead and I will call you to set it up. Best, Jonas",
+  "messageType": "advisory",
   "factsUsed": [],
   "callToAction": "reply",
   "confidence": 0.88
@@ -2199,8 +2199,8 @@ export const seedCache: Record<string, CacheEntry> = {
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your capital call on 1 Dec 2026",
-  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 still needs to be covered. My proposal: sell part of your ETFs. This realises gains, with estimated tax of €10,154 (a simplified estimate). Tell me in the app if you would like to go ahead and I will call you to confirm. Best, Jonas",
-  "messageType": "personal_outreach",
+  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 still needs to be covered. My proposal: sell part of your ETFs. This realises gains. The tax would be about €7,108 with the partial exemption for equity funds, and up to €10,154 without it; your tax adviser confirms the exact amount. Tell me in the app if you would like to go ahead and I will call you to confirm. Best, Jonas",
+  "messageType": "advisory",
   "factsUsed": [],
   "callToAction": "reply",
   "confidence": 0.88
@@ -3763,7 +3763,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "category": "advice",
-  "clientAnswer": "That's a decision about your investments, so I've passed it to Jonas. He'll get back to you shortly.",
+  "clientAnswer": "That's a decision about your investments, so we've passed your question to Jonas. He'll get back to you shortly.",
   "rmDraft": "Thomas asks whether to sell ETFs to pay the call. Options are prepared in the liquidity view: selling would trigger an estimated €10,154 in tax; a 3-month bridge would cost about €1,238 in interest. Suggest discussing on the call.",
   "factsUsed": [
    "k_tax",
