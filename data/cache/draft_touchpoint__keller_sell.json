@@ -1,0 +1,15 @@
+{
+ "promptId": "draft_touchpoint",
+ "key": "keller_sell",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "subject": "Your capital call on 1 Dec 2026",
+  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 is missing. As discussed, we would sell ETFs to cover this. This realises gains, with estimated tax of €10,154. Please confirm in the app if you would like to proceed. Best, Jonas",
+  "messageType": "personal_outreach",
+  "factsUsed": [],
+  "callToAction": "reply",
+  "confidence": 0.88
+ }
+}

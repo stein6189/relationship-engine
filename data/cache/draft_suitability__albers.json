@@ -1,0 +1,138 @@
+{
+ "promptId": "draft_suitability",
+ "key": "albers",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "suitability": {
+   "clientObjectives": [
+    {
+     "text": "Claudia wants to diversify beyond listed markets and invest in the real economy.",
+     "sourceIds": [
+      "notes",
+      "albers_note_2025-12-02"
+     ]
+    },
+    {
+     "text": "Her investment horizon is 15 years or longer.",
+     "sourceIds": [
+      "notes",
+      "f_horizon"
+     ]
+    }
+   ],
+   "riskProfile": [
+    {
+     "text": "Her risk profile is risk class 6, which matches the product risk indicator SRI 6.",
+     "sourceIds": [
+      "f_risk",
+      "p_sri"
+     ]
+    },
+    {
+     "text": "She understands that returns are not guaranteed.",
+     "sourceIds": [
+      "notes"
+     ]
+    }
+   ],
+   "knowledgeAndExperience": [
+    {
+     "text": "The questionnaire states no private equity experience.",
+     "sourceIds": [
+      "questionnaire"
+     ]
+    },
+    {
+     "text": "An earlier RM note records that she was an angel investor and sold a startup stake. The RM should confirm which statement is correct.",
+     "sourceIds": [
+      "albers_note_2025-12-02"
+     ]
+    }
+   ],
+   "financialSituationAndLossCapacity": [
+    {
+     "text": "She holds €900,000 with us and states investable wealth of €3,000,000, including bank deposits of €1,400,000.",
+     "sourceIds": [
+      "f_aum",
+      "f_stated",
+      "f_deposits"
+     ]
+    },
+    {
+     "text": "After this investment, private markets would make up 6.7% of her stated investable wealth.",
+     "sourceIds": [
+      "r_pmshare"
+     ]
+    },
+    {
+     "text": "She can bear a loss of the committed amount without affecting her plans.",
+     "sourceIds": [
+      "notes"
+     ]
+    }
+   ],
+   "whyTheProductFits": [
+    {
+     "text": "Meridian Buyout V matches her wish to diversify into private companies and her long horizon.",
+     "sourceIds": [
+      "notes",
+      "p_name"
+     ]
+    },
+    {
+     "text": "A commitment of €200,000 meets the fund minimum and fits her capacity to lock money for the fund term of 10 years.",
+     "sourceIds": [
+      "p_commit",
+      "p_min",
+      "p_term"
+     ]
+    }
+   ],
+   "risksExplained": [
+    {
+     "text": "Capital is locked for about ten years and capital calls come over three to four years.",
+     "sourceIds": [
+      "notes"
+     ]
+    },
+    {
+     "text": "The J-curve was explained: the fund is likely to show a loss in its first years.",
+     "sourceIds": [
+      "notes"
+     ]
+    },
+    {
+     "text": "Distributions are not guaranteed, and she could lose part or all of the committed amount.",
+     "sourceIds": [
+      "notes"
+     ]
+    },
+    {
+     "text": "The costs were explained; see the cost disclosure.",
+     "sourceIds": [
+      "notes"
+     ]
+    }
+   ],
+   "alternativesConsidered": [
+    {
+     "text": "An ELTIF with a lower minimum and no capital calls was discussed. Claudia prefers the buyout fund.",
+     "sourceIds": [
+      "notes"
+     ]
+    }
+   ]
+  },
+  "clientMessage": {
+   "subject": "Summary of our conversation on private markets",
+   "body": "Dear Claudia, thank you for our conversation. Attached are the suitability statement and the cost disclosure for Meridian Buyout V. Please read both before you sign. Your commitment would be €200,000, with a first capital call of €40,000 at first close. If anything is unclear, just reply here. Best, Jonas"
+  },
+  "crmNote": "Advisory meeting on private markets. Client wants to diversify, horizon 15 years, understands illiquidity, J-curve and that distributions are not guaranteed. Proposed: Meridian Buyout V, commitment €200,000. ELTIF discussed as alternative. Open: clarify private equity experience before RM attestation.",
+  "openPoints": [
+   "Clarify private equity experience: the questionnaire says none, an RM note mentions angel investing."
+  ],
+  "confidence": 0.84
+ }
+}

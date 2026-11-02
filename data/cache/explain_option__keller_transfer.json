@@ -1,0 +1,15 @@
+{
+ "promptId": "explain_option",
+ "key": "keller_transfer",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "optionId": "transfer",
+  "sentence": "Transferring €110,000 from a bank account costs nothing and adds new money, if Thomas has the cash available.",
+  "factsUsed": [
+   "k_gap"
+  ],
+  "confidence": 0.9
+ }
+}

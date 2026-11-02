@@ -1,0 +1,18 @@
+{
+ "promptId": "route_client_question",
+ "key": "keller_next_call",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "category": "factual",
+  "clientAnswer": "Your next capital call is €150,000 for Atlas Growth V, due on 1 Dec 2026. You currently have €40,000 in cash with us. Jonas will contact you about how to cover the rest.",
+  "rmDraft": "",
+  "factsUsed": [
+   "k_call",
+   "k_due",
+   "k_cash"
+  ],
+  "confidence": 0.92
+ }
+}

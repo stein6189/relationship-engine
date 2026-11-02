@@ -1,0 +1,15 @@
+{
+ "promptId": "explain_option",
+ "key": "keller_bridge",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "optionId": "bridge",
+  "sentence": "A 3-month loan against the ETFs costs about €1,238 in interest and keeps the portfolio invested until the distribution arrives.",
+  "factsUsed": [
+   "k_interest"
+  ],
+  "confidence": 0.9
+ }
+}

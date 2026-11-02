@@ -1,0 +1,148 @@
+{
+ "promptId": "verify_draft",
+ "key": "albers",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "results": [
+   {
+    "sentenceId": "s1",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes",
+     "albers_note_2025-12-02"
+    ]
+   },
+   {
+    "sentenceId": "s2",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes",
+     "f_horizon"
+    ]
+   },
+   {
+    "sentenceId": "s3",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "f_risk",
+     "p_sri"
+    ]
+   },
+   {
+    "sentenceId": "s4",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes"
+    ]
+   },
+   {
+    "sentenceId": "s5",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "questionnaire"
+    ]
+   },
+   {
+    "sentenceId": "s6",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "albers_note_2025-12-02"
+    ]
+   },
+   {
+    "sentenceId": "s7",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "f_aum",
+     "f_stated",
+     "f_deposits"
+    ]
+   },
+   {
+    "sentenceId": "s8",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "r_pmshare"
+    ]
+   },
+   {
+    "sentenceId": "s9",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes"
+    ]
+   },
+   {
+    "sentenceId": "s10",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes",
+     "p_name"
+    ]
+   },
+   {
+    "sentenceId": "s11",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "p_commit",
+     "p_min",
+     "p_term"
+    ]
+   },
+   {
+    "sentenceId": "s12",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes"
+    ]
+   },
+   {
+    "sentenceId": "s13",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes"
+    ]
+   },
+   {
+    "sentenceId": "s14",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes"
+    ]
+   },
+   {
+    "sentenceId": "s15",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes"
+    ]
+   },
+   {
+    "sentenceId": "s16",
+    "verdict": "supported",
+    "reason": "Found in the cited sources.",
+    "supportingSourceIds": [
+     "notes"
+    ]
+   }
+  ],
+  "overall": "pass"
+ }
+}

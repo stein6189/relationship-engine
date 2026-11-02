@@ -1,0 +1,16 @@
+{
+ "promptId": "route_client_question",
+ "key": "albers_early",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "category": "factual",
+  "clientAnswer": "In a private equity fund your money is usually locked for the fund term of 10 years. You normally cannot sell early. Distributions come back step by step as the fund sells companies. Jonas can talk you through what this means for your plans.",
+  "rmDraft": "",
+  "factsUsed": [
+   "p_term"
+  ],
+  "confidence": 0.85
+ }
+}

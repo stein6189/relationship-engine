@@ -1,0 +1,65 @@
+{
+ "promptId": "meeting_brief",
+ "key": "albers",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "sentences": [
+   {
+    "text": "Claudia asked twice in October whether private equity could make sense for her.",
+    "sourceIds": [
+     "albers_msg_2026-10-08",
+     "albers_msg_2026-10-24"
+    ]
+   },
+   {
+    "text": "She also asked what happens if she needs the money earlier, so illiquidity will be her main question.",
+    "sourceIds": [
+     "albers_msg_2026-10-24"
+    ]
+   },
+   {
+    "text": "Her last proactive conversation was on 2 Dec 2025, when she mentioned she had been an angel investor.",
+    "sourceIds": [
+     "albers_note_2025-12-02",
+     "f_lastcontact"
+    ]
+   },
+   {
+    "text": "She holds €900,000 with us, about 30% of her stated investable wealth of €3,000,000.",
+    "sourceIds": [
+     "f_aum",
+     "f_sow",
+     "f_stated"
+    ]
+   },
+   {
+    "text": "Her questionnaire says she has no private equity experience, which conflicts with that note. Clarify this before qualification.",
+    "sourceIds": [
+     "questionnaire",
+     "albers_note_2025-12-02"
+    ]
+   },
+   {
+    "text": "Meridian Buyout V is open for subscription with a €200,000 minimum and a fund term of 10 years.",
+    "sourceIds": [
+     "p_name",
+     "p_min",
+     "p_term"
+    ]
+   }
+  ],
+  "openQuestionsForClient": [
+   "Which private investments have you made before, and how did they work out?",
+   "How much of your wealth could stay locked for around ten years without affecting your plans?",
+   "How would you feel if the fund showed a loss in its first years?"
+  ],
+  "prepareDocuments": [
+   "Meridian Buyout V fund documents",
+   "Ex-ante cost disclosure",
+   "Semi-professional investor declaration"
+  ],
+  "confidence": 0.86
+ }
+}

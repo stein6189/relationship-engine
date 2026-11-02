@@ -1,0 +1,24 @@
+{
+ "promptId": "check_qualification_consistency",
+ "key": "albers",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "findings": [
+   {
+    "field": "peExperience",
+    "questionnaireValue": "none",
+    "conflictingEvidence": [
+     {
+      "sourceId": "albers_note_2025-12-02",
+      "quote": "Mentioned she was an angel investor, sold a startup stake in 2019."
+     }
+    ],
+    "whyItMatters": "Knowledge and experience are part of the semi-professional investor assessment. Angel investing is related but not the same as fund investing.",
+    "suggestedQuestionForClient": "You mentioned investing in startups before. Can you tell me more, so we record your experience correctly?",
+    "confidence": 0.82
+   }
+  ]
+ }
+}

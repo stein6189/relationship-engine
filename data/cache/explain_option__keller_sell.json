@@ -1,0 +1,15 @@
+{
+ "promptId": "explain_option",
+ "key": "keller_sell",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "optionId": "sell",
+  "sentence": "Selling ETFs covers the gap now but realises gains with estimated tax of €10,154 and lowers assets with us.",
+  "factsUsed": [
+   "k_tax"
+  ],
+  "confidence": 0.9
+ }
+}

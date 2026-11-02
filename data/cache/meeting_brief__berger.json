@@ -1,0 +1,38 @@
+{
+ "promptId": "meeting_brief",
+ "key": "berger",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "sentences": [
+   {
+    "text": "Sabine wrote that she will need around €300,000 next spring for an apartment in Munich.",
+    "sourceIds": [
+     "berger_msg_2026-10-21"
+    ]
+   },
+   {
+    "text": "Without a conversation this would likely arrive as a withdrawal request.",
+    "sourceIds": [
+     "berger_msg_2026-10-21"
+    ]
+   },
+   {
+    "text": "Prepare options: a partial withdrawal or a loan against the portfolio, so the investments can stay in place.",
+    "sourceIds": [
+     "berger_msg_2026-10-21"
+    ]
+   }
+  ],
+  "openQuestionsForClient": [
+   "When exactly do you need the money?",
+   "Would you rather keep your investments and borrow against them?"
+  ],
+  "prepareDocuments": [
+   "Portfolio overview",
+   "Liquidity options (concept)"
+  ],
+  "confidence": 0.85
+ }
+}

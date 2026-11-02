@@ -12,7 +12,7 @@ const MONTHS = /^(\s*)(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i;
 /** Extract numbers that carry meaning. Ignores small bare counts (≤10), day-of-month before a month name,
  *  and compound words such as "3-month" or "Q4". */
 export function extractNumbers(text: string): FoundNumber[] {
-  const re = /([+-]?)(€\s?)?(\d{1,3}(?:,\d{3})+|\d+)(\.\d+)?\s?(k|m|bn|%|×|x(?![a-z]))?/gi;
+  const re = /([+-]?)(€\s?)?(\d{1,3}(?:,\d{3})+|\d+)(\.\d+)?(?:\s?((?:k|m|bn)(?![a-z])|%|×|x(?![a-z])))?/gi;
   const out: FoundNumber[] = [];
   let m: RegExpExecArray | null;
   while ((m = re.exec(text))) {

@@ -1,0 +1,15 @@
+{
+ "promptId": "draft_touchpoint",
+ "key": "keller_transfer",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "subject": "Your capital call on 1 Dec 2026",
+  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 is missing. As discussed, please transfer €110,000 from your bank account before the due date. Best, Jonas",
+  "messageType": "personal_outreach",
+  "factsUsed": [],
+  "callToAction": "reply",
+  "confidence": 0.88
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "promptId": "meeting_brief",
+ "key": "keller",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "sentences": [
+   {
+    "text": "Atlas Growth V will call €150,000 on 1 Dec 2026, and Thomas has €40,000 in cash with us — a gap of €110,000.",
+    "sourceIds": [
+     "cashflows",
+     "k_call",
+     "k_due",
+     "k_cash",
+     "k_gap"
+    ]
+   },
+   {
+    "text": "He asked twice why Atlas Growth V shows a loss. It is at -10% versus paid in, a normal J-curve effect.",
+    "sourceIds": [
+     "keller_msg_2026-09-30",
+     "keller_msg_2026-10-19",
+     "k_jc"
+    ]
+   },
+   {
+    "text": "An indicative distribution of €180,000 from Meridian Buyout IV is expected on 15 Feb 2027.",
+    "sourceIds": [
+     "k_dist",
+     "k_distdate"
+    ]
+   },
+   {
+    "text": "Prepare the three options to cover the gap: sell ETFs, bridge with a loan against the portfolio, or transfer cash.",
+    "sourceIds": [
+     "k_gap"
+    ]
+   }
+  ],
+  "openQuestionsForClient": [
+   "Do you have cash at your bank or in the holding that you would like to use?",
+   "Would you prefer not to sell ETFs before year end?"
+  ],
+  "prepareDocuments": [
+   "Liquidity plan",
+   "Capital call notice Atlas Growth V"
+  ],
+  "confidence": 0.87
+ }
+}
