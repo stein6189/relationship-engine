@@ -21,6 +21,7 @@ import { Badge, Button, Card, Spinner, Term } from '@/components/ui';
 const TRIGGER: Record<string, string> = {
   quarterly_progress: 'Quarterly progress', distribution_received: 'Distribution received', j_curve_explainer: 'J-curve explainer',
   statement_info: 'Statement / tax info', re_engagement: 'Re-engagement after long silence',
+  distribution_upcoming: 'Distribution expected', capital_call_explainer: 'Capital call explainer',
 };
 
 interface Draft {
@@ -57,6 +58,7 @@ export default function TouchpointsPage() {
   const ids = useMemo(() => plan.filter((a) => a.lane === 'digital').map((a) => a.clientId), [plan]);
   const drafts = useDrafts(ids);
   const [filter, setFilter] = useState<'all' | 'attention' | 'approved'>('all');
+  const [confirming, setConfirming] = useState(false);
   const opened = useRef(Date.now());
   const [now, setNow] = useState(Date.now());
   useEffect(() => { const t = setInterval(() => setNow(Date.now()), 1000); return () => clearInterval(t); }, []);
@@ -88,18 +90,24 @@ export default function TouchpointsPage() {
           <h1 className="text-xl font-semibold">Digital touchpoints · November</h1>
           <p className="text-sm text-slate-500">One personal message per client in the digital lane. Every number comes from code and is checked by the number guard. Nothing is sent without your approval.</p>
         </div>
-        <Button variant="primary" disabled={!batch.length} onClick={() => approve(batch)} data-testid="approve-all">Approve all informational ({batch.length})</Button>
+        {confirming && batch.length > 0 ? (
+          <div className="flex flex-wrap items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-3 py-2 text-sm">
+            <span>Approve {batch.length} informational messages? All numbers are verified by code. Personal outreach and flagged drafts stay for individual review.</span>
+            <Button variant="primary" onClick={() => { approve(batch); setConfirming(false); }} data-testid="confirm-approve-all">Yes, approve {batch.length}</Button>
+            <Button variant="ghost" onClick={() => setConfirming(false)}>Cancel</Button>
+          </div>
+        ) : <Button variant="primary" disabled={!batch.length} onClick={() => setConfirming(true)} data-testid="approve-all">Approve all informational ({batch.length})</Button>}
       </div>
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Card className="px-4 py-3"><div className="text-xs text-slate-500">Drafts this month</div><div className="tnum text-xl font-semibold">{drafts.length}</div></Card>
         <Card className="px-4 py-3"><div className="text-xs text-slate-500">Ready for batch approval</div><div className="tnum text-xl font-semibold text-accent">{batch.length}</div><div className="text-xs text-slate-500">informational · all numbers verified</div></Card>
-        <Card className="px-4 py-3"><div className="text-xs text-slate-500">Need your attention</div><div className="tnum text-xl font-semibold text-amber-700">{attention.length}</div><div className="text-xs text-slate-500">number check failed, advisory or no draft</div></Card>
-        <Card className="px-4 py-3" data-testid="review-timer"><div className="text-xs text-slate-500">Reviewed since you opened this page</div><div className="tnum text-xl font-semibold">{approved + rejected} in {mins}:{String(secs).padStart(2, '0')} min</div><div className="text-xs text-slate-500">{approved} approved · {rejected} rejected</div></Card>
+        <Card className="px-4 py-3"><div className="text-xs text-slate-500">Review one by one</div><div className="tnum text-xl font-semibold text-amber-700">{attention.length}</div><div className="text-xs text-slate-500">personal outreach, number check failed, advisory</div></Card>
+        <Card className="px-4 py-3" data-testid="review-timer"><div className="text-xs text-slate-500">Decided since you opened this page</div><div className="tnum text-xl font-semibold">{approved + rejected} in {mins}:{String(secs).padStart(2, '0')} min</div><div className="text-xs text-slate-500">{approved} approved · {rejected} rejected</div></Card>
       </div>
 
       <div className="flex gap-1 text-sm" role="tablist">
-        {([['all', `All (${drafts.length})`], ['attention', `Needs attention (${attention.length})`], ['approved', `Approved (${approved})`]] as const).map(([k, l]) => (
+        {([['all', `All (${drafts.length})`], ['attention', `Review one by one (${attention.length})`], ['approved', `Approved (${approved})`]] as const).map(([k, l]) => (
           <button key={k} role="tab" aria-selected={filter === k} onClick={() => setFilter(k)} className={clsx('rounded-md px-3 py-1', filter === k ? 'bg-ink text-white' : 'text-slate-600 hover:bg-slate-100')}>{l}</button>
         ))}
       </div>

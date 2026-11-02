@@ -2,7 +2,7 @@
  "promptId": "meeting_brief",
  "key": "keller",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "sentences": [
@@ -17,7 +17,7 @@
     ]
    },
    {
-    "text": "He asked twice why Atlas Growth V shows a loss. It is at -10% versus paid in, a normal J-curve effect.",
+    "text": "He asked twice why Atlas Growth V shows a loss. It is at -10% versus paid in, a typical J-curve effect for a fund in year 2.",
     "sourceIds": [
      "keller_msg_2026-09-30",
      "keller_msg_2026-10-19",

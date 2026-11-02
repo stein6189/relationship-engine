@@ -1,4 +1,4 @@
-# draft_touchpoint — v1 — MODEL_SMART
+# draft_touchpoint — v2 — MODEL_SMART
 
 ## Purpose
 Write one personalised digital message to a client, in the RM's voice,
@@ -10,7 +10,9 @@ client. It must feel personal: use the client's own numbers, their goal and
 the specific trigger. Plain English, warm, no marketing language,
 max 90 words. Informational only: explain, update, invite — never recommend
 buying, selling, reinvesting or borrowing. Use numbers only from `facts`,
-exactly as given.
+exactly as given. Never claim a conversation took place unless `history`
+says so. Never predict performance. Mark indicative amounts and dates as
+estimates.
 
 ## Input
 ```json

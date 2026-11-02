@@ -27,6 +27,7 @@ await step('V2 touchpoints: Hofmann, test case red, batch approve', async () => 
   expect((await tc.innerText()).includes('number check ✗'), 'test case flagged red');
   await shot(page, 'v2-touchpoints');
   await page.getByTestId('approve-all').click();
+  await page.getByTestId('confirm-approve-all').click();
   await page.waitForTimeout(300);
   expect((await hof.innerText()).includes('approved'), 'Hofmann approved by batch');
   expect((await tc.innerText()).includes('number check ✗'), 'test case not approved');
@@ -61,7 +62,7 @@ for (const [name, path, probe] of [
     await page.goto(BASE + path);
     await page.getByTestId(probe).first().waitFor({ timeout: 25000 });
     await page.waitForTimeout(800);
-    await shot(page, name.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+    await shot(page, name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), true);
   });
 }
 

@@ -2,7 +2,7 @@
  "promptId": "extract_signals",
  "key": "c154",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [

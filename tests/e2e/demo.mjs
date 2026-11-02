@@ -13,6 +13,7 @@ await step('0 · demo date visible', async () => {
 });
 await step('1 · KPIs and capacity bar', async () => {
   await page.getByText('Proactive coverage (12 months)').waitFor();
+  expect(await page.getByText('47.5%').count() > 0, 'coverage 47.5% (RULES/DATA calibration)');
   await shot(page, P + '01-plan');
 });
 await step('2 · run orchestration → 4 steps, 20/20', async () => {
@@ -53,7 +54,7 @@ await step('6 · V4 draft: cost table from code, verifier per sentence', async (
 await step('7 · verifier test → red; remove; approve; audit complete', async () => {
   await page.getByTestId('run-verifier-test').click();
   await page.getByTestId('sent-test').waitFor(T);
-  await page.waitForFunction(() => /unsupported|number check/.test(document.querySelector('[data-testid="sent-test"]')?.textContent || ''), null, { timeout: 60000 });
+  await page.waitForFunction(() => /unsupported|number guard/.test(document.querySelector('[data-testid="sent-test"]')?.textContent || ''), null, { timeout: 60000 });
   const t = await page.getByTestId('sent-test').innerText();
   expect(/Test case/.test(t), 'labelled Test case');
   await page.getByTestId('sent-test').scrollIntoViewIfNeeded(); await shot(page, P + '07a-verifier-test');
@@ -71,6 +72,8 @@ await step('8 · split view: checklist, contradiction, attestation, acknowledgme
   await page.goto(BASE + '/split?client=albers');
   await page.getByTestId('contradiction').waitFor(T);
   expect(/angel investor/.test(await page.getByTestId('contradiction').innerText()), 'contradiction quote');
+  expect((await page.getByTestId('qual-checks').innerText()).includes('6.7%'), 'Albers PM share 6.7%');
+  expect((await page.getByTestId('step-5').innerText()).includes('€40,000'), 'first call €40,000');
   await page.getByTestId('ctab-invest').click();
   expect(await page.getByTestId('client-sign').isDisabled(), 'sign locked before steps');
   await page.getByTestId('contradiction-reviewed').check();
@@ -95,6 +98,7 @@ await step('9 · touchpoints: Hofmann, test case red, batch approve', async () =
   expect((await tc.innerText()).includes('number check ✗'), 'test case red');
   await shot(page, P + '09a-touchpoints');
   await page.getByTestId('approve-all').click();
+  await page.getByTestId('confirm-approve-all').click();
   await page.waitForTimeout(300);
   expect((await hof.innerText()).includes('approved'), 'batch approved');
   expect(!(await tc.innerText()).includes('approved ·'), 'test case not approved');

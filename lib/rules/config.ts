@@ -34,6 +34,7 @@ export const LOMBARD_RATE = 0.045; // ASSUMPTION
 export const LOMBARD_MIN = 25_000;
 export const STRESS = { equity: -0.3, bond: -0.1 }; // ASSUMPTION
 export const FLAT_TAX_RATE = 0.26375; // 25% + 5.5% solidarity surcharge, no church tax
+export const EQUITY_FUND_PARTIAL_EXEMPTION = 0.3; // InvStG §20: 30% of gains on equity funds tax-free for private investors
 
 export const QUAL = {
   minCommitment: 200_000,

@@ -1,20 +1,22 @@
 {
  "promptId": "draft_touchpoint",
  "key": "c003",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
-  "subject": "It has been a while",
-  "body": "Dear Florian, it's been some time since we last spoke. Your portfolio stands at €986,000, +8.3% this year. If your plans have changed, I'd be glad to catch up — just reply. Best, Jonas",
+  "subject": "A distribution is expected",
+  "body": "Dear Florian, Meridian Buyout IV expects to pay you a distribution of about €85,000 around 25 Dec 2026. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
-   "f2"
+   "f2",
+   "f3",
+   "f4"
   ],
   "callToAction": "reply",
   "confidence": 0.9,
-  "trigger": "re_engagement",
+  "trigger": "distribution_upcoming",
   "facts": [
    {
     "id": "f1",
@@ -25,6 +27,16 @@
     "id": "f2",
     "label": "year-to-date return",
     "value": "+8.3%"
+   },
+   {
+    "id": "f3",
+    "label": "expected distribution (indicative)",
+    "value": "€85,000"
+   },
+   {
+    "id": "f4",
+    "label": "expected date",
+    "value": "25 Dec 2026"
    }
   ],
   "testCase": false

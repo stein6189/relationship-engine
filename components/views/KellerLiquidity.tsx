@@ -105,7 +105,7 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
   }));
 
   const rows: { id: OptionId; cost: string; aum: string; fee: string; note: React.ReactNode }[] = [
-    { id: 'sell', cost: `${eur(sell.taxEur)} tax (estimate)`, aum: `−${eur(gap.gapEur)}`, fee: `−${eur(sell.feeLostPaEur)} p.a.`, note: <>Realises gains: {pct(sell.realisedGainEur / gap.gapEur, 0)} of the amount sold is gain → {eur(sell.realisedGainEur)}; tax at 26.375%.</> },
+    { id: 'sell', cost: `${eur(sell.taxEur)} tax (simplified estimate)`, aum: `−${eur(gap.gapEur)}`, fee: `−${eur(sell.feeLostPaEur)} p.a.`, note: <>Realises gains: {pct(sell.realisedGainEur / gap.gapEur, 0)} of the amount sold is gain → {eur(sell.realisedGainEur)} × 26.375%. Simplified: before the 30% partial exemption for equity funds (Teilfreistellung), which would lower it to about {eur(sell.taxWithPartialExemptionEur)}.</> },
     { id: 'bridge', cost: `${eur(bridge.interestEur)} interest (${KELLER_BRIDGE_MONTHS} months at ${pct(LOMBARD_RATE)})`, aum: 'unchanged', fee: '±€0', note: <><Badge tone="amber">Concept option — product availability assumed</Badge> Covered under stress test: {bridge.coveredUnderStress ? 'yes' : 'no'}.</> },
     { id: 'transfer', cost: '€0', aum: `+${eur(transfer.aumChangeEur)}`, fee: `+${eur(transfer.feeGainPaEur)} p.a.`, note: <>Only if the client confirms the cash is available — ask the client.</> },
   ];
@@ -115,7 +115,7 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold">Liquidity · Dr. Thomas Keller</h1>
-          <p className="text-sm text-slate-500">Holds via Keller Beteiligungs GmbH · {eur(c.aumEur)} with us · next <Term t="capital call">capital call</Term> {eur(gap.callsEur)} on {fmtDate(gap.firstDueDate!)}.</p>
+          <p className="text-sm text-slate-500">Private account (the ETFs and funds below) · also invests via Keller Beteiligungs GmbH, not shown · {eur(c.aumEur)} with us · next <Term t="capital call">capital call</Term> {eur(gap.callsEur)} on {fmtDate(gap.firstDueDate!)}.</p>
         </div>
         {!embedded && <div className="flex gap-1.5"><Link href="/rm/client/keller"><Button>Client 360</Button></Link><Link href="/split?client=keller"><Button variant="primary">Split view</Button></Link></div>}
       </div>
@@ -143,7 +143,7 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
         <SectionTitle right={busy === 'explain' && <Spinner />}>Options to cover {eur(gap.gapEur)} (numbers from code · one-line explanation from AI)</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[820px] text-sm">
-            <thead className="text-left text-xs text-slate-500"><tr><th className="py-1">Option</th><th>One-off cost</th><th>Assets with us</th><th>Platform fee</th><th className="w-[34%]">What it means (AI, for the RM)</th><th /></tr></thead>
+            <thead className="text-left text-xs text-slate-500"><tr><th className="py-1">Option</th><th>One-off cost</th><th>Assets with us</th><th title="Shown for transparency. Not a decision criterion — the RM decides by the client's interest.">Our revenue (internal)</th><th className="w-[34%]">What it means (AI, for the RM)</th><th /></tr></thead>
             <tbody>
               {rows.map((r) => {
                 const ex = k.explanations[r.id];
@@ -164,7 +164,7 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-[11px] text-slate-500">Tax is an estimate (flat tax 25% + solidarity surcharge, no church tax). Platform fee 0.75% p.a. (assumption). The RM chooses — the AI explains consequences and never recommends.</p>
+        <p className="mt-2 text-[11px] text-slate-500">Tax: simplified estimate for a private account — 26.375% (25% flat tax + 5.5% solidarity surcharge, no church tax) on the full gain; the tax adviser confirms. Revenue column at 0.75% p.a. (assumption) is internal and not a decision criterion. The RM chooses — the AI explains consequences and never recommends.</p>
       </Card>
 
       <div className="grid gap-4 xl:grid-cols-[1fr_1.3fr]">

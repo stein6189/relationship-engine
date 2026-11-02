@@ -22,7 +22,7 @@ const SEEDED: Omit<Opportunity, 'clientId'>[] = [
 export const seededPipeline: Opportunity[] = SEEDED.map((o, i) => ({ ...o, clientId: pmIds[i] }));
 
 export function albersStage(a: { audit?: unknown; attested: boolean; ack: boolean; signed: boolean; funded: boolean }): Stage {
-  if (a.funded) return 'Funded';
+  // Funding happens at first close (15 Dec 2026); a transfer instruction alone does not make the commitment funded.
   if (a.signed) return 'Signed';
   if (a.attested && a.ack) return 'Documents';
   if (a.attested) return 'Qualified';

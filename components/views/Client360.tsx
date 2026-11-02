@@ -89,7 +89,7 @@ export function Timeline({ items, side }: { items: TimelineItem[]; side: 'rm' | 
               <span className={t.seenByClient ? 'text-sky-700' : 'text-slate-400'}>{t.seenByClient ? '● seen by client' : '○ not visible to client'}</span>
               <span className="text-slate-300">·</span>
               <span className={t.seenByRm ? 'text-accent' : 'text-slate-400'}>{t.seenByRm ? '● seen by RM' : '○ RM not aware'}</span>
-              {t.kind === 'view' && <span className="text-slate-400">· behavioural signal, RM only — never used in client messages</span>}
+              {t.kind === 'view' && <span className="text-slate-400">· client action, not shown in the app · behavioural signal for the RM only — never used in client messages</span>}
             </div>
           )}
         </li>
@@ -112,7 +112,7 @@ export function Client360({ id, embedded }: { id: string; embedded?: boolean }) 
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold">{c.name}</h1>
-          <p className="text-sm text-slate-500">{c.age} · {c.occupation} · {since !== null ? `last proactive contact ${Math.round(since / 30)} months ago` : 'never contacted proactively'}</p>
+          <p className="text-sm text-slate-500">{c.age} · {c.occupation} · {id === 'albers' ? `advisory meeting ${fmtDate('2026-11-05')} (before that: no proactive contact for ${Math.round(daysBetween(c.lastProactiveContact!, '2026-11-01') / 30)} months)` : since !== null ? `last proactive contact ${Math.round(since / 30)} months ago` : 'never contacted proactively'}</p>
           <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
             <Badge tone={a.lane === 'rm' ? 'teal' : a.lane === 'digital' ? 'blue' : 'slate'}>November: {laneLabel[a.lane]}</Badge>
             <span className="text-sm text-slate-700">{a.reason}</span>

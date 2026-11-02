@@ -1,12 +1,12 @@
 {
  "promptId": "draft_touchpoint",
  "key": "c161",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
-  "subject": "Why young private equity funds first show a loss",
-  "body": "Dear Johanna, you asked about the capital call. In the first years a private equity fund calls money and pays fees before its companies grow, so its value often looks negative. This is called the J-curve. It is normal and usually turns later. Happy to explain on a call. Best, Jonas",
+  "subject": "Your capital call letter, explained",
+  "body": "Dear Johanna, you wrote that the capital call letter was unclear. A capital call means the fund asks for the next part of the amount you committed, when it buys a company. The letter shows how much and by when; the money is taken from your cash account with us. Happy to go through it on a short call. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -14,7 +14,7 @@
   ],
   "callToAction": "reply",
   "confidence": 0.9,
-  "trigger": "j_curve_explainer",
+  "trigger": "capital_call_explainer",
   "facts": [
    {
     "id": "f1",

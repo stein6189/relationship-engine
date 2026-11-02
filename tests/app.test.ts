@@ -84,3 +84,12 @@ describe('every seeded touchpoint passes the number guard except the labelled te
     expect(keys.length).toBe(60);
   });
 });
+
+import { sellOption } from '@/lib/rules/lombard';
+describe('Keller sell option', () => {
+  it('keeps the RULES.md simplified tax and shows the partial-exemption comparison', () => {
+    const s = sellOption(clientById('keller')!, 110_000);
+    expect(Math.round(s.taxEur)).toBe(10154);
+    expect(Math.round(s.taxWithPartialExemptionEur)).toBe(7108);
+  });
+});

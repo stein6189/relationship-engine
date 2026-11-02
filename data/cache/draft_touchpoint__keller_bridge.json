@@ -1,12 +1,12 @@
 {
  "promptId": "draft_touchpoint",
  "key": "keller_bridge",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your capital call on 1 Dec 2026",
-  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 is missing. As discussed, I suggest bridging this for 3 months with a loan against your ETFs, at an estimated interest cost of €1,238, until the expected Meridian distribution arrives. If markets fall sharply you may need to add collateral. Please confirm in the app if you would like to proceed. Best, Jonas",
+  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 still needs to be covered. My proposal: bridge this for 3 months with a loan against your ETFs, at an estimated interest cost of €1,238, so your ETFs stay invested. The Meridian distribution expected in February is not confirmed; if it comes later, the loan runs longer. If markets fall sharply you may need to add collateral. Tell me in the app if you would like to go ahead and I will call you to set it up. Best, Jonas",
   "messageType": "personal_outreach",
   "factsUsed": [],
   "callToAction": "reply",

@@ -6,7 +6,7 @@ import { DATA_NOTES_ALBERS } from '../notes';
 
 export interface AiLogEntry { id: string; task: string; clientId?: string; label: string; meta: AiMeta; output: unknown; facts?: { id: string; label: string; value: string }[] }
 export interface InboxMsg { id: string; subject: string; body: string; date: string; kind: 'message' | 'document' | 'answer' }
-export interface RequestItem { id: string; clientId: string; text: string; rmDraft?: string; kind: 'question' | 'talk'; at: string; done?: boolean }
+export interface RequestItem { id: string; clientId: string; text: string; rmDraft?: string; rmDraftGuard?: { pass: boolean; unsupported: string[] }; kind: 'question' | 'talk'; at: string; done?: boolean }
 export interface QaItem { id: string; q: string; a: string; category: 'factual' | 'advice' | 'out_of_scope'; at: string; meta?: AiMeta; unsupported?: string[] }
 export interface AuditRecord {
   approvedBy: string; approvedAt: string; sources: string[]; draftModel: string; draftPrompt: string; verifyModel: string; verifyPrompt: string;
@@ -33,6 +33,7 @@ export interface DemoState {
     testInserted: boolean; reviewedAccept: boolean; audit?: AuditRecord; consistency?: any; consistencyMeta?: AiMeta; attested: boolean;
     ack: boolean; signed: boolean; funded: boolean;
     verifySnapshot?: Record<string, string>; finalStatement?: string; contradictionReviewed?: boolean;
+    clarification?: string; attestedAt?: string; ackAt?: string; signedAt?: string; fundedAt?: string;
   };
   keller: { option?: 'sell' | 'bridge' | 'transfer'; draft?: any; draftMeta?: AiMeta; messageApproved: boolean; clientConfirmed: boolean; explanations: Record<string, any> };
 }

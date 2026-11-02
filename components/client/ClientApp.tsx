@@ -13,7 +13,8 @@ import { liquidityGap } from '@/lib/rules/liquidity';
 import { SIM_TODAY } from '@/lib/rules/config';
 import { SUGGESTED, cacheKeyFor, ADVICE_REPLY } from '@/lib/clientQa';
 import { subscriptionSteps, PREFILLED_FIELDS, firstCallEur, firstClose } from '@/lib/subscription';
-import { CostTable } from '@/components/CostTable';
+import { exAnteCosts } from '@/lib/rules/costs';
+import { ALBERS_COMMITMENT } from '@/lib/facts';
 import { Timeline } from '@/components/views/Client360';
 
 type Tab = 'home' | 'invest' | 'activity' | 'ask';
@@ -82,7 +83,7 @@ function MessageCard({ m, id }: { m: InboxMsg; id: string }) {
       <div className="flex items-center gap-2"><span className="grid h-8 w-8 place-items-center rounded-full bg-teal-100 text-[13px] font-semibold text-accent-dark">JW</span><div className="min-w-0 flex-1"><div className="truncate text-[15px] font-semibold">{m.subject}</div><div className="text-[12px] text-slate-500">Jonas Weber · {fmtDate(m.date)}</div></div></div>
       <p className={clsx('whitespace-pre-line text-[14px] leading-relaxed text-slate-700', !open && 'line-clamp-6')}>{m.body}</p>
       {m.body.length > 320 && <button className="text-[13px] font-medium text-accent" onClick={() => setOpen(!open)}>{open ? 'Less' : 'Read all'}</button>}
-      <div className="flex items-center justify-between pt-1"><span className="text-[11px] text-slate-400">Sent by your advisor</span><TalkButton id={id} compact /></div>
+      <div className="pt-1 text-[11px] text-slate-400">Sent by your advisor</div>
     </Panel>
   );
 }
@@ -110,7 +111,7 @@ function Home({ id, go }: { id: string; go: (t: Tab) => void }) {
         <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-teal-100 font-semibold text-accent-dark">JW</span>
         <div className="flex-1">
           <div className="text-[15px] font-semibold">Jonas Weber, your advisor</div>
-          <div className="text-[14px] text-slate-600">{plannedContact ? 'Jonas will contact you personally this month.' : 'No action needed. Jonas sends you a short update every quarter.'}</div>
+          <div className="text-[14px] text-slate-600">{id === 'albers' ? (s.albers.audit ? 'Thank you for meeting on 5 Nov. Your documents are ready to read.' : 'Thank you for meeting on 5 Nov. Jonas is preparing your documents.') : plannedContact ? 'Jonas will contact you personally this month.' : 'No action needed. Jonas sends you a short update every quarter.'}</div>
         </div>
       </Panel>
 
@@ -127,14 +128,15 @@ function Home({ id, go }: { id: string; go: (t: Tab) => void }) {
           <Panel data-testid="capital-call-card">
             <div className="flex items-start justify-between gap-2"><div><div className="text-[13px] text-slate-500">Capital call · {fundById(upcomingCall.fundId)?.name}</div><div className="tnum text-[22px] font-semibold">{eur(upcomingCall.amountEur)}</div></div><span className="rounded-full bg-amber-100 px-2.5 py-1 text-[12px] font-semibold text-amber-800">due {fmtDate(upcomingCall.date)}</span></div>
             <p className="mt-2 text-[14px] leading-relaxed text-slate-700">When you invested in this fund you committed {eur(ag5.commitmentEur)}. The fund asks for it step by step, when it buys companies. This is the next step.</p>
-            {gap.gapEur > 0 && <div className="tnum mt-3 grid grid-cols-3 gap-2 rounded-xl bg-slate-50 p-3 text-center text-[12px]"><div><div className="text-slate-500">Needed</div><div className="text-[15px] font-semibold">{eur(gap.callsEur)}</div></div><div><div className="text-slate-500">Your cash</div><div className="text-[15px] font-semibold">{eur(gap.freeCashEur)}</div></div><div><div className="text-slate-500">Missing</div><div className="text-[15px] font-semibold text-amber-700">{eur(gap.gapEur)}</div></div></div>}
+            {gap.gapEur > 0 && <div className="tnum mt-3 grid grid-cols-3 gap-2 rounded-xl bg-slate-50 p-3 text-center text-[12px]"><div><div className="text-slate-500">Needed</div><div className="text-[15px] font-semibold">{eur(gap.callsEur)}</div></div><div><div className="text-slate-500">Your cash</div><div className="text-[15px] font-semibold">{eur(gap.freeCashEur)}</div></div><div><div className="text-slate-500">Still to cover</div><div className="text-[15px] font-semibold text-amber-700">{eur(gap.gapEur)}</div></div></div>}
             {id === 'keller' && !s.keller.messageApproved && <p className="mt-2 text-[13px] text-slate-500">Jonas is preparing options for you.</p>}
             {id === 'keller' && s.keller.messageApproved && (
               <div className="mt-3 space-y-2" data-testid="keller-proposal">
                 <div className="text-[13px] font-semibold text-accent-dark">Jonas’s proposal</div>
                 <p className="whitespace-pre-line text-[14px] leading-relaxed text-slate-700">{s.keller.draft?.body}</p>
-                {s.keller.clientConfirmed ? <div className="rounded-xl bg-green-50 px-4 py-3 text-center text-[15px] font-medium text-green-800">✓ Confirmed — Jonas will take care of it</div>
-                  : <><Primary onClick={() => update((x) => ({ ...x, keller: { ...x.keller, clientConfirmed: true } }))} data-testid="keller-confirm">Confirm</Primary><TalkButton id={id} /></>}
+                {s.keller.clientConfirmed ? <div className="rounded-xl bg-green-50 px-4 py-3 text-center text-[15px] font-medium text-green-800">✓ Jonas will call you to set it up</div>
+                  : <><Primary onClick={() => update((x) => ({ ...x, keller: { ...x.keller, clientConfirmed: true } }))} data-testid="keller-confirm">Sounds good — let’s set it up</Primary><TalkButton id={id} /></>}
+                <p className="text-[11px] leading-snug text-slate-400">Nothing is executed from this screen. Jonas confirms the details with you first.{s.keller.option === 'bridge' ? ' The loan is a concept in this prototype — no credit agreement is made here.' : ''}</p>
               </div>
             )}
           </Panel>
@@ -145,7 +147,7 @@ function Home({ id, go }: { id: string; go: (t: Tab) => void }) {
         <Section title="Explained">
           <Panel data-testid="jcurve-card">
             <div className="text-[15px] font-semibold">Why Atlas Growth V shows {pct(ag5.navEur / ag5.calledEur - 1, 0)}</div>
-            <p className="mt-1 text-[14px] leading-relaxed text-slate-700">You have paid in {eur(ag5.calledEur)}. Today it is valued at {eur(ag5.navEur)}. Young private equity funds pay fees and costs before their companies grow, so they often look negative in the first years. This is called the J-curve. It is normal and does not mean the fund is doing badly.</p>
+            <p className="mt-1 text-[14px] leading-relaxed text-slate-700">You have paid in {eur(ag5.calledEur)}. Today it is valued at {eur(ag5.navEur)}. Young private equity funds pay fees and costs before their companies grow, so they often show less than was paid in during the first years. This is called the J-curve. It is common for young funds and says little yet about the final result.</p>
             <svg viewBox="0 0 300 70" className="mt-2 h-16 w-full" aria-label="J-curve illustration"><line x1="0" y1="30" x2="300" y2="30" stroke="#CBD5E1" strokeDasharray="3 3" /><path d="M5 30 C 40 30, 60 55, 95 55 S 170 40, 200 20 S 270 5, 295 3" fill="none" stroke="#0F766E" strokeWidth="3" /><circle cx="70" cy="50" r="5" fill="#B45309" /><text x="80" y="66" fontSize="10" fill="#64748B">you are here (year 2)</text></svg>
           </Panel>
         </Section>
@@ -196,10 +198,11 @@ function Ask({ id }: { id: string }) {
       category = 'advice'; answer = ADVICE_REPLY;
     }
     if (category === 'advice') answer = ADVICE_REPLY;
+    const rg = rmDraft ? numberGuard(rmDraft, facts) : null;
     const item = { id: uid(), q: question, a: answer, category, at: new Date().toISOString(), meta: r.meta };
     update((x) => ({
       ...x, qa: { ...x.qa, [id]: [...(x.qa[id] ?? []), item] },
-      requests: category === 'advice' ? [{ id: uid(), clientId: id, text: question, rmDraft: rmDraft || undefined, kind: 'question', at: item.at }, ...x.requests] : x.requests,
+      requests: category === 'advice' ? [{ id: uid(), clientId: id, text: question, rmDraft: rmDraft || undefined, rmDraftGuard: rg ? { pass: rg.pass, unsupported: rg.unsupported.map((u) => u.raw) } : undefined, kind: 'question', at: item.at }, ...x.requests] : x.requests,
     }));
     setBusy(false);
   }
@@ -265,10 +268,10 @@ function Invest() {
             </Panel>
             <Panel className="p-0">
               <button className="flex w-full items-center justify-between px-4 py-3 text-left text-[15px] font-medium" onClick={() => setOpenDoc(openDoc === 'cost' ? null : 'cost')} data-testid="doc-costs">Costs <span className="text-slate-400">{openDoc === 'cost' ? '−' : '+'}</span></button>
-              {openDoc === 'cost' && <div className="border-t border-slate-100 px-3 py-3 text-[13px]"><CostTable compact /></div>}
+              {openDoc === 'cost' && <div className="border-t border-slate-100 px-4 py-3"><MobileCosts /></div>}
             </Panel>
             {a.ack ? <div className="rounded-xl bg-green-50 px-4 py-3 text-center text-[15px] font-medium text-green-800">✓ You confirmed you have read and understood</div>
-              : <Primary onClick={() => setA({ ack: true })} data-testid="client-ack">I have read and understood</Primary>}
+              : <Primary onClick={() => setA({ ack: true, ackAt: new Date().toISOString() })} data-testid="client-ack">I have read and understood</Primary>}
           </div>
         </Section>
       )}
@@ -285,7 +288,7 @@ function Invest() {
       <Section title="Sign">
         {a.signed ? <div className="rounded-xl bg-green-50 px-4 py-3 text-center text-[15px] font-medium text-green-800">✓ Signed</div> : (
           <>
-            <Primary disabled={!docsReady} onClick={() => setA({ signed: true })} data-testid="client-sign">{docsReady ? 'Sign subscription (simulated)' : '🔒︎ Sign subscription'}</Primary>
+            <Primary disabled={!docsReady} onClick={() => setA({ signed: true, signedAt: new Date().toISOString() })} data-testid="client-sign">{docsReady ? 'Sign subscription (simulated)' : '🔒︎ Sign subscription'}</Primary>
             {!docsReady && <p className="mt-1.5 text-center text-[12px] text-slate-500">Unlocks after Jonas’s check and after you have read the statement and costs.</p>}
           </>
         )}
@@ -298,7 +301,7 @@ function Invest() {
             <div className="text-[13px] text-slate-500">First capital call, due at first close on {fmtDate(firstClose())}</div>
             <p className="mt-2 text-[13px] text-slate-700">Transfer to your cash account with us. Later calls follow over the next 3–4 years; we tell you each one in advance.</p>
             <div className="mt-2 rounded-lg bg-slate-50 p-2 font-mono text-[12px] text-slate-600">IBAN DE00 0000 0000 0000 0000 00 (synthetic)</div>
-            <div className="mt-3">{a.funded ? <div className="rounded-xl bg-green-50 px-4 py-3 text-center text-[15px] font-medium text-green-800">✓ Transfer instructed</div> : <Primary onClick={() => setA({ funded: true })} data-testid="client-fund">I have instructed the transfer</Primary>}</div>
+            <div className="mt-3">{a.funded ? <div className="rounded-xl bg-green-50 px-4 py-3 text-center text-[15px] font-medium text-green-800">✓ Transfer instructed</div> : <Primary onClick={() => setA({ funded: true, fundedAt: new Date().toISOString() })} data-testid="client-fund">I have instructed the transfer</Primary>}</div>
           </Panel>
         </Section>
       )}
@@ -319,6 +322,25 @@ export function ScaledPhone({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ width: 390 * scale, height: 844 * scale }}>
       <div style={{ transform: `scale(${scale})`, transformOrigin: 'top left', width: 390, height: 844 }}>{children}</div>
+    </div>
+  );
+}
+
+/** Cost disclosure for the phone: same code-generated numbers as the RM table, stacked and in plain words. */
+function MobileCosts() {
+  const c = exAnteCosts(ALBERS_COMMITMENT);
+  const rows = c.rows.filter((r) => r.eurEarly !== null);
+  return (
+    <div className="space-y-3 text-[14px]" data-testid="cost-table">
+      <p className="text-[13px] text-slate-600">For a commitment of {eur(ALBERS_COMMITMENT)}. Calculated from the fund terms — the same figures Jonas sees.</p>
+      <ul className="divide-y divide-slate-100">
+        {rows.map((r) => <li key={r.label} className="flex items-baseline justify-between gap-3 py-2"><span>{r.label}</span><span className="tnum shrink-0 text-right font-medium">{eur(r.eurEarly!)} <span className="text-[12px] font-normal text-slate-500">· {pct(r.pct!, 2)} a year</span></span></li>)}
+        <li className="flex items-baseline justify-between gap-3 py-2 font-semibold"><span>Total per year, years 1–5</span><span className="tnum">{eur(c.totalEarlyEur)} · {pct(c.totalPctEarly, 2)}</span></li>
+        <li className="flex items-baseline justify-between gap-3 py-2"><span>Total per year, years 6–10</span><span className="tnum">{eur(c.totalLateEur)}</span></li>
+        <li className="flex items-baseline justify-between gap-3 py-2 font-semibold"><span>Total over 10 years (illustration)</span><span className="tnum">{eur(c.tenYearTotalEur)}</span></li>
+      </ul>
+      <p className="text-[13px] leading-relaxed text-slate-600">If the fund does well, the fund manager also keeps a share of the profit: 20% of gains above 8% a year (“carried interest”). This depends on results, so it has no fixed amount.</p>
+      <p className="text-[13px] leading-relaxed text-slate-600">Costs reduce your return. Illustration: at a gross return of 12% a year, costs reduce the net return to about 9% a year.</p>
     </div>
   );
 }

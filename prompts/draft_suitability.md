@@ -1,4 +1,4 @@
-# draft_suitability — v1 — MODEL_SMART
+# draft_suitability — v2 — MODEL_SMART
 
 ## Purpose
 Draft the MiFID II suitability statement, client follow-up message and CRM
@@ -10,7 +10,9 @@ what the meeting notes, client profile and product facts support. Every
 sentence must cite source ids. Do not add expectations, forecasts or
 guarantees that are not in the sources. Do not write cost figures — the cost
 disclosure table is inserted by code; refer to it as "see cost disclosure".
-Write in clear, plain English, neutral and factual.
+Write in clear, plain English, neutral and factual. The statement is delivered
+to the client: address the client in the second person ("You told us…").
+Never put instructions for the RM into the statement — they go in `openPoints`.
 
 Suitability sections (all required):
 1. clientObjectives

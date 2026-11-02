@@ -150,7 +150,10 @@ export function allocate({ clients, aiSignals, today, overrides = {}, escalation
   const digitalCands = pool.filter((b) => !result.has(b.c.id) && tier(b) < 9)
     .sort((a, b) => tier(a) - tier(b) || b.prio - a.prio || b.c.aumEur - a.c.aumEur);
   let digitalCount = [...result.values()].filter((a) => a.lane === 'digital').length;
-  for (const b of digitalCands) { if (digitalCount >= DIGITAL_CAP) break; result.set(b.c.id, mk(b, 'digital', esc.has(b.c.id) ? { reason: 'Escalation — client asked to talk. ' + reasonFor(b.c, b.signals, null) } : {})); digitalCount++; }
+  for (const b of digitalCands) {
+    if (digitalCount >= DIGITAL_CAP) { result.set(b.c.id, mk(b, 'none', { reason: `Over digital capacity (${DIGITAL_CAP}) — first in line next month · ` + reasonFor(b.c, b.signals, null) })); continue; }
+    result.set(b.c.id, mk(b, 'digital', esc.has(b.c.id) ? { reason: 'Escalation — client asked to talk. ' + reasonFor(b.c, b.signals, null) } : {})); digitalCount++;
+  }
   // 5. no action
   base.filter((b) => !result.has(b.c.id)).forEach((b) => result.set(b.c.id, mk(b, 'none')));
 

@@ -243,7 +243,7 @@ seedSignals.albers = [
   { clientId: 'albers', type: 'factual_question', summary: 'Asks what happens if she needs the money earlier', confidence: 0.9, origin: 'ai', sourceIds: ['albers_msg_2026-10-24'], quote: 'what happens if I need the money earlier?' },
 ];
 seedSignals.keller = [
-  { clientId: 'keller', type: 'pm_frustration', summary: 'Worried about the negative value of Atlas Growth V (J-curve)', confidence: 0.86, origin: 'ai', sourceIds: ['keller_msg_2026-09-30', 'keller_msg_2026-10-19'], quote: 'Should I be worried?' },
+  { clientId: 'keller', type: 'pm_frustration', summary: 'Worried about the negative value of Atlas Growth V (J-curve)', confidence: 0.86, origin: 'ai', sourceIds: ['keller_msg_2026-10-19', 'keller_msg_2026-09-30'], quote: 'Should I be worried?' },
 ];
 seedSignals.berger = [
   { clientId: 'berger', type: 'liquidity_need', summary: 'Needs ~€300k next spring for an apartment purchase', amountEur: 300000, dueDate: '2027-04-01', confidence: 0.92, origin: 'ai', sourceIds: ['berger_msg_2026-10-21'], quote: "I'll probably need around €300k" },
@@ -262,7 +262,7 @@ fs.writeFileSync(path.join(dataDir, 'clients.json'), JSON.stringify(clients, nul
 fs.writeFileSync(path.join(dataDir, 'funds.json'), JSON.stringify(FUNDS, null, 1));
 
 const seedMeta = (promptId: string, key: string, output: unknown) => ({
-  promptId, key, promptVersion: 'v1', model: 'seed (authored offline — replace with live output via warm-cache)', createdAt: '2026-11-02T22:00:00Z', output,
+  promptId, key, promptVersion: (fs.readFileSync(path.join(__dirname, '..', 'prompts', `${promptId}.md`), 'utf8').match(/—\s*(v\d+)\s*—/) ?? [])[1] ?? 'v1', model: 'seed · pre-authored example (used when live AI is off or unavailable)', createdAt: '2026-11-02T22:00:00Z', output,
 });
 for (const [id, sigs] of Object.entries(seedSignals)) {
   const output = { signals: sigs.map((s) => ({ type: s.type, summary: s.summary, amountEur: s.amountEur ?? null, timing: s.dueDate ?? null, topic: s.topic ?? null,
@@ -283,12 +283,15 @@ for (const a of digital) {
   const types = a.signals.map((s) => s.type);
   let trigger = 'quarterly_progress';
   if (types.includes('distribution_received')) trigger = 'distribution_received';
-  else if (types.includes('pm_frustration')) trigger = 'j_curve_explainer';
+  else if (types.includes('distribution_upcoming')) trigger = 'distribution_upcoming';
+  else if (types.includes('pm_frustration')) trigger = c.items.some((i) => /capital call/i.test(i.text)) ? 'capital_call_explainer' : 'j_curve_explainer';
   else if (types.includes('factual_question')) trigger = 'statement_info';
   else if (types.includes('no_contact_long') && !types.includes('quarterly_progress')) trigger = 're_engagement';
   const facts = [{ id: 'f1', label: 'portfolio value', value }, { id: 'f2', label: 'year-to-date return', value: ytd }];
   let subject = 'Your quarterly update';
-  let body = `Dear ${c.firstName}, a short update: your portfolio stands at ${value}, ${ytd} so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas`;
+  const goal = c.goal ?? c.objectives[0];
+  const goalLine = goal === 'income' ? 'It stays set up to pay you a regular income, as agreed.' : goal === 'wealth preservation' ? 'It stays set up to preserve your wealth, as agreed.' : 'It stays invested for long-term growth, as agreed.';
+  let body = `Dear ${c.firstName}, a short update: your portfolio stands at ${value}, ${ytd} so far this year. ${goalLine} Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas`;
   if (c.id === 'hofmann') {
     facts.push({ id: 'f3', label: 'retirement goal year', value: '2030' });
     body = `Dear Monika, your quarterly update: your portfolio stands at ${value}, ${ytd} so far this year. Your portfolio stays invested as agreed for your retirement income from 2030. No action needed — as agreed, I'll only call if something changes. Best, Jonas`;
@@ -297,9 +300,18 @@ for (const a of digital) {
     facts.push({ id: 'f3', label: 'distribution amount', value: '€' + (d.amountEur ?? 0).toLocaleString('en-GB') });
     subject = 'Your distribution has arrived';
     body = `Dear ${c.firstName}, Meridian Buyout IV paid you a distribution of €${(d.amountEur ?? 0).toLocaleString('en-GB')}. It is now in your cash account. A distribution means the fund sold a company and returned money to investors. If you'd like to discuss what to do with it, reply and I'll call you. Best, Jonas`;
+  } else if (trigger === 'distribution_upcoming') {
+    const d = a.signals.find((s) => s.type === 'distribution_upcoming')!;
+    facts.push({ id: 'f3', label: 'expected distribution (indicative)', value: '€' + (d.amountEur ?? 0).toLocaleString('en-GB') });
+    facts.push({ id: 'f4', label: 'expected date', value: new Date(d.dueDate + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) });
+    subject = 'A distribution is expected';
+    body = `Dear ${c.firstName}, Meridian Buyout IV expects to pay you a distribution of about €${(d.amountEur ?? 0).toLocaleString('en-GB')} around ${facts[3].value}. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas`;
+  } else if (trigger === 'capital_call_explainer') {
+    subject = 'Your capital call letter, explained';
+    body = `Dear ${c.firstName}, you wrote that the capital call letter was unclear. A capital call means the fund asks for the next part of the amount you committed, when it buys a company. The letter shows how much and by when; the money is taken from your cash account with us. Happy to go through it on a short call. Best, Jonas`;
   } else if (trigger === 'j_curve_explainer') {
     subject = 'Why young private equity funds first show a loss';
-    body = `Dear ${c.firstName}, you asked about the capital call. In the first years a private equity fund calls money and pays fees before its companies grow, so its value often looks negative. This is called the J-curve. It is normal and usually turns later. Happy to explain on a call. Best, Jonas`;
+    body = `Dear ${c.firstName}, in its first years a private equity fund calls money and pays fees before its companies grow, so its value is often below what you paid in. This is called the J-curve. It is common for young funds and says little yet about the final result. Happy to explain on a call. Best, Jonas`;
   } else if (trigger === 'statement_info') {
     subject = 'Your documents';
     body = `Dear ${c.firstName}, your statements and tax certificate are in the app under Documents. Your portfolio currently stands at ${value}. If anything is unclear, reply here. Best, Jonas`;
@@ -313,7 +325,8 @@ for (const a of digital) {
     testCase = true;
     testDone = true;
   }
-  let messageType = 'informational';
+  // Re-engagement after a long silence is personal outreach (RULES.md §7): the RM approves it individually, never in a batch.
+  let messageType = trigger === 're_engagement' ? 'personal_outreach' : 'informational';
   if (trigger === 'distribution_received' && advisoryDone++ === 1) {
     // The model classifies this one as advisory: the natural message would be about reinvesting. It writes an RM note instead.
     const d = a.signals.find((s) => s.type === 'distribution_received')!;

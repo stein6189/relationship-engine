@@ -1,12 +1,12 @@
 {
  "promptId": "route_client_question",
  "key": "keller_negative",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "category": "factual",
-  "clientAnswer": "Atlas Growth V is a young fund. In its first years it calls money and pays fees before its companies grow, so its value is below what you paid in: €90,000 versus €100,000. This is called the J-curve. It is normal and does not mean the fund is doing badly.",
+  "clientAnswer": "Atlas Growth V is a young fund. In its first years it calls money and pays fees before its companies grow, so its value is below what you paid in: €90,000 versus €100,000. This is called the J-curve. It is common for young funds and says little yet about the final result. Jonas can explain more.",
   "rmDraft": "",
   "factsUsed": [
    "k_nav",

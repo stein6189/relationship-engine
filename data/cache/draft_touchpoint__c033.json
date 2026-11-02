@@ -1,12 +1,12 @@
 {
  "promptId": "draft_touchpoint",
  "key": "c033",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Sebastian, a short update: your portfolio stands at €1,724,000, +6.6% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Sebastian, a short update: your portfolio stands at €1,724,000, +6.6% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",

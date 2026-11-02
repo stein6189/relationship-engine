@@ -1,13 +1,13 @@
 {
  "promptId": "draft_touchpoint",
  "key": "c070",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "It has been a while",
   "body": "Dear Johanna, it's been some time since we last spoke. Your portfolio stands at €741,000, +7.3% this year. If your plans have changed, I'd be glad to catch up — just reply. Best, Jonas",
-  "messageType": "informational",
+  "messageType": "personal_outreach",
   "factsUsed": [
    "f1",
    "f2"

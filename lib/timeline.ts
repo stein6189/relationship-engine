@@ -40,6 +40,7 @@ export function timelineFor(c: Client, s: DemoState): TimelineItem[] {
     });
   }
   if (c.lastProactiveContact) out.push({ id: 'last_contact', date: c.lastProactiveContact, kind: 'event', actor: 'rm', title: 'Last proactive RM conversation', seenByClient: true, seenByRm: true, clientVisible: true });
+  if (c.id === 'albers') out.push({ id: 'meeting_2026-11-05', date: '2026-11-05', kind: 'event', actor: 'rm', title: 'Meeting with Jonas: private markets', text: 'Advisory conversation about Meridian Buyout V', seenByClient: true, seenByRm: true, clientVisible: true });
   if (c.id === 'albers') out.push({ id: 'notes', date: '2026-11-05', kind: 'note', actor: 'rm', title: 'Advisory meeting notes', text: DATA_NOTES_ALBERS.split('\n').slice(1).join(' '), seenByClient: false, seenByRm: true, clientVisible: false });
   for (const m of s.inbox[c.id] ?? []) out.push({ id: m.id, date: m.date, kind: m.kind === 'document' ? 'document' : 'sent', actor: 'rm', title: m.kind === 'document' ? `Document: ${m.subject}` : `Sent: ${m.subject}`, text: m.body, seenByClient: true, seenByRm: true, clientVisible: true });
   for (const q of s.qa[c.id] ?? []) out.push({ id: q.id, date: SIM_TODAY, kind: 'question', actor: 'client', title: `Asked in the app: “${q.q}”`, text: q.category === 'factual' ? `Answered by AI from ${c.firstName}’s data: ${q.a}` : q.category === 'advice' ? 'Passed to Jonas with a draft answer' : 'Out of scope — redirected', seenByClient: true, seenByRm: true, clientVisible: true });

@@ -1,21 +1,21 @@
 {
  "promptId": "draft_suitability",
  "key": "albers",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "suitability": {
    "clientObjectives": [
     {
-     "text": "Claudia wants to diversify beyond listed markets and invest in the real economy.",
+     "text": "You want to diversify beyond listed markets and invest in the real economy.",
      "sourceIds": [
       "notes",
       "albers_note_2025-12-02"
      ]
     },
     {
-     "text": "Her investment horizon is 15 years or longer.",
+     "text": "Your investment horizon is 15 years or longer.",
      "sourceIds": [
       "notes",
       "f_horizon"
@@ -24,14 +24,14 @@
    ],
    "riskProfile": [
     {
-     "text": "Her risk profile is risk class 6, which matches the product risk indicator SRI 6.",
+     "text": "Your risk profile is risk class 6. This matches the product risk indicator of the fund, SRI 6.",
      "sourceIds": [
       "f_risk",
       "p_sri"
      ]
     },
     {
-     "text": "She understands that returns are not guaranteed.",
+     "text": "You understand that returns are not guaranteed.",
      "sourceIds": [
       "notes"
      ]
@@ -39,21 +39,22 @@
    ],
    "knowledgeAndExperience": [
     {
-     "text": "The questionnaire states no private equity experience.",
+     "text": "You have invested directly in startups as an angel investor, with one exit in 2019.",
      "sourceIds": [
-      "questionnaire"
+      "notes",
+      "albers_note_2025-12-02"
      ]
     },
     {
-     "text": "An earlier RM note records that she was an angel investor and sold a startup stake. The RM should confirm which statement is correct.",
+     "text": "You have not yet invested in a private equity fund.",
      "sourceIds": [
-      "albers_note_2025-12-02"
+      "notes"
      ]
     }
    ],
    "financialSituationAndLossCapacity": [
     {
-     "text": "She holds €900,000 with us and states investable wealth of €3,000,000, including bank deposits of €1,400,000.",
+     "text": "You hold €900,000 with us and told us your investable wealth is €3,000,000, including bank deposits of €1,400,000.",
      "sourceIds": [
       "f_aum",
       "f_stated",
@@ -61,13 +62,13 @@
      ]
     },
     {
-     "text": "After this investment, private markets would make up 6.7% of her stated investable wealth.",
+     "text": "After this investment, private markets would make up 6.7% of your investable wealth.",
      "sourceIds": [
       "r_pmshare"
      ]
     },
     {
-     "text": "She can bear a loss of the committed amount without affecting her plans.",
+     "text": "You confirmed that you could bear a total loss of the committed amount without changing your plans.",
      "sourceIds": [
       "notes"
      ]
@@ -75,42 +76,43 @@
    ],
    "whyTheProductFits": [
     {
-     "text": "Meridian Buyout V matches her wish to diversify into private companies and her long horizon.",
+     "text": "Meridian Buyout V matches your wish to invest in private companies and your long horizon.",
      "sourceIds": [
       "notes",
       "p_name"
      ]
     },
     {
-     "text": "A commitment of €200,000 meets the fund minimum and fits her capacity to lock money for the fund term of 10 years.",
+     "text": "A commitment of €200,000 meets the fund minimum. You can leave the money invested for the fund term of 10 years.",
      "sourceIds": [
       "p_commit",
       "p_min",
-      "p_term"
+      "p_term",
+      "notes"
      ]
     }
    ],
    "risksExplained": [
     {
-     "text": "Capital is locked for about ten years and capital calls come over three to four years.",
+     "text": "Your money is locked for about ten years, and capital calls come over three to four years.",
      "sourceIds": [
       "notes"
      ]
     },
     {
-     "text": "The J-curve was explained: the fund is likely to show a loss in its first years.",
+     "text": "The fund is likely to show a loss in its first years (the J-curve).",
      "sourceIds": [
       "notes"
      ]
     },
     {
-     "text": "Distributions are not guaranteed, and she could lose part or all of the committed amount.",
+     "text": "Distributions are not guaranteed. You could lose part or all of the committed amount.",
      "sourceIds": [
       "notes"
      ]
     },
     {
-     "text": "The costs were explained; see the cost disclosure.",
+     "text": "We explained the costs; see the cost disclosure.",
      "sourceIds": [
       "notes"
      ]
@@ -118,7 +120,7 @@
    ],
    "alternativesConsidered": [
     {
-     "text": "An ELTIF with a lower minimum and no capital calls was discussed. Claudia prefers the buyout fund.",
+     "text": "We discussed an ELTIF with a lower minimum and no capital calls. You prefer the buyout fund.",
      "sourceIds": [
       "notes"
      ]
@@ -127,11 +129,11 @@
   },
   "clientMessage": {
    "subject": "Summary of our conversation on private markets",
-   "body": "Dear Claudia, thank you for our conversation. Attached are the suitability statement and the cost disclosure for Meridian Buyout V. Please read both before you sign. Your commitment would be €200,000, with a first capital call of €40,000 at first close. If anything is unclear, just reply here. Best, Jonas"
+   "body": "Dear Claudia, thank you for our conversation. In the app you will find the suitability statement and the cost disclosure for Meridian Buyout V. Please read both before you sign. Your commitment would be €200,000, with a first capital call of €40,000 at first close. If anything is unclear, just reply here. Best, Jonas"
   },
-  "crmNote": "Advisory meeting on private markets. Client wants to diversify, horizon 15 years, understands illiquidity, J-curve and that distributions are not guaranteed. Proposed: Meridian Buyout V, commitment €200,000. ELTIF discussed as alternative. Open: clarify private equity experience before RM attestation.",
+  "crmNote": "Advisory meeting on private markets. Client wants to diversify, horizon 15 years, understands illiquidity, J-curve and that distributions are not guaranteed; can bear a total loss of the commitment. Proposed: Meridian Buyout V, commitment €200,000. ELTIF discussed as alternative. Experience: angel investor (one exit 2019), no fund investments. Open: update questionnaire before RM attestation.",
   "openPoints": [
-   "Clarify private equity experience: the questionnaire says none, an RM note mentions angel investing."
+   "Update the questionnaire: it says no private equity experience; the notes record direct angel investments."
   ],
   "confidence": 0.84
  }

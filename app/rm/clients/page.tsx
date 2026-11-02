@@ -52,7 +52,7 @@ export default function ClientsPage() {
                   <td className="tnum px-3 py-1.5 text-right">{eur(c.aumEur)}</td>
                   <td className="tnum px-3 py-1.5 text-right">{pct(c.aumEur / c.statedInvestableEur, 0)}</td>
                   <td className="px-3 py-1.5 text-xs">{c.commitments.length ? `${c.commitments.length} fund${c.commitments.length > 1 ? 's' : ''}` : '—'}</td>
-                  <td className="tnum px-3 py-1.5 text-xs">{since === null ? 'never' : `${since} months ago`}</td>
+                  <td className="tnum px-3 py-1.5 text-xs">{since === null ? 'never' : since === 1 ? '1 month ago' : `${since} months ago`}</td>
                   <td className="px-3 py-1.5">{a && <Badge tone={a.lane === 'rm' ? 'teal' : a.lane === 'digital' ? 'blue' : 'slate'}>{laneLabel[a.lane]}</Badge>}{a?.controlGroup && <Badge tone="blue" className="ml-1">control group</Badge>}</td>
                 </tr>
               );

@@ -46,6 +46,7 @@ function ClientCard({ a, onOverride }: { a: Allocation; onOverride: (a: Allocati
   const shown = a.signals.filter((x) => x.type !== 'quarterly_progress' || a.lane !== 'rm');
   const ov = s.overrides[a.clientId];
   const quote = a.signals.find((x) => x.origin === 'ai' && x.quote && x.confidence >= 0.6);
+  const quoteItem = quote ? c.items.find((it) => it.text.includes(quote.quote!)) : undefined;
   return (
     <Card className="p-3" data-testid={`card-${c.id}`}>
       <div className="flex items-start justify-between gap-2">
@@ -56,7 +57,7 @@ function ClientCard({ a, onOverride }: { a: Allocation; onOverride: (a: Allocati
         <Button variant="ghost" className="px-1.5 py-0.5 text-xs" onClick={() => onOverride(a)}>Move</Button>
       </div>
       <p className="mt-1.5 text-sm leading-snug">{a.reason}</p>
-      {quote && <p className="mt-1 border-l-2 border-slate-200 pl-2 text-xs italic leading-snug text-slate-600" data-testid="card-quote">“{quote.quote}” <span className="not-italic text-slate-400">— {srcLabel(quote)}{quote.sourceIds[0]?.match(/\d{4}-\d{2}-\d{2}/) ? `, ${fmtDate(quote.sourceIds[0].match(/\d{4}-\d{2}-\d{2}/)![0])}` : ''}</span></p>}
+      {quote && <p className="mt-1 border-l-2 border-slate-200 pl-2 text-xs italic leading-snug text-slate-600" data-testid="card-quote">“{quote.quote}” <span className="not-italic text-slate-400">— {srcLabel(quote)}{quoteItem ? `, ${fmtDate(quoteItem.date)}` : ''}</span></p>}
       <div className="mt-2 flex flex-wrap gap-1">
         {a.hardTrigger && <Badge tone="slate">{TRIGGER_LABEL[a.hardTrigger]}</Badge>}
         {shown.slice(0, 5).map((x, i) => <SignalChip key={i} s={x} />)}
@@ -101,7 +102,7 @@ function Pipeline() {
               <div className="text-[11px] font-medium text-slate-500">{st}</div>
               <div className="tnum text-sm font-semibold">{eurShort(items.reduce((x, o) => x + o.amountEur, 0))}</div>
               <div className="mt-1 space-y-0.5">
-                {items.map((o) => <div key={o.clientId} className={clsx('truncate text-[11px]', o.clientId === 'albers' ? 'font-semibold text-accent' : 'text-slate-600')} data-testid={o.clientId === 'albers' ? `pipeline-albers-${st}` : undefined}>{clientById(o.clientId)?.name} · {o.product}</div>)}
+                {items.map((o) => <div key={o.clientId} className={clsx('truncate text-[11px]', o.clientId === 'albers' ? 'font-semibold text-accent' : 'text-slate-600')} data-testid={o.clientId === 'albers' ? `pipeline-albers-${st}` : undefined}>{clientById(o.clientId)?.name} · {o.product}{o.clientId === 'albers' && s.albers.funded ? ' · funding instructed for 15 Dec' : ''}</div>)}
               </div>
             </div>
           );
@@ -172,6 +173,7 @@ export default function PlanPage() {
   }
 
   const openRequests = s.requests.filter((r) => !r.done);
+  const saved = s.minutesSaved + Object.values(s.touchpoints).filter((t) => t.status === 'approved').length * MINUTES_SAVED.touchpoint;
 
   return (
     <div className="space-y-4">
@@ -199,7 +201,7 @@ export default function PlanPage() {
         <Stat label="Proactive coverage (12 months)" value={pct(kpi.coverage)} sub={`→ ${pct(kpi.coverageAfter)} after this plan`} tone="teal" />
         <Stat label="AUM at risk (probability-weighted)" value={eurShort(kpi.risk)} tone="red" />
         <Stat label="Liquidity needs detected" value={eurShort(kpi.need)} tone="amber" />
-        <Stat label="Time saved this month" value={`${Math.round((s.minutesSaved + Object.values(s.touchpoints).filter((t) => t.status === 'approved').length * MINUTES_SAVED.touchpoint) / 60 * 10) / 10} h`} sub="prep, documentation, messages (assumption)" />
+        <Stat label="Time saved this month" value={saved ? `${Math.round(saved / 6) / 10} h` : '—'} sub={saved ? 'prep, documentation, messages (assumption: brief −40 min, documentation −30 min, message −6 min)' : 'counts as you use briefs, documentation and approved messages'} />
       </div>
 
       {openRequests.length > 0 && (
@@ -209,7 +211,7 @@ export default function PlanPage() {
             <div key={r.id} className="flex items-start justify-between gap-3 border-b border-slate-100 py-1.5 text-sm last:border-0">
               <div>
                 <b>{clientById(r.clientId)?.name}</b> · {r.kind === 'talk' ? 'asked to talk' : 'asked'}: “{r.text}”
-                {r.rmDraft && <div className="mt-0.5 text-xs text-slate-600">✦ AI draft for you (not sent): {r.rmDraft}</div>}
+                {r.rmDraft && <div className="mt-0.5 text-xs text-slate-600">✦ AI draft for you (not sent): {r.rmDraft} {r.rmDraftGuard && <Badge tone={r.rmDraftGuard.pass ? 'green' : 'red'}>{r.rmDraftGuard.pass ? 'numbers ✓' : `number check ✗ ${r.rmDraftGuard.unsupported.join(', ')}`}</Badge>}</div>}
               </div>
               <div className="flex gap-1">
                 <Link href={`/rm/client/${r.clientId}`}><Button className="text-xs">Open</Button></Link>
@@ -284,8 +286,9 @@ function OverrideModal({ a, onClose, rmLane }: { a: Allocation | null; onClose: 
             <div className="mb-1 font-medium text-amber-900">Capacity is fixed at {RM_SLOTS}. Who moves to digital instead?</div>
             <select className="w-full rounded border border-slate-300 p-1.5" value={swap} onChange={(e) => setSwap(e.target.value)} aria-label="Client to move out">
               <option value="">Choose a client…</option>
-              {rmLane.filter((x) => !x.hardTrigger).map((x) => <option key={x.clientId} value={x.clientId}>{clientById(x.clientId)?.name} — {x.reason.slice(0, 60)}</option>)}
+              {rmLane.map((x) => <option key={x.clientId} value={x.clientId}>{x.hardTrigger ? '⚠ hard trigger · ' : ''}{clientById(x.clientId)?.name} — {x.reason.slice(0, 60)}</option>)}
             </select>
+            {swap && rmLane.find((x) => x.clientId === swap)?.hardTrigger && <div className="mt-1 text-xs text-amber-900">This client has a hard trigger. Moving them out is allowed, but it is logged with your reason.</div>}
           </div>
         )}
         <label className="block">Reason (logged)

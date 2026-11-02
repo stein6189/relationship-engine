@@ -2,14 +2,14 @@
  "promptId": "verify_draft",
  "key": "albers",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "results": [
    {
     "sentenceId": "s1",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"wants to diversify beyond listed markets\"; RM note: interest in real-economy investments.",
     "supportingSourceIds": [
      "notes",
      "albers_note_2025-12-02"
@@ -18,7 +18,7 @@
    {
     "sentenceId": "s2",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"horizon 15+ years\"; fact f_horizon.",
     "supportingSourceIds": [
      "notes",
      "f_horizon"
@@ -27,7 +27,7 @@
    {
     "sentenceId": "s3",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Facts f_risk (risk class 6) and p_sri (SRI 6).",
     "supportingSourceIds": [
      "f_risk",
      "p_sri"
@@ -36,7 +36,7 @@
    {
     "sentenceId": "s4",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"Client asked whether returns are guaranteed — I said no.\"",
     "supportingSourceIds": [
      "notes"
     ]
@@ -44,23 +44,24 @@
    {
     "sentenceId": "s5",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"invested directly in startups as an angel investor (one exit in 2019)\"; RM note 2 Dec 2025.",
     "supportingSourceIds": [
-     "questionnaire"
+     "notes",
+     "albers_note_2025-12-02"
     ]
    },
    {
     "sentenceId": "s6",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"no investments in private equity funds so far\".",
     "supportingSourceIds": [
-     "albers_note_2025-12-02"
+     "notes"
     ]
    },
    {
     "sentenceId": "s7",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Facts f_aum, f_stated, f_deposits match exactly.",
     "supportingSourceIds": [
      "f_aum",
      "f_stated",
@@ -70,7 +71,7 @@
    {
     "sentenceId": "s8",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Fact r_pmshare = 6.7%.",
     "supportingSourceIds": [
      "r_pmshare"
     ]
@@ -78,7 +79,7 @@
    {
     "sentenceId": "s9",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"could bear a total loss of the €200k without changing her plans\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -86,7 +87,7 @@
    {
     "sentenceId": "s10",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: wants to diversify, horizon 15+; product fact p_name.",
     "supportingSourceIds": [
      "notes",
      "p_name"
@@ -95,17 +96,18 @@
    {
     "sentenceId": "s11",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Facts p_commit, p_min, p_term; notes: \"understands capital is locked for ~10 years\".",
     "supportingSourceIds": [
      "p_commit",
      "p_min",
-     "p_term"
+     "p_term",
+     "notes"
     ]
    },
    {
     "sentenceId": "s12",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"capital is locked for ~10 years and calls come over 3–4 years\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -113,7 +115,7 @@
    {
     "sentenceId": "s13",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"Explained J-curve\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -121,7 +123,7 @@
    {
     "sentenceId": "s14",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"distributions are not guaranteed\"; total loss confirmed under loss capacity.",
     "supportingSourceIds": [
      "notes"
     ]
@@ -129,7 +131,7 @@
    {
     "sentenceId": "s15",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"Explained costs\"; figures come from the code-generated table.",
     "supportingSourceIds": [
      "notes"
     ]
@@ -137,7 +139,7 @@
    {
     "sentenceId": "s16",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"ELTIF … client prefers the buyout fund\".",
     "supportingSourceIds": [
      "notes"
     ]

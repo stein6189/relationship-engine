@@ -1,5 +1,5 @@
 import type { Client } from '../types';
-import { LENDING_VALUES, LOMBARD_RATE, STRESS, FLAT_TAX_RATE, AUM_FEE, LOMBARD_MIN } from './config';
+import { LENDING_VALUES, LOMBARD_RATE, STRESS, FLAT_TAX_RATE, AUM_FEE, LOMBARD_MIN, EQUITY_FUND_PARTIAL_EXEMPTION } from './config';
 
 const shock = (assetClass: string) =>
   assetClass === 'equity_etf' || assetClass === 'single_stock' ? STRESS.equity : assetClass === 'bond_etf' ? STRESS.bond : 0;
@@ -41,6 +41,8 @@ export function sellOption(c: Client, amountEur: number) {
   return {
     realisedGainEur: realisedGain,
     taxEur: realisedGain * FLAT_TAX_RATE,
+    /** For comparison: German equity funds get a 30% partial exemption (Teilfreistellung) for private investors. */
+    taxWithPartialExemptionEur: realisedGain * (1 - EQUITY_FUND_PARTIAL_EXEMPTION) * FLAT_TAX_RATE,
     aumChangeEur: -amountEur,
     feeLostPaEur: amountEur * AUM_FEE,
   };

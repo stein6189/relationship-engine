@@ -11,6 +11,8 @@ import { eur, fmtDate } from '@/lib/rules/format';
 import { AiMetaBadge } from '@/components/AiMetaBadge';
 import { Badge, Button, Card, SectionTitle, Spinner, Term } from '@/components/ui';
 
+const CLARIFY_DEFAULT = 'Meeting 5 Nov: client invested directly in startups as an angel investor (one exit in 2019); no investments in private equity funds. Questionnaire to be corrected from "none" to "some (direct, no funds)".';
+
 export function StepDot({ state, n }: { state: StepState; n: number }) {
   return <span className={clsx('grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-semibold', state === 'done' ? 'bg-green-600 text-white' : state === 'open' ? 'bg-accent text-white' : 'bg-slate-200 text-slate-500')}>{state === 'done' ? '✓' : state === 'locked' ? '🔒︎' : n}</span>;
 }
@@ -41,7 +43,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
 
   const findings: any[] = a.consistency?.findings ?? [];
   const rulesPass = rules.allRulesPass;
-  const canAttest = rulesPass && !!a.consistency && (findings.length === 0 && !a.consistency.invalid || a.contradictionReviewed) && attestTick;
+  const canAttest = rulesPass && !!a.consistency && (findings.length === 0 && !a.consistency.invalid || (a.contradictionReviewed && !!(a.clarification ?? '').trim())) && attestTick;
 
   return (
     <div className="space-y-4" data-testid="subscription">
@@ -91,7 +93,14 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
                 {f.conflictingEvidence.map((e: any) => <div key={e.sourceId} className="mt-1">But <span className="font-mono text-xs">{e.sourceId}</span>: <i>“{e.quote}”</i></div>)}
                 <div className="mt-1 text-xs text-slate-700">{f.whyItMatters}</div>
                 <div className="mt-1 text-xs">Ask the client: “{f.suggestedQuestionForClient}”</div>
-                {!a.attested && <label className="mt-2 flex items-center gap-2 text-xs"><input type="checkbox" checked={!!a.contradictionReviewed} onChange={(e) => setA({ contradictionReviewed: e.target.checked })} data-testid="contradiction-reviewed" /> I clarified this with the client and will update the questionnaire.</label>}
+                {!a.attested ? (
+                  <div className="mt-2 space-y-1">
+                    <label className="block text-xs font-medium">What did the client say? (recorded in the audit record)
+                      <textarea aria-label="Clarification" className="mt-0.5 h-14 w-full rounded border border-amber-300 bg-white p-1.5 text-xs font-normal" value={a.clarification ?? CLARIFY_DEFAULT} onChange={(e) => setA({ clarification: e.target.value })} data-testid="clarification" />
+                    </label>
+                    <label className="flex items-center gap-2 text-xs"><input type="checkbox" checked={!!a.contradictionReviewed} onChange={(e) => setA({ contradictionReviewed: e.target.checked, clarification: a.clarification ?? CLARIFY_DEFAULT })} data-testid="contradiction-reviewed" /> Clarified with the client. Questionnaire update is logged as pending.</label>
+                  </div>
+                ) : <div className="mt-2 text-xs"><b>Clarified:</b> {a.clarification} <Badge tone="amber">questionnaire update pending</Badge></div>}
               </div>
             ))}
             {!busy && <Button className="mt-2 text-xs" variant="ghost" onClick={runCheck} disabled={a.attested}>Re-run check</Button>}
@@ -106,7 +115,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
                 <label className="flex items-start gap-2 text-sm"><input type="checkbox" className="mt-1" checked={attestTick} onChange={(e) => setAttestTick(e.target.checked)} data-testid="attest-tick" /> I am sufficiently satisfied that the client can make their own investment decisions and understands the risks.</label>
                 <div className="mt-2 flex items-center justify-between gap-2">
                   <span className="text-[11px] text-slate-500">{!rulesPass ? 'A rule check failed.' : findings.length && !a.contradictionReviewed ? 'Review the contradiction first.' : 'Never automated — this is your judgment.'}</span>
-                  <Button variant="primary" disabled={!canAttest} onClick={() => setA({ attested: true })} data-testid="attest">Complete qualification</Button>
+                  <Button variant="primary" disabled={!canAttest} onClick={() => setA({ attested: true, attestedAt: new Date().toISOString() })} data-testid="attest">Complete qualification</Button>
                 </div>
               </>
             )}

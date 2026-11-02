@@ -58,7 +58,7 @@ export default function HoodPage() {
                   <td className="tnum py-1 text-xs">{new Date(e.meta.timestamp).toLocaleTimeString('en-GB')}</td>
                   <td>{e.label}</td>
                   <td className="font-mono text-xs">{e.meta.promptId} · {e.meta.promptVersion}</td>
-                  <td className="text-xs">{e.meta.model.startsWith('seed') ? 'seed (authored offline)' : e.meta.model}</td>
+                  <td className="text-xs">{e.meta.model.startsWith('seed') ? 'seed · pre-authored' : e.meta.model}</td>
                   <td><Badge tone={e.meta.source === 'live' ? 'teal' : 'slate'} title={e.meta.fallbackReason}>{sourceLabel(e.meta)}</Badge></td>
                   <td><Badge tone={e.meta.validation === 'failed' ? 'red' : e.meta.validation === 'retried' ? 'amber' : 'green'}>{e.meta.validation}</Badge></td>
                   <td>{e.meta.guard ? <Badge tone={e.meta.guard.pass ? 'green' : 'red'}>{e.meta.guard.pass ? `pass · ${e.meta.guard.checked}` : `fail · ${e.meta.guard.unsupported.join(', ')}`}</Badge> : <span className="text-xs text-slate-400">n/a</span>}</td>

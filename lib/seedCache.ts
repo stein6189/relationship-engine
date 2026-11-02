@@ -6,7 +6,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "check_qualification_consistency",
  "key": "albers",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "findings": [
@@ -29,21 +29,21 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_suitability__albers": {
  "promptId": "draft_suitability",
  "key": "albers",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "suitability": {
    "clientObjectives": [
     {
-     "text": "Claudia wants to diversify beyond listed markets and invest in the real economy.",
+     "text": "You want to diversify beyond listed markets and invest in the real economy.",
      "sourceIds": [
       "notes",
       "albers_note_2025-12-02"
      ]
     },
     {
-     "text": "Her investment horizon is 15 years or longer.",
+     "text": "Your investment horizon is 15 years or longer.",
      "sourceIds": [
       "notes",
       "f_horizon"
@@ -52,14 +52,14 @@ export const seedCache: Record<string, CacheEntry> = {
    ],
    "riskProfile": [
     {
-     "text": "Her risk profile is risk class 6, which matches the product risk indicator SRI 6.",
+     "text": "Your risk profile is risk class 6. This matches the product risk indicator of the fund, SRI 6.",
      "sourceIds": [
       "f_risk",
       "p_sri"
      ]
     },
     {
-     "text": "She understands that returns are not guaranteed.",
+     "text": "You understand that returns are not guaranteed.",
      "sourceIds": [
       "notes"
      ]
@@ -67,21 +67,22 @@ export const seedCache: Record<string, CacheEntry> = {
    ],
    "knowledgeAndExperience": [
     {
-     "text": "The questionnaire states no private equity experience.",
+     "text": "You have invested directly in startups as an angel investor, with one exit in 2019.",
      "sourceIds": [
-      "questionnaire"
+      "notes",
+      "albers_note_2025-12-02"
      ]
     },
     {
-     "text": "An earlier RM note records that she was an angel investor and sold a startup stake. The RM should confirm which statement is correct.",
+     "text": "You have not yet invested in a private equity fund.",
      "sourceIds": [
-      "albers_note_2025-12-02"
+      "notes"
      ]
     }
    ],
    "financialSituationAndLossCapacity": [
     {
-     "text": "She holds €900,000 with us and states investable wealth of €3,000,000, including bank deposits of €1,400,000.",
+     "text": "You hold €900,000 with us and told us your investable wealth is €3,000,000, including bank deposits of €1,400,000.",
      "sourceIds": [
       "f_aum",
       "f_stated",
@@ -89,13 +90,13 @@ export const seedCache: Record<string, CacheEntry> = {
      ]
     },
     {
-     "text": "After this investment, private markets would make up 6.7% of her stated investable wealth.",
+     "text": "After this investment, private markets would make up 6.7% of your investable wealth.",
      "sourceIds": [
       "r_pmshare"
      ]
     },
     {
-     "text": "She can bear a loss of the committed amount without affecting her plans.",
+     "text": "You confirmed that you could bear a total loss of the committed amount without changing your plans.",
      "sourceIds": [
       "notes"
      ]
@@ -103,42 +104,43 @@ export const seedCache: Record<string, CacheEntry> = {
    ],
    "whyTheProductFits": [
     {
-     "text": "Meridian Buyout V matches her wish to diversify into private companies and her long horizon.",
+     "text": "Meridian Buyout V matches your wish to invest in private companies and your long horizon.",
      "sourceIds": [
       "notes",
       "p_name"
      ]
     },
     {
-     "text": "A commitment of €200,000 meets the fund minimum and fits her capacity to lock money for the fund term of 10 years.",
+     "text": "A commitment of €200,000 meets the fund minimum. You can leave the money invested for the fund term of 10 years.",
      "sourceIds": [
       "p_commit",
       "p_min",
-      "p_term"
+      "p_term",
+      "notes"
      ]
     }
    ],
    "risksExplained": [
     {
-     "text": "Capital is locked for about ten years and capital calls come over three to four years.",
+     "text": "Your money is locked for about ten years, and capital calls come over three to four years.",
      "sourceIds": [
       "notes"
      ]
     },
     {
-     "text": "The J-curve was explained: the fund is likely to show a loss in its first years.",
+     "text": "The fund is likely to show a loss in its first years (the J-curve).",
      "sourceIds": [
       "notes"
      ]
     },
     {
-     "text": "Distributions are not guaranteed, and she could lose part or all of the committed amount.",
+     "text": "Distributions are not guaranteed. You could lose part or all of the committed amount.",
      "sourceIds": [
       "notes"
      ]
     },
     {
-     "text": "The costs were explained; see the cost disclosure.",
+     "text": "We explained the costs; see the cost disclosure.",
      "sourceIds": [
       "notes"
      ]
@@ -146,7 +148,7 @@ export const seedCache: Record<string, CacheEntry> = {
    ],
    "alternativesConsidered": [
     {
-     "text": "An ELTIF with a lower minimum and no capital calls was discussed. Claudia prefers the buyout fund.",
+     "text": "We discussed an ELTIF with a lower minimum and no capital calls. You prefer the buyout fund.",
      "sourceIds": [
       "notes"
      ]
@@ -155,11 +157,11 @@ export const seedCache: Record<string, CacheEntry> = {
   },
   "clientMessage": {
    "subject": "Summary of our conversation on private markets",
-   "body": "Dear Claudia, thank you for our conversation. Attached are the suitability statement and the cost disclosure for Meridian Buyout V. Please read both before you sign. Your commitment would be €200,000, with a first capital call of €40,000 at first close. If anything is unclear, just reply here. Best, Jonas"
+   "body": "Dear Claudia, thank you for our conversation. In the app you will find the suitability statement and the cost disclosure for Meridian Buyout V. Please read both before you sign. Your commitment would be €200,000, with a first capital call of €40,000 at first close. If anything is unclear, just reply here. Best, Jonas"
   },
-  "crmNote": "Advisory meeting on private markets. Client wants to diversify, horizon 15 years, understands illiquidity, J-curve and that distributions are not guaranteed. Proposed: Meridian Buyout V, commitment €200,000. ELTIF discussed as alternative. Open: clarify private equity experience before RM attestation.",
+  "crmNote": "Advisory meeting on private markets. Client wants to diversify, horizon 15 years, understands illiquidity, J-curve and that distributions are not guaranteed; can bear a total loss of the commitment. Proposed: Meridian Buyout V, commitment €200,000. ELTIF discussed as alternative. Experience: angel investor (one exit 2019), no fund investments. Open: update questionnaire before RM attestation.",
   "openPoints": [
-   "Clarify private equity experience: the questionnaire says none, an RM note mentions angel investing."
+   "Update the questionnaire: it says no private equity experience; the notes record direct angel investments."
   ],
   "confidence": 0.84
  }
@@ -167,20 +169,22 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c003": {
  "promptId": "draft_touchpoint",
  "key": "c003",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
-  "subject": "It has been a while",
-  "body": "Dear Florian, it's been some time since we last spoke. Your portfolio stands at €986,000, +8.3% this year. If your plans have changed, I'd be glad to catch up — just reply. Best, Jonas",
+  "subject": "A distribution is expected",
+  "body": "Dear Florian, Meridian Buyout IV expects to pay you a distribution of about €85,000 around 25 Dec 2026. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
-   "f2"
+   "f2",
+   "f3",
+   "f4"
   ],
   "callToAction": "reply",
   "confidence": 0.9,
-  "trigger": "re_engagement",
+  "trigger": "distribution_upcoming",
   "facts": [
    {
     "id": "f1",
@@ -191,6 +195,16 @@ export const seedCache: Record<string, CacheEntry> = {
     "id": "f2",
     "label": "year-to-date return",
     "value": "+8.3%"
+   },
+   {
+    "id": "f3",
+    "label": "expected distribution (indicative)",
+    "value": "€85,000"
+   },
+   {
+    "id": "f4",
+    "label": "expected date",
+    "value": "25 Dec 2026"
    }
   ],
   "testCase": false
@@ -199,12 +213,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c007": {
  "promptId": "draft_touchpoint",
  "key": "c007",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Stefan, a short update: your portfolio stands at €421,000, +8.1% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Stefan, a short update: your portfolio stands at €421,000, +8.1% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -231,12 +245,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c009": {
  "promptId": "draft_touchpoint",
  "key": "c009",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Jan, a short update: your portfolio stands at €876,000, +4.1% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Jan, a short update: your portfolio stands at €876,000, +4.1% so far this year. It stays set up to pay you a regular income, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -263,8 +277,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c014": {
  "promptId": "draft_touchpoint",
  "key": "c014",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your distribution has arrived",
@@ -301,12 +315,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c020": {
  "promptId": "draft_touchpoint",
  "key": "c020",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Stefan, a short update: your portfolio stands at €626,000, +8.6% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Stefan, a short update: your portfolio stands at €626,000, +8.6% so far this year. It stays set up to pay you a regular income, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -333,12 +347,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c021": {
  "promptId": "draft_touchpoint",
  "key": "c021",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Frank, a short update: your portfolio stands at €685,000, +5.4% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Frank, a short update: your portfolio stands at €685,000, +5.4% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -365,12 +379,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c027": {
  "promptId": "draft_touchpoint",
  "key": "c027",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Markus, a short update: your portfolio stands at €1,116,000, +5.6% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Markus, a short update: your portfolio stands at €1,116,000, +5.6% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -397,12 +411,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c029": {
  "promptId": "draft_touchpoint",
  "key": "c029",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Matthias, a short update: your portfolio stands at €1,555,000, +4.6% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Matthias, a short update: your portfolio stands at €1,555,000, +4.6% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -429,12 +443,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c032": {
  "promptId": "draft_touchpoint",
  "key": "c032",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Verena, a short update: your portfolio stands at €613,000, +7.8% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Verena, a short update: your portfolio stands at €613,000, +7.8% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -461,12 +475,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c033": {
  "promptId": "draft_touchpoint",
  "key": "c033",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Sebastian, a short update: your portfolio stands at €1,724,000, +6.6% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Sebastian, a short update: your portfolio stands at €1,724,000, +6.6% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -493,12 +507,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c036": {
  "promptId": "draft_touchpoint",
  "key": "c036",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Tobias, a short update: your portfolio stands at €668,000, +3.9% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Tobias, a short update: your portfolio stands at €668,000, +3.9% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -525,12 +539,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c038": {
  "promptId": "draft_touchpoint",
  "key": "c038",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Markus, a short update: your portfolio stands at €300,000, +2.0% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Markus, a short update: your portfolio stands at €300,000, +2.0% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -557,12 +571,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c050": {
  "promptId": "draft_touchpoint",
  "key": "c050",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Michael, a short update: your portfolio stands at €493,000, +4.3% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Michael, a short update: your portfolio stands at €493,000, +4.3% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -589,8 +603,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c053": {
  "promptId": "draft_touchpoint",
  "key": "c053",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Note for RM — not a client message",
@@ -627,12 +641,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c057": {
  "promptId": "draft_touchpoint",
  "key": "c057",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
-  "subject": "Why young private equity funds first show a loss",
-  "body": "Dear Lena, you asked about the capital call. In the first years a private equity fund calls money and pays fees before its companies grow, so its value often looks negative. This is called the J-curve. It is normal and usually turns later. Happy to explain on a call. Best, Jonas",
+  "subject": "Your capital call letter, explained",
+  "body": "Dear Lena, you wrote that the capital call letter was unclear. A capital call means the fund asks for the next part of the amount you committed, when it buys a company. The letter shows how much and by when; the money is taken from your cash account with us. Happy to go through it on a short call. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -640,7 +654,7 @@ export const seedCache: Record<string, CacheEntry> = {
   ],
   "callToAction": "reply",
   "confidence": 0.9,
-  "trigger": "j_curve_explainer",
+  "trigger": "capital_call_explainer",
   "facts": [
    {
     "id": "f1",
@@ -659,12 +673,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c063": {
  "promptId": "draft_touchpoint",
  "key": "c063",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Christian, a short update: your portfolio stands at €495,000, +6.5% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Christian, a short update: your portfolio stands at €495,000, +6.5% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -691,12 +705,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c067": {
  "promptId": "draft_touchpoint",
  "key": "c067",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Matthias, a short update: your portfolio stands at €637,000, +3.1% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Matthias, a short update: your portfolio stands at €637,000, +3.1% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -723,13 +737,13 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c070": {
  "promptId": "draft_touchpoint",
  "key": "c070",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "It has been a while",
   "body": "Dear Johanna, it's been some time since we last spoke. Your portfolio stands at €741,000, +7.3% this year. If your plans have changed, I'd be glad to catch up — just reply. Best, Jonas",
-  "messageType": "informational",
+  "messageType": "personal_outreach",
   "factsUsed": [
    "f1",
    "f2"
@@ -755,13 +769,13 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c071": {
  "promptId": "draft_touchpoint",
  "key": "c071",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "It has been a while",
   "body": "Dear Julia, it's been some time since we last spoke. Your portfolio stands at €1,005,000, +5.6% this year. If your plans have changed, I'd be glad to catch up — just reply. Best, Jonas",
-  "messageType": "informational",
+  "messageType": "personal_outreach",
   "factsUsed": [
    "f1",
    "f2"
@@ -787,12 +801,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c072": {
  "promptId": "draft_touchpoint",
  "key": "c072",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Julia, a short update: your portfolio stands at €1,162,000, +3.4% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Julia, a short update: your portfolio stands at €1,162,000, +3.4% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -819,12 +833,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c073": {
  "promptId": "draft_touchpoint",
  "key": "c073",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Sandra, a short update: your portfolio stands at €609,000, +5.8% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Sandra, a short update: your portfolio stands at €609,000, +5.8% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -851,12 +865,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c074": {
  "promptId": "draft_touchpoint",
  "key": "c074",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
-  "subject": "Why young private equity funds first show a loss",
-  "body": "Dear Ines, you asked about the capital call. In the first years a private equity fund calls money and pays fees before its companies grow, so its value often looks negative. This is called the J-curve. It is normal and usually turns later. Happy to explain on a call. Best, Jonas",
+  "subject": "Your capital call letter, explained",
+  "body": "Dear Ines, you wrote that the capital call letter was unclear. A capital call means the fund asks for the next part of the amount you committed, when it buys a company. The letter shows how much and by when; the money is taken from your cash account with us. Happy to go through it on a short call. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -864,7 +878,7 @@ export const seedCache: Record<string, CacheEntry> = {
   ],
   "callToAction": "reply",
   "confidence": 0.9,
-  "trigger": "j_curve_explainer",
+  "trigger": "capital_call_explainer",
   "facts": [
    {
     "id": "f1",
@@ -883,12 +897,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c081": {
  "promptId": "draft_touchpoint",
  "key": "c081",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Michael, a short update: your portfolio stands at €1,523,000, +4.7% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Michael, a short update: your portfolio stands at €1,523,000, +4.7% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -915,12 +929,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c087": {
  "promptId": "draft_touchpoint",
  "key": "c087",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Moritz, a short update: your portfolio stands at €591,000, +8.6% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Moritz, a short update: your portfolio stands at €591,000, +8.6% so far this year. It stays set up to pay you a regular income, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -947,8 +961,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c092": {
  "promptId": "draft_touchpoint",
  "key": "c092",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your distribution has arrived",
@@ -985,8 +999,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c099": {
  "promptId": "draft_touchpoint",
  "key": "c099",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your distribution has arrived",
@@ -1023,8 +1037,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c100": {
  "promptId": "draft_touchpoint",
  "key": "c100",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your distribution has arrived",
@@ -1061,8 +1075,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c102": {
  "promptId": "draft_touchpoint",
  "key": "c102",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your documents",
@@ -1093,8 +1107,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c105": {
  "promptId": "draft_touchpoint",
  "key": "c105",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your documents",
@@ -1125,12 +1139,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c108": {
  "promptId": "draft_touchpoint",
  "key": "c108",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Michael, a short update: your portfolio stands at €474,000, +2.1% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Michael, a short update: your portfolio stands at €474,000, +2.1% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1157,8 +1171,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c109": {
  "promptId": "draft_touchpoint",
  "key": "c109",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your distribution has arrived",
@@ -1195,13 +1209,13 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c110": {
  "promptId": "draft_touchpoint",
  "key": "c110",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "It has been a while",
   "body": "Dear Alexander, it's been some time since we last spoke. Your portfolio stands at €961,000, +6.4% this year. If your plans have changed, I'd be glad to catch up — just reply. Best, Jonas",
-  "messageType": "informational",
+  "messageType": "personal_outreach",
   "factsUsed": [
    "f1",
    "f2"
@@ -1227,8 +1241,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c113": {
  "promptId": "draft_touchpoint",
  "key": "c113",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your distribution has arrived",
@@ -1265,8 +1279,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c114": {
  "promptId": "draft_touchpoint",
  "key": "c114",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your documents",
@@ -1297,12 +1311,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c115": {
  "promptId": "draft_touchpoint",
  "key": "c115",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Andrea, a short update: your portfolio stands at €929,000, +2.4% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Andrea, a short update: your portfolio stands at €929,000, +2.4% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1329,12 +1343,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c122": {
  "promptId": "draft_touchpoint",
  "key": "c122",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Andrea, a short update: your portfolio stands at €1,283,000, +2.9% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Andrea, a short update: your portfolio stands at €1,283,000, +2.9% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1361,12 +1375,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c123": {
  "promptId": "draft_touchpoint",
  "key": "c123",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Jan, a short update: your portfolio stands at €663,000, +2.4% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Jan, a short update: your portfolio stands at €663,000, +2.4% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1393,12 +1407,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c124": {
  "promptId": "draft_touchpoint",
  "key": "c124",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Michael, a short update: your portfolio stands at €1,401,000, +3.3% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Michael, a short update: your portfolio stands at €1,401,000, +3.3% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1425,20 +1439,22 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c130": {
  "promptId": "draft_touchpoint",
  "key": "c130",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
-  "subject": "Your documents",
-  "body": "Dear Philipp, your statements and tax certificate are in the app under Documents. Your portfolio currently stands at €770,000. If anything is unclear, reply here. Best, Jonas",
+  "subject": "A distribution is expected",
+  "body": "Dear Philipp, Meridian Buyout IV expects to pay you a distribution of about €125,000 around 28 Nov 2026. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
-   "f2"
+   "f2",
+   "f3",
+   "f4"
   ],
   "callToAction": "reply",
   "confidence": 0.9,
-  "trigger": "statement_info",
+  "trigger": "distribution_upcoming",
   "facts": [
    {
     "id": "f1",
@@ -1449,6 +1465,16 @@ export const seedCache: Record<string, CacheEntry> = {
     "id": "f2",
     "label": "year-to-date return",
     "value": "+5.2%"
+   },
+   {
+    "id": "f3",
+    "label": "expected distribution (indicative)",
+    "value": "€125,000"
+   },
+   {
+    "id": "f4",
+    "label": "expected date",
+    "value": "28 Nov 2026"
    }
   ],
   "testCase": false
@@ -1457,8 +1483,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c132": {
  "promptId": "draft_touchpoint",
  "key": "c132",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your documents",
@@ -1489,12 +1515,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c134": {
  "promptId": "draft_touchpoint",
  "key": "c134",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Miriam, a short update: your portfolio stands at €676,000, +7.7% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Miriam, a short update: your portfolio stands at €676,000, +7.7% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1521,12 +1547,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c136": {
  "promptId": "draft_touchpoint",
  "key": "c136",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Anna, a short update: your portfolio stands at €531,000, +6.3% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Anna, a short update: your portfolio stands at €531,000, +6.3% so far this year. It stays set up to pay you a regular income, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1553,12 +1579,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c137": {
  "promptId": "draft_touchpoint",
  "key": "c137",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Felix, a short update: your portfolio stands at €464,000, +6.4% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Felix, a short update: your portfolio stands at €464,000, +6.4% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1585,12 +1611,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c145": {
  "promptId": "draft_touchpoint",
  "key": "c145",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Markus, a short update: your portfolio stands at €371,000, +2.3% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Markus, a short update: your portfolio stands at €371,000, +2.3% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1617,8 +1643,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c150": {
  "promptId": "draft_touchpoint",
  "key": "c150",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your documents",
@@ -1649,8 +1675,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c156": {
  "promptId": "draft_touchpoint",
  "key": "c156",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your documents",
@@ -1681,12 +1707,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c161": {
  "promptId": "draft_touchpoint",
  "key": "c161",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
-  "subject": "Why young private equity funds first show a loss",
-  "body": "Dear Johanna, you asked about the capital call. In the first years a private equity fund calls money and pays fees before its companies grow, so its value often looks negative. This is called the J-curve. It is normal and usually turns later. Happy to explain on a call. Best, Jonas",
+  "subject": "Your capital call letter, explained",
+  "body": "Dear Johanna, you wrote that the capital call letter was unclear. A capital call means the fund asks for the next part of the amount you committed, when it buys a company. The letter shows how much and by when; the money is taken from your cash account with us. Happy to go through it on a short call. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1694,7 +1720,7 @@ export const seedCache: Record<string, CacheEntry> = {
   ],
   "callToAction": "reply",
   "confidence": 0.9,
-  "trigger": "j_curve_explainer",
+  "trigger": "capital_call_explainer",
   "facts": [
    {
     "id": "f1",
@@ -1713,8 +1739,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c163": {
  "promptId": "draft_touchpoint",
  "key": "c163",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your documents",
@@ -1745,8 +1771,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c165": {
  "promptId": "draft_touchpoint",
  "key": "c165",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your distribution has arrived",
@@ -1783,12 +1809,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c168": {
  "promptId": "draft_touchpoint",
  "key": "c168",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Sandra, a short update: your portfolio stands at €833,000, +5.2% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Sandra, a short update: your portfolio stands at €833,000, +5.2% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1815,8 +1841,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c169": {
  "promptId": "draft_touchpoint",
  "key": "c169",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your documents",
@@ -1847,12 +1873,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c172": {
  "promptId": "draft_touchpoint",
  "key": "c172",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Miriam, a short update: your portfolio stands at €919,000, +6.4% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Miriam, a short update: your portfolio stands at €919,000, +6.4% so far this year. It stays invested for long-term growth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1879,12 +1905,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c173": {
  "promptId": "draft_touchpoint",
  "key": "c173",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Christina, a short update: your portfolio stands at €641,000, +4.6% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Christina, a short update: your portfolio stands at €641,000, +4.6% so far this year. It stays set up to pay you a regular income, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1911,8 +1937,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c174": {
  "promptId": "draft_touchpoint",
  "key": "c174",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your documents",
@@ -1943,12 +1969,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c182": {
  "promptId": "draft_touchpoint",
  "key": "c182",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Christina, a short update: your portfolio stands at €1,280,000, +6.3% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Christina, a short update: your portfolio stands at €1,280,000, +6.3% so far this year. It stays set up to pay you a regular income, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1975,12 +2001,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c183": {
  "promptId": "draft_touchpoint",
  "key": "c183",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Markus, a short update: your portfolio stands at €666,000, +7.0% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Markus, a short update: your portfolio stands at €666,000, +7.0% so far this year. It stays set up to pay you a regular income, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -2007,20 +2033,22 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c188": {
  "promptId": "draft_touchpoint",
  "key": "c188",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
-  "subject": "It has been a while",
-  "body": "Dear Sandra, it's been some time since we last spoke. Your portfolio stands at €608,000, +6.0% this year. If your plans have changed, I'd be glad to catch up — just reply. Best, Jonas",
+  "subject": "A distribution is expected",
+  "body": "Dear Sandra, Meridian Buyout IV expects to pay you a distribution of about €95,000 around 13 Dec 2026. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
-   "f2"
+   "f2",
+   "f3",
+   "f4"
   ],
   "callToAction": "reply",
   "confidence": 0.9,
-  "trigger": "re_engagement",
+  "trigger": "distribution_upcoming",
   "facts": [
    {
     "id": "f1",
@@ -2031,6 +2059,16 @@ export const seedCache: Record<string, CacheEntry> = {
     "id": "f2",
     "label": "year-to-date return",
     "value": "+6.0%"
+   },
+   {
+    "id": "f3",
+    "label": "expected distribution (indicative)",
+    "value": "€95,000"
+   },
+   {
+    "id": "f4",
+    "label": "expected date",
+    "value": "13 Dec 2026"
    }
   ],
   "testCase": false
@@ -2039,13 +2077,13 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c192": {
  "promptId": "draft_touchpoint",
  "key": "c192",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "It has been a while",
   "body": "Dear Tobias, it's been some time since we last spoke. Your portfolio stands at €494,000, +2.8% this year. If your plans have changed, I'd be glad to catch up — just reply. Best, Jonas",
-  "messageType": "informational",
+  "messageType": "personal_outreach",
   "factsUsed": [
    "f1",
    "f2"
@@ -2071,12 +2109,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__c193": {
  "promptId": "draft_touchpoint",
  "key": "c193",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Petra, a short update: your portfolio stands at €377,000, +8.1% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "body": "Dear Petra, a short update: your portfolio stands at €377,000, +8.1% so far this year. It stays set up to pay you a regular income, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -2103,8 +2141,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__hofmann": {
  "promptId": "draft_touchpoint",
  "key": "hofmann",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
@@ -2141,12 +2179,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__keller_bridge": {
  "promptId": "draft_touchpoint",
  "key": "keller_bridge",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your capital call on 1 Dec 2026",
-  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 is missing. As discussed, I suggest bridging this for 3 months with a loan against your ETFs, at an estimated interest cost of €1,238, until the expected Meridian distribution arrives. If markets fall sharply you may need to add collateral. Please confirm in the app if you would like to proceed. Best, Jonas",
+  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 still needs to be covered. My proposal: bridge this for 3 months with a loan against your ETFs, at an estimated interest cost of €1,238, so your ETFs stay invested. The Meridian distribution expected in February is not confirmed; if it comes later, the loan runs longer. If markets fall sharply you may need to add collateral. Tell me in the app if you would like to go ahead and I will call you to set it up. Best, Jonas",
   "messageType": "personal_outreach",
   "factsUsed": [],
   "callToAction": "reply",
@@ -2156,12 +2194,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__keller_sell": {
  "promptId": "draft_touchpoint",
  "key": "keller_sell",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your capital call on 1 Dec 2026",
-  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 is missing. As discussed, we would sell ETFs to cover this. This realises gains, with estimated tax of €10,154. Please confirm in the app if you would like to proceed. Best, Jonas",
+  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 still needs to be covered. My proposal: sell part of your ETFs. This realises gains, with estimated tax of €10,154 (a simplified estimate). Tell me in the app if you would like to go ahead and I will call you to confirm. Best, Jonas",
   "messageType": "personal_outreach",
   "factsUsed": [],
   "callToAction": "reply",
@@ -2171,12 +2209,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "draft_touchpoint__keller_transfer": {
  "promptId": "draft_touchpoint",
  "key": "keller_transfer",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your capital call on 1 Dec 2026",
-  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 is missing. As discussed, please transfer €110,000 from your bank account before the due date. Best, Jonas",
+  "body": "Dear Thomas, Atlas Growth V will call €150,000 on 1 Dec 2026. You have €40,000 in cash with us, so €110,000 still needs to be covered. If you have the cash at your bank, the simplest way is to transfer €110,000 to your account with us before the due date. Tell me in the app if that works for you. Best, Jonas",
   "messageType": "personal_outreach",
   "factsUsed": [],
   "callToAction": "reply",
@@ -2187,7 +2225,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "explain_option",
  "key": "keller_bridge",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "optionId": "bridge",
@@ -2202,7 +2240,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "explain_option",
  "key": "keller_sell",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "optionId": "sell",
@@ -2217,7 +2255,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "explain_option",
  "key": "keller_transfer",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "optionId": "transfer",
@@ -2232,7 +2270,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "albers",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2273,7 +2311,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "berger",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2314,7 +2352,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c020",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [],
@@ -2326,7 +2364,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c026",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2353,7 +2391,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c030",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [],
@@ -2365,7 +2403,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c037",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [],
@@ -2377,7 +2415,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c048",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2404,7 +2442,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c057",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2445,7 +2483,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c063",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2472,7 +2510,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c074",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2513,7 +2551,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c075",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2540,7 +2578,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c079",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2567,7 +2605,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c083",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2594,7 +2632,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c085",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2635,7 +2673,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c095",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2676,7 +2714,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c096",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2717,7 +2755,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c102",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2744,7 +2782,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c105",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2771,7 +2809,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c109",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2798,7 +2836,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c111",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2839,7 +2877,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c114",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2866,7 +2904,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c118",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2893,7 +2931,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c128",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [],
@@ -2905,7 +2943,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c130",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2932,7 +2970,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c132",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2959,7 +2997,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c137",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -2986,7 +3024,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c139",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [],
@@ -2998,7 +3036,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c147",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [],
@@ -3010,7 +3048,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c150",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3037,7 +3075,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c151",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3064,7 +3102,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c154",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3091,7 +3129,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c155",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3118,7 +3156,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c156",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3145,7 +3183,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c158",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3186,7 +3224,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c161",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3227,7 +3265,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c163",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3254,7 +3292,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c165",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3295,7 +3333,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c166",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3336,7 +3374,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c169",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3363,7 +3401,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c174",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3390,7 +3428,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c177",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3417,7 +3455,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "c180",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3458,7 +3496,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "hofmann",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3485,7 +3523,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "extract_signals",
  "key": "keller",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "signals": [
@@ -3497,11 +3535,11 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "keller_msg_2026-09-30",
+      "itemId": "keller_msg_2026-10-19",
       "quote": "Should I be worried?"
      },
      {
-      "itemId": "keller_msg_2026-10-19",
+      "itemId": "keller_msg_2026-09-30",
       "quote": "Should I be worried?"
      }
     ],
@@ -3516,7 +3554,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "meeting_brief",
  "key": "albers",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "sentences": [
@@ -3581,7 +3619,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "meeting_brief",
  "key": "berger",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "sentences": [
@@ -3619,7 +3657,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "meeting_brief",
  "key": "keller",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "sentences": [
@@ -3634,7 +3672,7 @@ export const seedCache: Record<string, CacheEntry> = {
     ]
    },
    {
-    "text": "He asked twice why Atlas Growth V shows a loss. It is at -10% versus paid in, a normal J-curve effect.",
+    "text": "He asked twice why Atlas Growth V shows a loss. It is at -10% versus paid in, a typical J-curve effect for a fund in year 2.",
     "sourceIds": [
      "keller_msg_2026-09-30",
      "keller_msg_2026-10-19",
@@ -3669,8 +3707,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "route_client_question__albers_early": {
  "promptId": "route_client_question",
  "key": "albers_early",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "category": "factual",
@@ -3685,12 +3723,12 @@ export const seedCache: Record<string, CacheEntry> = {
   "route_client_question__keller_negative": {
  "promptId": "route_client_question",
  "key": "keller_negative",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "category": "factual",
-  "clientAnswer": "Atlas Growth V is a young fund. In its first years it calls money and pays fees before its companies grow, so its value is below what you paid in: €90,000 versus €100,000. This is called the J-curve. It is normal and does not mean the fund is doing badly.",
+  "clientAnswer": "Atlas Growth V is a young fund. In its first years it calls money and pays fees before its companies grow, so its value is below what you paid in: €90,000 versus €100,000. This is called the J-curve. It is common for young funds and says little yet about the final result. Jonas can explain more.",
   "rmDraft": "",
   "factsUsed": [
    "k_nav",
@@ -3702,8 +3740,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "route_client_question__keller_next_call": {
  "promptId": "route_client_question",
  "key": "keller_next_call",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "category": "factual",
@@ -3720,8 +3758,8 @@ export const seedCache: Record<string, CacheEntry> = {
   "route_client_question__keller_sell": {
  "promptId": "route_client_question",
  "key": "keller_sell",
- "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "category": "advice",
@@ -3738,14 +3776,14 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "verify_draft",
  "key": "albers",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "results": [
    {
     "sentenceId": "s1",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"wants to diversify beyond listed markets\"; RM note: interest in real-economy investments.",
     "supportingSourceIds": [
      "notes",
      "albers_note_2025-12-02"
@@ -3754,7 +3792,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s2",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"horizon 15+ years\"; fact f_horizon.",
     "supportingSourceIds": [
      "notes",
      "f_horizon"
@@ -3763,7 +3801,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s3",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Facts f_risk (risk class 6) and p_sri (SRI 6).",
     "supportingSourceIds": [
      "f_risk",
      "p_sri"
@@ -3772,7 +3810,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s4",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"Client asked whether returns are guaranteed — I said no.\"",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3780,23 +3818,24 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s5",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"invested directly in startups as an angel investor (one exit in 2019)\"; RM note 2 Dec 2025.",
     "supportingSourceIds": [
-     "questionnaire"
+     "notes",
+     "albers_note_2025-12-02"
     ]
    },
    {
     "sentenceId": "s6",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"no investments in private equity funds so far\".",
     "supportingSourceIds": [
-     "albers_note_2025-12-02"
+     "notes"
     ]
    },
    {
     "sentenceId": "s7",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Facts f_aum, f_stated, f_deposits match exactly.",
     "supportingSourceIds": [
      "f_aum",
      "f_stated",
@@ -3806,7 +3845,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s8",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Fact r_pmshare = 6.7%.",
     "supportingSourceIds": [
      "r_pmshare"
     ]
@@ -3814,7 +3853,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s9",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"could bear a total loss of the €200k without changing her plans\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3822,7 +3861,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s10",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: wants to diversify, horizon 15+; product fact p_name.",
     "supportingSourceIds": [
      "notes",
      "p_name"
@@ -3831,17 +3870,18 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s11",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Facts p_commit, p_min, p_term; notes: \"understands capital is locked for ~10 years\".",
     "supportingSourceIds": [
      "p_commit",
      "p_min",
-     "p_term"
+     "p_term",
+     "notes"
     ]
    },
    {
     "sentenceId": "s12",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"capital is locked for ~10 years and calls come over 3–4 years\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3849,7 +3889,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s13",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"Explained J-curve\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3857,7 +3897,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s14",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"distributions are not guaranteed\"; total loss confirmed under loss capacity.",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3865,7 +3905,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s15",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"Explained costs\"; figures come from the code-generated table.",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3873,7 +3913,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s16",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"ELTIF … client prefers the buyout fund\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3886,14 +3926,14 @@ export const seedCache: Record<string, CacheEntry> = {
  "promptId": "verify_draft",
  "key": "albers_test",
  "promptVersion": "v1",
- "model": "seed (authored offline — replace with live output via warm-cache)",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "results": [
    {
     "sentenceId": "s1",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"wants to diversify beyond listed markets\"; RM note: interest in real-economy investments.",
     "supportingSourceIds": [
      "notes",
      "albers_note_2025-12-02"
@@ -3902,7 +3942,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s2",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"horizon 15+ years\"; fact f_horizon.",
     "supportingSourceIds": [
      "notes",
      "f_horizon"
@@ -3911,7 +3951,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s3",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Facts f_risk (risk class 6) and p_sri (SRI 6).",
     "supportingSourceIds": [
      "f_risk",
      "p_sri"
@@ -3920,7 +3960,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s4",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"Client asked whether returns are guaranteed — I said no.\"",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3928,23 +3968,24 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s5",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"invested directly in startups as an angel investor (one exit in 2019)\"; RM note 2 Dec 2025.",
     "supportingSourceIds": [
-     "questionnaire"
+     "notes",
+     "albers_note_2025-12-02"
     ]
    },
    {
     "sentenceId": "s6",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"no investments in private equity funds so far\".",
     "supportingSourceIds": [
-     "albers_note_2025-12-02"
+     "notes"
     ]
    },
    {
     "sentenceId": "s7",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Facts f_aum, f_stated, f_deposits match exactly.",
     "supportingSourceIds": [
      "f_aum",
      "f_stated",
@@ -3954,7 +3995,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s8",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Fact r_pmshare = 6.7%.",
     "supportingSourceIds": [
      "r_pmshare"
     ]
@@ -3962,7 +4003,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s9",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"could bear a total loss of the €200k without changing her plans\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3970,7 +4011,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s10",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: wants to diversify, horizon 15+; product fact p_name.",
     "supportingSourceIds": [
      "notes",
      "p_name"
@@ -3979,17 +4020,18 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s11",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Facts p_commit, p_min, p_term; notes: \"understands capital is locked for ~10 years\".",
     "supportingSourceIds": [
      "p_commit",
      "p_min",
-     "p_term"
+     "p_term",
+     "notes"
     ]
    },
    {
     "sentenceId": "s12",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"capital is locked for ~10 years and calls come over 3–4 years\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -3997,7 +4039,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s13",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"Explained J-curve\".",
     "supportingSourceIds": [
      "notes"
     ]
@@ -4005,7 +4047,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s14",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"distributions are not guaranteed\"; total loss confirmed under loss capacity.",
     "supportingSourceIds": [
      "notes"
     ]
@@ -4013,7 +4055,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s15",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"Explained costs\"; figures come from the code-generated table.",
     "supportingSourceIds": [
      "notes"
     ]
@@ -4021,7 +4063,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "sentenceId": "s16",
     "verdict": "supported",
-    "reason": "Found in the cited sources.",
+    "reason": "Notes: \"ELTIF … client prefers the buyout fund\".",
     "supportingSourceIds": [
      "notes"
     ]
