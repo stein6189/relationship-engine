@@ -26,7 +26,7 @@ await step('3 · Berger card: liquidity need €300k, quote, confidence, RM lane
   const card = page.getByTestId('lane-rm').getByTestId('card-berger');
   const t = await card.innerText();
   expect(/Liquidity need/.test(t) && /300/.test(t) && /%/.test(t), 'berger chips: ' + t);
-  expect(await card.getByText(/apartment/).count() > 0, 'quote visible');
+  expect(/€300k/.test(await card.getByTestId('card-quote').innerText()), 'client quote visible on card');
   await card.scrollIntoViewIfNeeded(); await shot(page, P + '03-berger');
 });
 await step('4 · control group chip with tooltip', async () => {

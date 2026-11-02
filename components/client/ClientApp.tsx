@@ -110,7 +110,7 @@ function Home({ id, go }: { id: string; go: (t: Tab) => void }) {
         <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-teal-100 font-semibold text-accent-dark">JW</span>
         <div className="flex-1">
           <div className="text-[15px] font-semibold">Jonas Weber, your advisor</div>
-          <div className="text-[14px] text-slate-600">{plannedContact ? 'Jonas will contact you personally this month.' : 'No action needed. Your next update comes in January.'}</div>
+          <div className="text-[14px] text-slate-600">{plannedContact ? 'Jonas will contact you personally this month.' : 'No action needed. Jonas sends you a short update every quarter.'}</div>
         </div>
       </Panel>
 

@@ -17,6 +17,8 @@ import { Badge, Button, Card, Modal, SectionTitle, Spinner, Stat, Term } from '@
 
 const STEP_NAMES = ['Read signals (AI · fast model)', 'Score clients (rules)', 'Allocate fixed capacity (rules)', 'Draft touchpoints (AI · smart model)'];
 
+const srcLabel = (s: Signal) => s.origin === 'data' ? 'data' : s.sourceIds.some((x) => x.includes('_msg_')) ? 'app message' : s.sourceIds.some((x) => x.includes('_note_')) ? 'RM note' : 'text';
+
 function SignalChip({ s }: { s: Signal }) {
   const { s: st, update } = useStore();
   const key = `${s.clientId}:${s.type}`;
@@ -25,7 +27,7 @@ function SignalChip({ s }: { s: Signal }) {
   return (
     <span className="inline-flex items-center gap-0.5">
       <Badge tone={lowConf ? 'amber' : SIGNAL_TONE[s.type] ?? 'slate'} title={`${s.summary}\nSource: ${s.sourceIds.join(', ')}${s.quote ? `\n“${s.quote}”` : ''}\n${s.origin === 'ai' ? `AI-extracted · confidence ${Math.round(s.confidence * 100)}%` : 'From data (code)'}`}>
-        {s.origin === 'ai' ? '✦ ' : ''}{SIGNAL_LABEL[s.type]}{s.origin === 'ai' ? ` · ${Math.round(s.confidence * 100)}%` : ''}{lowConf ? ' · please verify' : ''}
+        {s.origin === 'ai' ? '✦ ' : ''}{SIGNAL_LABEL[s.type]}{s.amountEur && s.origin === 'ai' ? ` ${eurShort(s.amountEur)}` : ''} · {srcLabel(s)}{s.origin === 'ai' ? ` · ${Math.round(s.confidence * 100)}%` : ''}{lowConf ? ' · please verify' : ''}
       </Badge>
       {s.origin === 'ai' && (
         <span className="ml-0.5 flex text-[11px]">
@@ -43,16 +45,18 @@ function ClientCard({ a, onOverride }: { a: Allocation; onOverride: (a: Allocati
   const since = c.lastProactiveContact ? Math.round(daysBetween(c.lastProactiveContact, SIM_TODAY) / 30) : null;
   const shown = a.signals.filter((x) => x.type !== 'quarterly_progress' || a.lane !== 'rm');
   const ov = s.overrides[a.clientId];
+  const quote = a.signals.find((x) => x.origin === 'ai' && x.quote && x.confidence >= 0.6);
   return (
     <Card className="p-3" data-testid={`card-${c.id}`}>
       <div className="flex items-start justify-between gap-2">
         <div>
           <Link href={`/rm/client/${c.id}`} className="font-medium hover:text-accent">{c.name}</Link>
-          <div className="tnum text-xs text-slate-500">{eur(c.aumEur)} · {since !== null ? `last proactive contact ${since} mo ago` : 'never contacted proactively'}</div>
+          <div className="tnum text-xs text-slate-500">{eur(c.aumEur)} · <span title="Assets with us ÷ stated investable wealth">{pct(c.aumEur / c.statedInvestableEur, 0)} of wallet</span> · {since !== null ? `last proactive contact ${since} mo ago` : 'never contacted proactively'}</div>
         </div>
         <Button variant="ghost" className="px-1.5 py-0.5 text-xs" onClick={() => onOverride(a)}>Move</Button>
       </div>
       <p className="mt-1.5 text-sm leading-snug">{a.reason}</p>
+      {quote && <p className="mt-1 border-l-2 border-slate-200 pl-2 text-xs italic leading-snug text-slate-600" data-testid="card-quote">“{quote.quote}” <span className="not-italic text-slate-400">— {srcLabel(quote)}{quote.sourceIds[0]?.match(/\d{4}-\d{2}-\d{2}/) ? `, ${fmtDate(quote.sourceIds[0].match(/\d{4}-\d{2}-\d{2}/)![0])}` : ''}</span></p>}
       <div className="mt-2 flex flex-wrap gap-1">
         {a.hardTrigger && <Badge tone="slate">{TRIGGER_LABEL[a.hardTrigger]}</Badge>}
         {shown.slice(0, 5).map((x, i) => <SignalChip key={i} s={x} />)}
@@ -115,14 +119,19 @@ export default function PlanPage() {
   const [step, setStep] = useState(-1);
   const [moving, setMoving] = useState<Allocation | null>(null);
   const [showAllNone, setShowAllNone] = useState(false);
+  const [find, setFind] = useState('');
+  const match = (a: Allocation) => !find || clientById(a.clientId)!.name.toLowerCase().includes(find.toLowerCase());
 
-  const rm = plan.filter((a) => a.lane === 'rm').sort((a, b) => Number(!!b.hardTrigger) - Number(!!a.hardTrigger) || b.priority - a.priority);
-  const digital = plan.filter((a) => a.lane === 'digital');
-  const none = plan.filter((a) => a.lane === 'none');
+  const rmAll = plan.filter((a) => a.lane === 'rm').sort((a, b) => Number(!!b.hardTrigger) - Number(!!a.hardTrigger) || b.priority - a.priority);
+  const rm = rmAll.filter(match);
+  const digitalAll = plan.filter((a) => a.lane === 'digital');
+  const noneAll = plan.filter((a) => a.lane === 'none');
+  const digital = digitalAll.filter(match);
+  const none = noneAll.filter(match);
 
   const kpi = useMemo(() => {
     const contacted = clients.filter((c) => c.lastProactiveContact && daysBetween(c.lastProactiveContact, SIM_TODAY) <= 365).map((c) => c.id);
-    const afterPlan = new Set([...contacted, ...rm.map((a) => a.clientId)]);
+    const afterPlan = new Set([...contacted, ...rmAll.map((a) => a.clientId)]);
     let risk = 0, need = 0, opp = 0;
     for (const a of plan) {
       const c = clientById(a.clientId)!;
@@ -130,7 +139,7 @@ export default function PlanPage() {
       risk += p.risk; need += p.need; opp += p.opportunity;
     }
     return { coverage: contacted.length / clients.length, coverageAfter: afterPlan.size / clients.length, risk, need, opp };
-  }, [plan, rm]);
+  }, [plan, rmAll]);
 
   async function runOrchestration() {
     setRunning(true);
@@ -186,7 +195,7 @@ export default function PlanPage() {
       )}
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
-        <Stat label="RM conversations this month" value={<span data-testid="capacity">{rm.length} / {RM_SLOTS}</span>} sub={<div className="mt-1 h-1.5 w-full rounded bg-slate-100"><div className="h-1.5 rounded bg-accent" style={{ width: `${(rm.length / RM_SLOTS) * 100}%` }} /></div>} />
+        <Stat label="RM conversations this month" value={<span data-testid="capacity">{rmAll.length} / {RM_SLOTS}</span>} sub={<div className="mt-1 h-1.5 w-full rounded bg-slate-100"><div className="h-1.5 rounded bg-accent" style={{ width: `${(rmAll.length / RM_SLOTS) * 100}%` }} /></div>} />
         <Stat label="Proactive coverage (12 months)" value={pct(kpi.coverage)} sub={`→ ${pct(kpi.coverageAfter)} after this plan`} tone="teal" />
         <Stat label="AUM at risk (probability-weighted)" value={eurShort(kpi.risk)} tone="red" />
         <Stat label="Liquidity needs detected" value={eurShort(kpi.need)} tone="amber" />
@@ -213,17 +222,22 @@ export default function PlanPage() {
 
       <Pipeline />
 
+      <div className="flex flex-wrap items-center gap-3">
+        <input aria-label="Find a client in the plan" placeholder="Find a client in the plan…" value={find} onChange={(e) => setFind(e.target.value)} className="w-72 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm" data-testid="plan-find" />
+        <span className="text-xs text-slate-500">✦ = read by AI (source · confidence). ▲▼ feedback on signals and drafts is stored to tune prompts and thresholds — no model training.</span>
+      </div>
+
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.35fr_1fr_1fr]">
         <section data-testid="lane-rm">
-          <SectionTitle right={<Badge tone="teal">{rm.length} of {RM_SLOTS} slots</Badge>}>RM conversation</SectionTitle>
+          <SectionTitle right={<Badge tone="teal">{rmAll.length} of {RM_SLOTS} slots</Badge>}>RM conversation</SectionTitle>
           <div className="space-y-2">{rm.map((a) => <ClientCard key={a.clientId} a={a} onOverride={setMoving} />)}</div>
         </section>
         <section data-testid="lane-digital">
-          <SectionTitle right={<Link href="/rm/touchpoints" className="text-xs font-medium text-accent hover:underline">Review drafts →</Link>}>Digital touchpoint ({digital.length})</SectionTitle>
+          <SectionTitle right={<Link href="/rm/touchpoints" className="text-xs font-medium text-accent hover:underline">Review drafts →</Link>}>Digital touchpoint ({digitalAll.length})</SectionTitle>
           <Card className="px-3 py-1">{digital.map((a) => <Row key={a.clientId} a={a} onOverride={setMoving} />)}</Card>
         </section>
         <section data-testid="lane-none">
-          <SectionTitle>No action this month ({none.length})</SectionTitle>
+          <SectionTitle>No action this month ({noneAll.length})</SectionTitle>
           <Card className="px-3 py-1">
             {(showAllNone ? none : none.slice(0, 25)).map((a) => <Row key={a.clientId} a={a} onOverride={setMoving} />)}
             {!showAllNone && none.length > 25 && <button className="w-full py-2 text-xs font-medium text-accent" onClick={() => setShowAllNone(true)}>Show all {none.length}</button>}
@@ -231,7 +245,7 @@ export default function PlanPage() {
         </section>
       </div>
 
-      <OverrideModal a={moving} onClose={() => setMoving(null)} rmLane={rm} />
+      <OverrideModal a={moving} onClose={() => setMoving(null)} rmLane={rmAll} />
     </div>
   );
 }

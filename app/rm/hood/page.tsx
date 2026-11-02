@@ -70,6 +70,15 @@ export default function HoodPage() {
           </div>
         )}
       </Card>
+      <Card className="p-4">
+        <SectionTitle right={<span className="text-xs text-slate-500">human decisions are logged too</span>}>RM overrides and feedback</SectionTitle>
+        {Object.keys(s.overrides).length === 0 && Object.keys(s.feedback).length === 0 ? <p className="text-sm text-slate-500">No overrides or feedback yet.</p> : (
+          <ul className="space-y-1 text-sm" data-testid="override-log">
+            {Object.entries(s.overrides).map(([id, o]) => <li key={id}><b>{id}</b> moved to <Badge>{o.lane === 'rm' ? 'RM conversation' : o.lane === 'digital' ? 'Digital' : 'No action'}</Badge> — {o.reason} <span className="text-xs text-slate-400">{new Date(o.at).toLocaleTimeString('en-GB')}</span></li>)}
+            {Object.entries(s.feedback).map(([k, v]) => <li key={k} className="text-xs text-slate-600">Feedback {v === 'up' ? '▲ useful' : '▼ not useful'} · <span className="font-mono">{k}</span></li>)}
+          </ul>
+        )}
+      </Card>
       {open && <HoodDrawer open onClose={() => setOpen(null)} meta={open.meta} output={open.output} facts={open.facts} />}
     </div>
   );
