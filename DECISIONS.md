@@ -27,3 +27,6 @@
    compound words** ("3-month", "Q4"); multiples (×), percentages, money and
    years are always checked. Suffixes k/m/bn must end a word ("minimum" is not
    millions — found by a test).
+10. **Next 15.5.28 (patched 15.x backport line)** instead of 15.0.3 — 15.0.3
+    has known security advisories (incl. a middleware authorization bypass);
+    Vercel may refuse vulnerable versions. React stays 18.3.1.
