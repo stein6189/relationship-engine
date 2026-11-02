@@ -142,5 +142,10 @@ await step('12 · under the hood: prompt, model, guard', async () => {
   await page.getByText('Facts passed in').or(page.getByText('Raw JSON output')).first().waitFor();
   await shot(page, P + '12-hood');
 });
+if (process.env.WARM_DUMP) {
+  const log = await page.evaluate(() => JSON.parse(localStorage.getItem('relationship-engine-demo-v1') || '{}').aiLog || []);
+  (await import('fs')).writeFileSync(process.env.WARM_DUMP, JSON.stringify(log, null, 1));
+  console.log(`  wrote ${log.length} AI calls to ${process.env.WARM_DUMP}`);
+}
 await browser.close();
 done(errors);

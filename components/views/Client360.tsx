@@ -52,7 +52,7 @@ export function Brief({ id, compact }: { id: string; compact?: boolean }) {
       <SectionTitle right={b?.meta && <AiMetaBadge meta={b.meta} output={b.output} facts={facts} confidence={b.output?.confidence} />}>✦ Meeting brief</SectionTitle>
       {busy && <div className="flex items-center gap-2 text-sm text-slate-500"><Spinner /> Reading messages, notes and portfolio…</div>}
       {!busy && !b && <div className="flex items-center justify-between gap-2 text-sm text-slate-500"><span>No brief yet.</span><Button onClick={generate}>Prepare brief</Button></div>}
-      {!busy && b && !b.output && <div className="text-sm text-amber-800">No brief available ({b.meta.fallbackReason ?? b.meta.validation}). Switch to Live AI and try again. <Button className="ml-2 text-xs" onClick={generate}>Retry</Button></div>}
+      {!busy && b && !b.output && <div className="text-sm text-amber-800" data-testid="needs-review"><b>Needs review — AI output could not be validated.</b> {b.meta.fallbackReason ?? (b.meta.validation === "failed" ? "Invalid output twice, no cached brief for this client." : "")} <Button className="ml-2 text-xs" onClick={generate}>Retry</Button></div>}
       {!busy && b?.output && (
         <div className="space-y-3 text-sm">
           <ul className="space-y-1.5" data-testid="brief-sentences">

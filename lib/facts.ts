@@ -23,6 +23,10 @@ export function albersFacts(): Fact[] {
     { id: 'f_risk', label: 'Risk class', value: `risk class ${c.riskClass}` },
     { id: 'f_lastcontact', label: 'Last proactive contact', value: fmtDate(c.lastProactiveContact!) },
     { id: 'f_deposits', label: 'Bank deposits elsewhere', value: eur(Number(c.extraFacts!.bankDepositsEur)) },
+    { id: 'f_elsewhere', label: 'Held elsewhere (stated wealth minus assets with us)', value: `${eur(c.statedInvestableEur - c.aumEur)} (${pct(1 - c.aumEur / c.statedInvestableEur, 0)})` },
+    { id: 'f_housebank', label: 'Securities account at house bank', value: eur(Number(c.extraFacts!.houseBankSecuritiesEur)) },
+    { id: 'f_angelexit', label: 'Year she sold a startup stake (RM note)', value: '2019' },
+    { id: 'f_meeting', label: 'Advisory meeting', value: fmtDate('2026-11-05') },
     { id: 'p_name', label: 'Product', value: f.name },
     { id: 'p_commit', label: 'Proposed commitment', value: eur(ALBERS_COMMITMENT) },
     { id: 'p_min', label: 'Minimum commitment', value: eur(f.minCommitment) },
@@ -61,6 +65,12 @@ export function kellerFacts(): Fact[] {
     { id: 'k_tax', label: 'Estimated tax if ETFs are sold', value: eur(sell.taxEur) },
     { id: 'k_feelost', label: 'Platform fee lost p.a. if sold', value: eur(sell.feeLostPaEur) },
     { id: 'k_aum', label: 'Assets with us', value: eur(c.aumEur) },
+    { id: 'k_stated', label: 'Stated investable wealth', value: eur(c.statedInvestableEur) },
+    { id: 'k_sow', label: 'Share of wallet', value: pct(c.aumEur / c.statedInvestableEur) },
+    { id: 'k_etf', label: 'Equity ETFs', value: eur(c.holdings.find((h) => h.assetClass === 'equity_etf')!.valueEur) },
+    { id: 'k_bond', label: 'Bond ETFs', value: eur(c.holdings.find((h) => h.assetClass === 'bond_etf')!.valueEur) },
+    { id: 'k_mbo4', label: 'Meridian Buyout IV commitment / paid in', value: `${eur(c.commitments.find((x) => x.fundId === 'mbo4')!.commitmentEur)} / ${eur(c.commitments.find((x) => x.fundId === 'mbo4')!.calledEur)}` },
+    { id: 'k_months', label: 'Bridge duration', value: `${KELLER_BRIDGE_MONTHS} months` },
   ];
 }
 

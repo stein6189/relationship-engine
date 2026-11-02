@@ -33,7 +33,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
       cacheKey: 'albers', questionnaire: c.questionnaire,
       sources: c.items.map((i) => ({ id: i.id, date: i.date, kind: i.kind, text: i.text })), meetingNotes: { id: 'notes', text: a.notes }, facts,
     }, { clientId: 'albers', label: 'Qualification consistency · Albers' });
-    setA({ consistency: r.output ?? { findings: [] }, consistencyMeta: r.meta });
+    setA({ consistency: r.output ?? { findings: [], invalid: true }, consistencyMeta: r.meta });
     setBusy(false);
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,7 +41,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
 
   const findings: any[] = a.consistency?.findings ?? [];
   const rulesPass = rules.allRulesPass;
-  const canAttest = rulesPass && !!a.consistency && (findings.length === 0 || a.contradictionReviewed) && attestTick;
+  const canAttest = rulesPass && !!a.consistency && (findings.length === 0 && !a.consistency.invalid || a.contradictionReviewed) && attestTick;
 
   return (
     <div className="space-y-4" data-testid="subscription">
@@ -82,7 +82,8 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
           <Card className="p-4" data-testid="consistency">
             <SectionTitle right={a.consistencyMeta && <AiMetaBadge meta={a.consistencyMeta} output={a.consistency} />}>✦ Consistency check (AI, fast model)</SectionTitle>
             {busy && <div className="flex items-center gap-2 text-sm text-slate-500"><Spinner /> Comparing questionnaire with notes and messages…</div>}
-            {!busy && a.consistency && findings.length === 0 && <p className="text-sm text-green-800">No contradictions found.</p>}
+            {!busy && a.consistency?.invalid && <p className="text-sm text-amber-900" data-testid="needs-review"><b>Needs review — AI output could not be validated.</b> Check the questionnaire against the notes yourself, or re-run.{!a.attested && <label className="mt-1 flex items-center gap-2 text-xs"><input type="checkbox" checked={!!a.contradictionReviewed} onChange={(e) => setA({ contradictionReviewed: e.target.checked })} /> I checked questionnaire and notes myself.</label>}</p>}
+            {!busy && a.consistency && !a.consistency.invalid && findings.length === 0 && <p className="text-sm text-green-800">No contradictions found.</p>}
             {!busy && findings.map((f, i) => (
               <div key={i} className="rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm" data-testid="contradiction">
                 <div className="flex items-center justify-between gap-2"><b>Contradiction: {f.field === 'peExperience' ? 'private equity experience' : f.field}</b>{f.confidence < 0.6 ? <Badge tone="amber">Please verify</Badge> : <Badge tone="violet">confidence {Math.round(f.confidence * 100)}%</Badge>}</div>

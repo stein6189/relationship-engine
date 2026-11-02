@@ -61,7 +61,7 @@ export function AlbersAdvice({ embedded }: { embedded?: boolean }) {
     const sents = sentencesOf(draft, testInserted).filter((x) => !removed.includes(x.id)).map((x) => ({ id: x.id, text: edits[x.id] ?? x.text }));
     const anyEdits = sents.some((x) => edits[x.id] !== undefined);
     const r = await ai<any>('verify_draft', { cacheKey: sents.some((x) => x.id === 'test') ? 'albers_test' : 'albers', sentences: sents, sources: albersSources(a.notes), ...(anyEdits ? { note: 'RM edited some sentences' } : {}) }, { clientId: 'albers', label: 'Verifier · Albers suitability' });
-    update((x) => ({ ...x, albers: { ...x.albers, verify: r.output ?? { results: [], overall: 'needs_review' }, verifyMeta: r.meta, verifySnapshot: Object.fromEntries(sents.map((q) => [q.id, q.text])) } as any }));
+    update((x) => ({ ...x, albers: { ...x.albers, verify: r.output ?? { results: [], overall: 'needs_review', invalid: true }, verifyMeta: r.meta, verifySnapshot: Object.fromEntries(sents.map((q) => [q.id, q.text])) } as any }));
     setBusy('');
   }
 
@@ -146,6 +146,7 @@ export function AlbersAdvice({ embedded }: { embedded?: boolean }) {
                 <div className="flex justify-between"><span>Verifier (separate AI call)</span>{busy === 'verify' ? <Spinner /> : a.verify ? <Badge tone={visible.every((x) => results[x.id]?.verdict === 'supported') ? 'green' : 'red'}>{visible.filter((x) => results[x.id]?.verdict === 'supported').length} / {visible.length} supported</Badge> : <Badge>not run</Badge>}</div>
                 <div className="flex justify-between"><span>Number guard (code)</span><Badge tone={visible.every((x) => numberGuard(textOf(x), facts).pass) && msgGuard.pass && crmGuard.pass ? 'green' : 'red'}>{visible.every((x) => numberGuard(textOf(x), facts).pass) && msgGuard.pass && crmGuard.pass ? 'all numbers in facts' : 'unknown number'}</Badge></div>
                 <div className="flex justify-between"><span>Items to review</span><b className={clsx('tnum', flagged ? 'text-red-700' : 'text-green-700')} data-testid="flag-count">{flagged}</b></div>
+                {a.verify?.invalid && <div className="text-xs text-red-700">Needs review — verifier output could not be validated.</div>}
                 {a.verifyMeta && <AiMetaBadge meta={a.verifyMeta} output={a.verify} />}
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   <Button className="text-xs" onClick={() => verify()} disabled={!!busy || !!a.audit}>Re-run verifier</Button>
@@ -158,7 +159,8 @@ export function AlbersAdvice({ embedded }: { embedded?: boolean }) {
         </div>
 
         <div className="space-y-4">
-          {!a.draft && !busy && <Card className="p-8 text-center text-sm text-slate-500">Review the notes, then “Draft documentation”. You get a suitability statement, the cost disclosure, a client message and a CRM note.</Card>}
+          {!a.draft && !busy && a.draftMeta && <Card className="border-amber-300 p-4 text-sm text-amber-900" data-testid="needs-review"><b>Needs review — AI output could not be validated.</b> {a.draftMeta.fallbackReason ?? ''} Try again, or write the documentation yourself.</Card>}
+          {!a.draft && !busy && !a.draftMeta && <Card className="p-8 text-center text-sm text-slate-500">Review the notes, then “Draft documentation”. You get a suitability statement, the cost disclosure, a client message and a CRM note.</Card>}
           {busy === 'draft' && <Card className="flex items-center gap-2 p-8 text-sm text-slate-500"><Spinner /> Drafting with the smart model, then verifying…</Card>}
           {a.draft && (
             <>
