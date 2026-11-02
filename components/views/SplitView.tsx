@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import clsx from 'clsx';
 import { TopBar, Footer } from '@/components/Shell';
-import { ClientApp } from '@/components/client/ClientApp';
+import { ClientApp, ScaledPhone } from '@/components/client/ClientApp';
 import { Client360 } from '@/components/views/Client360';
 import { AlbersAdvice } from '@/components/views/AlbersAdvice';
 import { AlbersSubscription } from '@/components/views/AlbersSubscription';
@@ -37,8 +37,8 @@ export function SplitView() {
           {['albers', 'keller'].map((c) => <button key={c} onClick={() => router.replace(`/split?client=${c}`)} className={clsx('rounded-md px-2.5 py-1', id === c ? 'bg-ink text-white' : 'text-slate-600 hover:bg-slate-100')}>{clientById(c)?.name}</button>)}
         </div>
       </div>
-      <div className="flex flex-1 gap-5 overflow-hidden p-5">
-        <section className="min-w-0 flex-1 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 150px)' }} data-testid="split-rm">
+      <div className="flex flex-1 gap-5 overflow-hidden px-5 pt-4">
+        <section className="min-w-0 flex-1 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 160px)' }} data-testid="split-rm">
           <div className="mb-3 flex items-center gap-1 text-sm">
             <span className="mr-2 text-xs font-semibold uppercase tracking-wide text-slate-500">RM workspace · Jonas</span>
             {views.map(([v, label]) => <button key={v} onClick={() => go({ view: v })} className={clsx('rounded-md px-2.5 py-1', view === v ? 'bg-teal-50 font-medium text-accent-dark' : 'text-slate-600 hover:bg-slate-100')} data-testid={`split-tab-${v}`}>{label}</button>)}
@@ -51,10 +51,11 @@ export function SplitView() {
         </section>
         <aside className="shrink-0">
           <div className="mb-2 text-center text-xs font-semibold uppercase tracking-wide text-slate-500">Client app · {clientById(id)?.firstName}</div>
-          <ClientApp key={id} id={id} />
+          <ScaledPhone><ClientApp key={id} id={id} /></ScaledPhone>
         </aside>
       </div>
       <Footer />
     </div>
   );
 }
+

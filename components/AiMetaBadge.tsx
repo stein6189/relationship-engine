@@ -3,6 +3,8 @@ import { useState } from 'react';
 import type { AiMeta } from '@/lib/ai/run';
 import { Badge, Drawer } from './ui';
 import { promptIndexClient } from '@/lib/promptIndexClient';
+import { simStamp } from '@/lib/rules/format';
+import { SIM_TODAY } from '@/lib/rules/config';
 
 export function sourceLabel(m: AiMeta) {
   if (m.source === 'live') return 'live AI';
@@ -40,8 +42,9 @@ export function HoodDrawer({ open, onClose, meta, output, facts }: { open: boole
         <dt className="text-slate-500">Source</dt><dd>{sourceLabel(meta)}{meta.fallbackReason ? ` — ${meta.fallbackReason}` : ''}</dd>
         <dt className="text-slate-500">Schema validation</dt><dd>{meta.validation}</dd>
         <dt className="text-slate-500">Number guard</dt><dd>{meta.guard ? (meta.guard.pass ? `pass (${meta.guard.checked} numbers checked)` : `FAIL: ${meta.guard.unsupported.join(', ')}`) : 'n/a (no client-facing text)'}</dd>
+        <dt className="text-slate-500">Confidence</dt><dd>{typeof (output as any)?.confidence === 'number' ? `${Math.round((output as any).confidence * 100)}%${(output as any).confidence < 0.6 ? ' — please verify' : ''}` : (output as any)?.overall ? `verifier overall: ${(output as any).overall}` : 'n/a'}</dd>
         <dt className="text-slate-500">Latency</dt><dd>{meta.latencyMs} ms</dd>
-        <dt className="text-slate-500">Time</dt><dd>{new Date(meta.timestamp).toLocaleString('en-GB')}</dd>
+        <dt className="text-slate-500">Time</dt><dd>{simStamp(meta.timestamp, SIM_TODAY)}</dd>
       </dl>
       {facts && facts.length > 0 && (
         <>

@@ -22,3 +22,7 @@ export const addDays = (iso: string, days: number) => {
   d.setUTCDate(d.getUTCDate() + days);
   return d.toISOString().slice(0, 10);
 };
+
+/** Timestamp on the simulated clock: demo date + real time of day (the demo always happens on SIM_TODAY). */
+export const simStamp = (iso: string, simDay: string) =>
+  `${fmtDate(simDay)}, ${new Date(iso).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;

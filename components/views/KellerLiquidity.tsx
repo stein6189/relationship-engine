@@ -50,13 +50,13 @@ function LiquidityChart() {
           <Tooltip formatter={(v: number, n: string) => [eur(v), n]} contentStyle={{ fontSize: 12, borderRadius: 8 }} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
           <ReferenceLine y={0} stroke="#94A3B8" />
-          <Bar dataKey="calls" name="Capital calls" fill="#B91C1C" radius={[0, 0, 3, 3]} maxBarSize={28}>
+          <Bar isAnimationActive={false} dataKey="calls" name="Capital calls" fill="#B91C1C" radius={[0, 0, 3, 3]} maxBarSize={28}>
             {data.map((d, i) => <Cell key={i} fill={d.callIndicative ? '#FCA5A5' : '#B91C1C'} />)}
           </Bar>
-          <Bar dataKey="dists" name="Distributions (indicative)" fill="#0F766E" radius={[3, 3, 0, 0]} maxBarSize={28}>
+          <Bar isAnimationActive={false} dataKey="dists" name="Distributions (indicative)" fill="#0F766E" radius={[3, 3, 0, 0]} maxBarSize={28}>
             {data.map((d, i) => <Cell key={i} fill={d.indicative ? '#5EEAD4' : '#0F766E'} />)}
           </Bar>
-          <Line type="stepAfter" dataKey="cash" name="Free cash if nothing is done" stroke="#0F172A" strokeWidth={2} dot={{ r: 2 }} />
+          <Line isAnimationActive={false} type="stepAfter" dataKey="cash" name="Free cash if nothing is done" stroke="#0F172A" strokeWidth={2} dot={{ r: 2 }} />
         </ComposedChart>
       </ResponsiveContainer>
     </div>
@@ -152,8 +152,8 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
                   <tr key={r.id} className={clsx('border-t border-slate-100 align-top', k.option === r.id && 'bg-teal-50/60')} data-testid={`option-${r.id}`}>
                     <td className="py-2 pr-2 font-medium">{OPTION_LABEL[r.id]}<div className="mt-0.5 text-[11px] font-normal text-slate-600">{r.note}</div></td>
                     <td className="tnum py-2 pr-2">{r.cost}</td>
-                    <td className="tnum py-2 pr-2">{r.aum}</td>
-                    <td className="tnum py-2 pr-2">{r.fee}</td>
+                    <td className="tnum whitespace-nowrap py-2 pr-2">{r.aum}</td>
+                    <td className="tnum whitespace-nowrap py-2 pr-2">{r.fee}</td>
                     <td className="py-2 pr-2 text-xs">
                       {ex?.output ? <><GuardedText text={ex.output.sentence} unsupported={eg?.unsupported.map((u) => u.raw) ?? []} /><div className="mt-1"><AiMetaBadge meta={ex.meta} output={ex.output} facts={facts} confidence={ex.output.confidence} /></div></> : ex ? <span className="text-amber-700">Needs review — AI output could not be validated</span> : <span className="text-slate-400">…</span>}
                     </td>

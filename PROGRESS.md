@@ -1,7 +1,6 @@
 # PROGRESS.md
 
-Last update: Mon 2 Nov 2026, 22:05 CET — handed over from the planning session to a
-fresh Claude Code session. **Read CLAUDE.md first, then this file, then continue.**
+Last update: Mon 2 Nov 2026, ~23:00 CET — scheduled overnight session. **Read CLAUDE.md first, then this file, then continue.**
 
 ## Status by phase
 
@@ -23,52 +22,35 @@ fresh Claude Code session. **Read CLAUDE.md first, then this file, then continue
   Hofmann → digital.
 - **Not done:** early deploy to Vercel (see Deployment below).
 
-### Phase 2 — Plan + touchpoints — IN PROGRESS
-- DONE: AI layer (`lib/ai/schemas.ts`, `lib/ai/run.ts`, `app/api/ai/[task]/route.ts`):
-  zod validation, retry once, 20 s timeout → cached fallback, number guard on
-  every text output, provenance meta. `GET /api/ai/x` reports if a key is set.
-- DONE: store (`lib/state/store.tsx`, localStorage, reset), `useAi` client hook,
-  `usePlan`, UI primitives (`components/ui.tsx`), `AiMetaBadge` + Under-the-hood
-  drawer, `Shell` (banner, demo date, Live/Cached toggle, reset, left nav,
-  footer), basic-auth `middleware.ts`.
-- DONE: **V1 `/rm/plan`** — KPIs, capacity bar, requests inbox, pipeline strip,
-  orchestration run (4 animated steps; live re-read of 14 clients), three lanes,
-  signal chips with confidence + feedback, control-group and churn chips,
-  override modal with capacity swap.
-- TODO: **V2 `/rm/touchpoints`** — list digital-lane drafts from
-  `seedCache['draft_touchpoint__<id>']` (each output has `facts`, `trigger`,
-  `testCase`), number guard per message (client-side `numberGuard`), "Test case"
-  label, batch approve informational + passing, edit/reject, review timer,
-  approved → `state.inbox[clientId]`, live "Regenerate" per message.
-  Hofmann may have a live draft in `state.touchpoints.hofmann`.
-- TODO: `/rm/clients` list (search, lane, AUM).
+### Phase 2 — Plan + touchpoints — DONE
+- V1 `/rm/plan`, V2 `/rm/touchpoints` (60 drafts, number guard per draft, labelled
+  test case, one advisory draft blocked → "Move to RM lane", batch approve, edit,
+  reject, regenerate, review timer), `/rm/clients` (search, lane filter, sort).
 
-### Phase 3 — Albers — TODO
-V3 `/rm/client/[id]` (shared timeline, portfolio, AI brief via `meeting_brief`
-cacheKey = client id; seeds exist for albers, keller, berger),
-V4 `/rm/client/albers/advice` (`draft_suitability` cacheKey `albers`, then
-`verify_draft` cacheKey `albers`, or `albers_test` after "Run verifier test";
-sentence ids s1..sN in section order, test sentence id `test`, text in
-`lib/notes.ts`; cost table from `lib/rules/costs.ts`; approve → audit record,
-send suitability + costs + client message to `state.inbox.albers`,
-`minutesSaved += 30`), V5 `/rm/client/albers/subscription`
-(`qualificationChecks`, `check_qualification_consistency` cacheKey `albers`,
-RM attestation, client ack before e-sign, first call €40,000 at first close).
-Facts builders: `lib/facts.ts` (`albersFacts`, `kellerFacts`).
+### Phase 3 — Albers — DONE
+- V3 `/rm/client/[id]` (sourced brief, shared timeline with seen-by markers,
+  portfolio, PM commitments, signals) — works for all 200 clients.
+- V4 `/rm/client/albers/advice` (draft → automatic verifier, cost table from code,
+  "Run verifier test" with labelled test sentence, inline edit / remove with diff,
+  approve blocked while flags remain unless "reviewed and accept", audit drawer).
+- V5 `/rm/client/albers/subscription` (rules ✓/✗, AI contradiction, RM attestation,
+  5 steps shared with the client app; e-sign locked until steps 1–3).
 
-### Phase 4 — Keller, client app, split, hood, about — TODO
-V6 `/rm/client/keller/liquidity` (Recharts timeline, `liquidityGap`,
-`bridgeOption`, `sellOption`, `transferOption`, `explain_option` cacheKeys
-`keller_sell|bridge|transfer`, message `draft_touchpoint` cacheKeys
-`keller_sell|bridge|transfer`), V7 `/client/[id]` phone app (Home, Activity,
-Ask with `route_client_question` cacheKeys `keller_next_call`,
-`keller_negative`, `keller_sell`, `albers_early`; unknown free text in cached
-mode → route to RM by default; "Talk to my advisor" → `state.escalations` +
-`state.requests`; Invest tab for Albers), `/split?client=albers|keller`,
-V8 `/rm/hood` (table of `state.aiLog`), `/rm/about` (product facts only — see
-SPEC §6; no business case).
+### Phase 4 — Keller, client app, split, hood, about — DONE
+- V6 `/rm/client/keller/liquidity` (Recharts timeline, gap steps, options table,
+  stress test, concept label, guardrail, RM picks option → AI message → approve).
+- V7 `/client/[id]` phone app (Home, Invest for Albers, Activity, Ask with routing,
+  Talk to my advisor → requests inbox + escalation).
+- `/split?client=albers|keller` (RM tabs left, scaled phone right, shared state).
+- V8 `/rm/hood` (8 prompts, model routing, guardrails, log with drawer), `/rm/about`.
 
-### Phase 5 — Final QA rounds A–D — TODO (see CLAUDE.md)
+### QA so far
+- lint, typecheck, vitest (41 tests), `npm run build` green.
+- `node tests/e2e/demo.mjs cached|live` (DEMO.md steps 0–12) and
+  `node tests/e2e/views.mjs` pass locally against `next start -p 3100`
+  (set BASE_URL / DEMO_PASSWORD for the deployed URL). Zero console errors.
+
+### Phase 5 — Final QA rounds A–D — see QA_REPORT.md
 
 ## Deployment
 - GitHub: `stein6189/relationship-engine`, branch `main` (push works).

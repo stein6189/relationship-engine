@@ -319,7 +319,7 @@ for (const a of digital) {
     const d = a.signals.find((s) => s.type === 'distribution_received')!;
     messageType = 'advisory';
     subject = 'Note for RM — not a client message';
-    body = `${c.firstName} received a distribution of €${(d.amountEur ?? 0).toLocaleString('en-GB')} The natural next message would be about what to do with the money. That is advice, so no client draft was written. Suggest a short call.`;
+    body = `${c.firstName} received a distribution of €${(d.amountEur ?? 0).toLocaleString('en-GB')}. The natural next message would be about what to do with the money. That is advice, so no client draft was written. Suggest a short call.`;
   }
   const output = { subject, body, messageType, factsUsed: facts.map((f) => f.id), callToAction: 'reply', confidence: 0.9, trigger, facts, testCase };
   fs.writeFileSync(path.join(cacheDir, `draft_touchpoint__${c.id}.json`), JSON.stringify(seedMeta('draft_touchpoint', c.id, output), null, 1));

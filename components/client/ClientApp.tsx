@@ -22,7 +22,7 @@ const ASSET_COLOR: Record<string, string> = { equity_etf: 'bg-teal-700', bond_et
 
 export function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mx-auto h-[844px] w-[390px] shrink-0 overflow-hidden rounded-[48px] border-[10px] border-slate-900 bg-slate-900 shadow-2xl" data-testid="phone">
+    <div className="relative h-[844px] w-[390px] shrink-0 overflow-hidden rounded-[48px] border-[10px] border-slate-900 bg-slate-900 shadow-2xl" data-testid="phone">
       <div className="absolute left-1/2 top-2 z-30 h-7 w-28 -translate-x-1/2 rounded-full bg-slate-900" />
       <div className="relative flex h-full flex-col overflow-hidden rounded-[38px] bg-[#F6F7F9]">{children}</div>
     </div>
@@ -80,8 +80,8 @@ function MessageCard({ m, id }: { m: InboxMsg; id: string }) {
   return (
     <Panel className="space-y-1.5" data-testid="client-message">
       <div className="flex items-center gap-2"><span className="grid h-8 w-8 place-items-center rounded-full bg-teal-100 text-[13px] font-semibold text-accent-dark">JW</span><div className="min-w-0 flex-1"><div className="truncate text-[15px] font-semibold">{m.subject}</div><div className="text-[12px] text-slate-500">Jonas Weber · {fmtDate(m.date)}</div></div></div>
-      <p className={clsx('whitespace-pre-line text-[14px] leading-relaxed text-slate-700', !open && 'line-clamp-4')}>{m.body}</p>
-      {m.body.length > 200 && <button className="text-[13px] font-medium text-accent" onClick={() => setOpen(!open)}>{open ? 'Less' : 'Read all'}</button>}
+      <p className={clsx('whitespace-pre-line text-[14px] leading-relaxed text-slate-700', !open && 'line-clamp-6')}>{m.body}</p>
+      {m.body.length > 320 && <button className="text-[13px] font-medium text-accent" onClick={() => setOpen(!open)}>{open ? 'Less' : 'Read all'}</button>}
       <div className="flex items-center justify-between pt-1"><span className="text-[11px] text-slate-400">Sent by your advisor</span><TalkButton id={id} compact /></div>
     </Panel>
   );
@@ -303,6 +303,22 @@ function Invest() {
         </Section>
       )}
       <p className="mt-6 text-center text-[11px] text-slate-400">Prototype · synthetic data · not investment advice</p>
+    </div>
+  );
+}
+
+/** Fits the 390 × 844 phone into the viewport height next to the RM workspace. */
+export function ScaledPhone({ children }: { children: React.ReactNode }) {
+  const [scale, setScale] = useState(1);
+  useEffect(() => {
+    const fit = () => setScale(Math.max(0.6, Math.min(1, (window.innerHeight - 175) / 844)));
+    fit();
+    window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, []);
+  return (
+    <div style={{ width: 390 * scale, height: 844 * scale }}>
+      <div style={{ transform: `scale(${scale})`, transformOrigin: 'top left', width: 390, height: 844 }}>{children}</div>
     </div>
   );
 }

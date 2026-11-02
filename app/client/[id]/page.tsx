@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { TopBar, Footer } from '@/components/Shell';
-import { ClientApp } from '@/components/client/ClientApp';
+import { ClientApp, ScaledPhone } from '@/components/client/ClientApp';
 import { clientById } from '@/lib/data';
 
 export default function ClientAppPage() {
@@ -11,7 +11,7 @@ export default function ClientAppPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <TopBar />
-      <main className="flex flex-1 flex-col items-center gap-4 p-6 lg:flex-row lg:items-start lg:justify-center">
+      <main className="flex flex-1 flex-col items-center gap-10 px-6 pt-5 lg:flex-row lg:items-start lg:justify-center">
         <div className="max-w-xs text-sm text-slate-600 lg:pt-10">
           <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">Client app</div>
           <h1 className="mt-1 text-xl font-semibold text-ink">What {c?.firstName ?? 'the client'} sees</h1>
@@ -22,7 +22,7 @@ export default function ClientAppPage() {
             <span className="mt-2 text-xs text-slate-500">Other clients: {['albers', 'keller', 'berger', 'hofmann'].filter((x) => x !== id).map((x) => <Link key={x} className="mr-2 underline" href={`/client/${x}`}>{clientById(x)?.firstName}</Link>)}</span>
           </div>
         </div>
-        {c ? <ClientApp id={id} /> : <p>Client not found.</p>}
+        {c ? <ScaledPhone><ClientApp id={id} /></ScaledPhone> : <p>Client not found.</p>}
       </main>
       <Footer />
     </div>

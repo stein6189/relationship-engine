@@ -7,6 +7,7 @@ import { useAi } from '@/lib/ai/client';
 import { clientById } from '@/lib/data';
 import { SECTIONS, sentencesOf, albersAllFacts, albersSources, albersRuleResults, type Sentence } from '@/lib/albers';
 import { numberGuard } from '@/lib/rules/numberGuard';
+import { simStamp } from '@/lib/rules/format';
 import { MINUTES_SAVED, RM_NAME, SIM_TODAY } from '@/lib/rules/config';
 import { DATA_NOTES_ALBERS } from '@/lib/notes';
 import { sourceMap } from '@/lib/timeline';
@@ -230,7 +231,7 @@ export function AlbersAdvice({ embedded }: { embedded?: boolean }) {
               <Card className={clsx('p-4', a.audit ? 'border-green-300 bg-green-50/40' : '')} data-testid="approve-panel">
                 {a.audit ? (
                   <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
-                    <span><Badge tone="green">Approved</Badge> by {a.audit.approvedBy} · {new Date(a.audit.approvedAt).toLocaleString('en-GB')} · statement, cost disclosure and message delivered to Claudia’s app. She must confirm she has read them before she can sign.</span>
+                    <span><Badge tone="green">Approved</Badge> by {a.audit.approvedBy} · {simStamp(a.audit.approvedAt, SIM_TODAY)} · statement, cost disclosure and message delivered to Claudia’s app. She must confirm she has read them before she can sign.</span>
                     <div className="flex gap-1.5"><Button onClick={() => setAuditOpen(true)} data-testid="open-audit">Audit record</Button><Link href="/rm/client/albers/subscription"><Button variant="primary">Subscription →</Button></Link></div>
                   </div>
                 ) : (
@@ -264,7 +265,7 @@ export function AuditDrawer({ open, onClose, audit }: { open: boolean; onClose: 
           <dt className="text-slate-500">Client</dt><dd>Claudia Albers (albers)</dd>
           <dt className="text-slate-500">Product</dt><dd>Meridian Buyout V · €200,000</dd>
           <dt className="text-slate-500">Approved by</dt><dd>{audit.approvedBy} (RM, author)</dd>
-          <dt className="text-slate-500">Approved at</dt><dd>{new Date(audit.approvedAt).toLocaleString('en-GB')}</dd>
+          <dt className="text-slate-500">Approved at</dt><dd>{simStamp(audit.approvedAt, SIM_TODAY)}</dd>
           <dt className="text-slate-500">Draft</dt><dd>{audit.draftModel} · prompt {audit.draftPrompt}</dd>
           <dt className="text-slate-500">Verifier</dt><dd>{audit.verifyModel} · prompt {audit.verifyPrompt}</dd>
           <dt className="text-slate-500">Verifier result</dt><dd>{v.filter((r: any) => r.verdict === 'supported').length} supported · {v.filter((r: any) => r.verdict !== 'supported').length} flagged (incl. removed)</dd>
