@@ -593,9 +593,9 @@ export const seedCache: Record<string, CacheEntry> = {
  "model": "seed (authored offline — replace with live output via warm-cache)",
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
-  "subject": "Your distribution has arrived",
-  "body": "Dear Daniel, Meridian Buyout IV paid you a distribution of €105,000. It is now in your cash account. A distribution means the fund sold a company and returned money to investors. If you'd like to discuss what to do with it, reply and I'll call you. Best, Jonas",
-  "messageType": "informational",
+  "subject": "Note for RM — not a client message",
+  "body": "Daniel received a distribution of €105,000 The natural next message would be about what to do with the money. That is advice, so no client draft was written. Suggest a short call.",
+  "messageType": "advisory",
   "factsUsed": [
    "f1",
    "f2",
@@ -2108,7 +2108,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "Your quarterly update",
-  "body": "Dear Monika, your quarterly update: your portfolio stands at €700,000, +6.2% so far this year. That keeps your plan for retirement income from 2030 on track. No action needed — as agreed, I'll only call if something changes. Best, Jonas",
+  "body": "Dear Monika, your quarterly update: your portfolio stands at €700,000, +6.2% so far this year. Your portfolio stays invested as agreed for your retirement income from 2030. No action needed — as agreed, I'll only call if something changes. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",

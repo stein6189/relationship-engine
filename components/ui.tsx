@@ -47,6 +47,8 @@ const GLOSSARY: Record<string, string> = {
   suitability: 'Suitability: under MiFID II, the advisor must check and document why a product fits the client before advising on it.',
   'lending value': 'Lending value: the share of an asset’s value a bank will lend against it.',
   'share of wallet': 'Share of wallet: the part of a client’s investable wealth that is held with us.',
+  KAGB: 'KAGB: the German Capital Investment Code. It sets who may invest in AIFs, e.g. semi-professional investors with at least €200,000.',
+  'semi-professional': 'Semi-professional investor: may invest in AIFs if they commit at least €200,000, declare the risks in writing and the firm is satisfied they understand them.',
   'control group': 'Control group: a random group that gets the old treatment, so we can measure whether proactive contact really reduces churn.',
 };
 export function Term({ t, children }: { t: keyof typeof GLOSSARY | string; children?: React.ReactNode }) {

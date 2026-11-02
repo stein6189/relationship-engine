@@ -7,6 +7,7 @@ import { DATA_NOTES_ALBERS } from '../notes';
 export interface AiLogEntry { id: string; task: string; clientId?: string; label: string; meta: AiMeta; output: unknown; facts?: { id: string; label: string; value: string }[] }
 export interface InboxMsg { id: string; subject: string; body: string; date: string; kind: 'message' | 'document' | 'answer' }
 export interface RequestItem { id: string; clientId: string; text: string; rmDraft?: string; kind: 'question' | 'talk'; at: string; done?: boolean }
+export interface QaItem { id: string; q: string; a: string; category: 'factual' | 'advice' | 'out_of_scope'; at: string; meta?: AiMeta; unsupported?: string[] }
 export interface AuditRecord {
   approvedBy: string; approvedAt: string; sources: string[]; draftModel: string; draftPrompt: string; verifyModel: string; verifyPrompt: string;
   changes: { id: string; before: string; after: string | null }[]; ruleChecks: { label: string; pass: boolean | null }[]; reviewedDespiteFlags: boolean;
@@ -18,24 +19,27 @@ export interface DemoState {
   liveSignals: Record<string, Signal[]>;
   orchestratedAt: string | null;
   overrides: Record<string, { lane: Lane; reason: string; at: string }>;
-  touchpoints: Record<string, { status: 'draft' | 'approved' | 'rejected'; subject?: string; body?: string; meta?: AiMeta }>;
+  touchpoints: Record<string, { status: 'draft' | 'approved' | 'rejected'; subject?: string; body?: string; meta?: AiMeta; messageType?: string; edited?: boolean }>;
   inbox: Record<string, InboxMsg[]>;
   escalations: string[];
   requests: RequestItem[];
   feedback: Record<string, 'up' | 'down'>;
   aiLog: AiLogEntry[];
   minutesSaved: number;
+  briefs: Record<string, { output: any; meta: AiMeta }>;
+  qa: Record<string, QaItem[]>;
   albers: {
     notes: string; draft?: any; draftMeta?: AiMeta; verify?: any; verifyMeta?: AiMeta; edits: Record<string, string>; removed: string[];
     testInserted: boolean; reviewedAccept: boolean; audit?: AuditRecord; consistency?: any; consistencyMeta?: AiMeta; attested: boolean;
     ack: boolean; signed: boolean; funded: boolean;
+    verifySnapshot?: Record<string, string>; finalStatement?: string; contradictionReviewed?: boolean;
   };
   keller: { option?: 'sell' | 'bridge' | 'transfer'; draft?: any; draftMeta?: AiMeta; messageApproved: boolean; clientConfirmed: boolean; explanations: Record<string, any> };
 }
 
 const initial = (): DemoState => ({
   mode: 'live', liveSignals: {}, orchestratedAt: null, overrides: {}, touchpoints: {}, inbox: {}, escalations: [], requests: [], feedback: {},
-  aiLog: [], minutesSaved: 0,
+  aiLog: [], minutesSaved: 0, briefs: {}, qa: {},
   albers: { notes: DATA_NOTES_ALBERS, edits: {}, removed: [], testInserted: false, reviewedAccept: false, attested: false, ack: false, signed: false, funded: false },
   keller: { messageApproved: false, clientConfirmed: false, explanations: {} },
 });

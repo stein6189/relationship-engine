@@ -11,7 +11,7 @@ export function sourceLabel(m: AiMeta) {
 }
 
 /** Small provenance line + "Under the hood" drawer for one AI output. */
-export function AiMetaBadge({ meta, output, facts, confidence }: { meta?: AiMeta; output?: unknown; facts?: { id: string; label: string; value: string }[]; confidence?: number }) {
+export function AiMetaBadge({ meta, output, facts, confidence, hideGuard }: { meta?: AiMeta; output?: unknown; facts?: { id: string; label: string; value: string }[]; confidence?: number; hideGuard?: boolean }) {
   const [open, setOpen] = useState(false);
   if (!meta) return null;
   const guardTone = meta.guard ? (meta.guard.pass ? 'green' : 'red') : 'slate';
@@ -20,7 +20,7 @@ export function AiMetaBadge({ meta, output, facts, confidence }: { meta?: AiMeta
       <span className="inline-flex flex-wrap items-center gap-1">
         <Badge tone="violet" title="Produced by AI">AI · {meta.model.startsWith('seed') ? 'seed' : meta.model}</Badge>
         <Badge tone={meta.source === 'live' ? 'teal' : 'slate'}>{sourceLabel(meta)}</Badge>
-        {meta.guard && <Badge tone={guardTone} title={meta.guard.pass ? 'Every number matches a fact from code' : 'Numbers not found in facts: ' + meta.guard.unsupported.join(', ')}>{meta.guard.pass ? 'numbers ✓' : `number check ✗ ${meta.guard.unsupported.join(', ')}`}</Badge>}
+        {meta.guard && !hideGuard && <Badge tone={guardTone} title={meta.guard.pass ? 'Every number matches a fact from code' : 'Numbers not found in facts: ' + meta.guard.unsupported.join(', ')}>{meta.guard.pass ? 'numbers ✓' : `number check ✗ ${meta.guard.unsupported.join(', ')}`}</Badge>}
         {confidence !== undefined && confidence < 0.6 && <Badge tone="amber">Please verify</Badge>}
         {meta.validation === 'failed' && <Badge tone="red">Needs review — AI output could not be validated</Badge>}
         <button onClick={() => setOpen(true)} className="text-[11px] font-medium text-accent underline-offset-2 hover:underline">Under the hood</button>

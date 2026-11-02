@@ -275,6 +275,7 @@ const plan = allocate({ clients, aiSignals: seedSignals, today: SIM_TODAY });
 const byId = new Map(clients.map((c) => [c.id, c]));
 const digital = plan.filter((a) => a.lane === 'digital');
 let testDone = false;
+let advisoryDone = 0;
 for (const a of digital) {
   const c = byId.get(a.clientId)!;
   const value = '€' + c.aumEur.toLocaleString('en-GB');
@@ -290,7 +291,7 @@ for (const a of digital) {
   let body = `Dear ${c.firstName}, a short update: your portfolio stands at ${value}, ${ytd} so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas`;
   if (c.id === 'hofmann') {
     facts.push({ id: 'f3', label: 'retirement goal year', value: '2030' });
-    body = `Dear Monika, your quarterly update: your portfolio stands at ${value}, ${ytd} so far this year. That keeps your plan for retirement income from 2030 on track. No action needed — as agreed, I'll only call if something changes. Best, Jonas`;
+    body = `Dear Monika, your quarterly update: your portfolio stands at ${value}, ${ytd} so far this year. Your portfolio stays invested as agreed for your retirement income from 2030. No action needed — as agreed, I'll only call if something changes. Best, Jonas`;
   } else if (trigger === 'distribution_received') {
     const d = a.signals.find((s) => s.type === 'distribution_received')!;
     facts.push({ id: 'f3', label: 'distribution amount', value: '€' + (d.amountEur ?? 0).toLocaleString('en-GB') });
@@ -312,7 +313,15 @@ for (const a of digital) {
     testCase = true;
     testDone = true;
   }
-  const output = { subject, body, messageType: 'informational', factsUsed: facts.map((f) => f.id), callToAction: 'reply', confidence: 0.9, trigger, facts, testCase };
+  let messageType = 'informational';
+  if (trigger === 'distribution_received' && advisoryDone++ === 1) {
+    // The model classifies this one as advisory: the natural message would be about reinvesting. It writes an RM note instead.
+    const d = a.signals.find((s) => s.type === 'distribution_received')!;
+    messageType = 'advisory';
+    subject = 'Note for RM — not a client message';
+    body = `${c.firstName} received a distribution of €${(d.amountEur ?? 0).toLocaleString('en-GB')} The natural next message would be about what to do with the money. That is advice, so no client draft was written. Suggest a short call.`;
+  }
+  const output = { subject, body, messageType, factsUsed: facts.map((f) => f.id), callToAction: 'reply', confidence: 0.9, trigger, facts, testCase };
   fs.writeFileSync(path.join(cacheDir, `draft_touchpoint__${c.id}.json`), JSON.stringify(seedMeta('draft_touchpoint', c.id, output), null, 1));
 }
 

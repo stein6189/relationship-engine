@@ -76,7 +76,11 @@ export function Shell({ children }: { children: React.ReactNode }) {
         </nav>
         <main className="min-w-0 flex-1 p-5">{children}</main>
       </div>
-      <footer className="border-t border-slate-200 bg-white px-5 py-2 text-[11px] text-slate-500">Prototype built for the LIQID case study · Relationship Engine</footer>
+      <Footer />
     </div>
   );
+}
+
+export function Footer() {
+  return <footer className="border-t border-slate-200 bg-white px-5 py-2 text-[11px] text-slate-500">Prototype built for the LIQID case study · Relationship Engine · synthetic data, not investment advice</footer>;
 }
