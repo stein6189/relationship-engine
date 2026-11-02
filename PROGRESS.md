@@ -1,6 +1,6 @@
 # PROGRESS.md
 
-Last update: Mon 2 Nov 2026, ~23:00 CET — scheduled overnight session. **Read CLAUDE.md first, then this file, then continue.**
+Last update: Mon 2 Nov 2026, ~23:30 CET — overnight session finished phases 2–4 and QA. **Read CLAUDE.md first, then this file, then continue.**
 
 ## Status by phase
 
@@ -44,25 +44,59 @@ Last update: Mon 2 Nov 2026, ~23:00 CET — scheduled overnight session. **Read 
 - `/split?client=albers|keller` (RM tabs left, scaled phone right, shared state).
 - V8 `/rm/hood` (8 prompts, model routing, guardrails, log with drawer), `/rm/about`.
 
-### QA so far
-- lint, typecheck, vitest (41 tests), `npm run build` green.
-- `node tests/e2e/demo.mjs cached|live` (DEMO.md steps 0–12) and
-  `node tests/e2e/views.mjs` pass locally against `next start -p 3100`
-  (set BASE_URL / DEMO_PASSWORD for the deployed URL). Zero console errors.
+### QA — DONE (3 rounds, see QA_REPORT.md)
+- lint, typecheck, vitest (42), clean-clone `npm ci && npm run build` green.
+- DEMO.md 0–12 passes in Cached, Live-without-key, Live-via-mock-model and
+  with basic auth. Robustness suite passes. Zero console errors.
+- Not run: Round A on the deployed URL (no deployment, see below).
 
-### Phase 5 — Final QA rounds A–D — see QA_REPORT.md
+## Deployment — NOT DONE (needs Daniel, ~5 minutes)
+The Vercel connector in this session could read the team "stedao" but got
+**403 "You don't have permission to create the project"**; no Vercel token/CLI
+was available. Steps:
+1. vercel.com → team **stedao** → Add New… → Project → Import Git Repository →
+   `stein6189/relationship-engine` (grant the Vercel GitHub app access to this
+   repo if it is not listed).
+2. Framework: Next.js (auto). Build/Install/Output: defaults. Root: `/`.
+3. Environment variables (Production + Preview):
+   - `ANTHROPIC_API_KEY` = your key (secret)
+   - `DEMO_PASSWORD` = the password for LIQID (secret) — without it the site is open
+   - `MODEL_FAST` = `claude-haiku-5-5`
+   - `MODEL_SMART` = `claude-sonnet-5-5`
+4. Deploy. Then Settings → Deployment Protection: turn **Vercel Authentication
+   off** for Production (otherwise LIQID gets a Vercel login before our password).
+5. Write the URL into this file and the README ("Production URL").
 
-## Deployment
-- GitHub: `stein6189/relationship-engine`, branch `main` (push works).
-- Vercel: Daniel has an account (team slug `stedao`) and the Vercel connector
-  is enabled in claude.ai. Not yet linked. Import the repo as a Next.js
-  project. **Daniel sets the secrets himself in Vercel:** `ANTHROPIC_API_KEY`,
-  `DEMO_PASSWORD`. Non-secret: `MODEL_FAST=claude-haiku-5-5`,
-  `MODEL_SMART=claude-sonnet-5-5`.
-- Without a key the app runs fully on seed outputs (labelled "cached · seed").
+## What Daniel must do before 12:00
+1. Deploy (above) and open the URL in a private window: password prompt
+   (any user name + `DEMO_PASSWORD`), then `/rm/plan`.
+2. Run the acceptance test against it (2 min):
+   `BASE_URL=https://<url> DEMO_PASSWORD=<pw> node tests/e2e/demo.mjs live`
+   (needs `npm ci` locally; Playwright + Chromium: `npx playwright install chromium`).
+3. Optional but recommended — replace the pre-authored seed outputs with real
+   model output (the cache is what the panel sees if a live call fails):
+   `ANTHROPIC_API_KEY=… npm run build && ANTHROPIC_API_KEY=… npx next start -p 3100`
+   then `BASE_URL=http://localhost:3100 npm run warm-cache`, check
+   `git diff data/cache`, commit, push (Vercel redeploys).
+   Also confirms the model ids `claude-haiku-5-5` / `claude-sonnet-5-5` work.
+4. Decide the Keller tax line (DECISIONS #17): RULES.md says €10,154 (simplified,
+   no partial exemption); the UI also shows ≈ €7,108 with the 30%
+   Teilfreistellung. DEMO step 10 line could become "pay €7–10k tax".
+5. Read DECISIONS.md 10–21 (choices made overnight) and QA_REPORT.md.
+6. Click through DEMO.md once in Live mode; "Reset demo" (header) before the panel.
+
+## Demo notes
+- Click order: Plan → Run monthly orchestration → Berger card → control-group
+  chip → Albers name → Advisory follow-up → Draft documentation → Run verifier
+  test → remove → Approve → Subscription/Split view (Insert from meeting notes →
+  Update questionnaire → tick → Complete qualification; phone: Invest → Costs →
+  I have read → Sign) → Touchpoints (Approve all → Yes) → Keller liquidity →
+  Choose bridge → Approve & send → Split view Keller (Ask tab chips) → Plan
+  pipeline → Under the hood.
+- Use "Find a client in the plan…" to jump to a card.
 
 ## Known notes
-- `npm run build` passes. Install uses React 18.3.1 with Next 15.0.3.
+- `npm run build` passes. React 18.3.1 with Next 15.5.28 (patched).
 - Tailwind 3 + hand-written components in `components/ui.tsx` instead of
   the shadcn CLI (see DECISIONS.md).
 - No `confirm()`/`alert()` anywhere (blocks browser automation).
