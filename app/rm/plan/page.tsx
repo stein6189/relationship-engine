@@ -72,7 +72,7 @@ function Row({ a, onOverride }: { a: Allocation; onOverride: (a: Allocation) => 
         <span className="tnum ml-1.5 text-xs text-slate-500">{eurShort(c.aumEur)}</span>
         <div className="truncate text-xs text-slate-600" title={a.reason}>{a.reason}</div>
         <div className="mt-0.5 flex flex-wrap gap-1">
-          {a.controlGroup && <Badge tone="blue" title="Random 10% of clients with silent risk get digital touchpoints only for 3 months. The 2–3× churn gap between contacted and uncontacted clients is observed, not causal — this test measures the real effect. Clients with explicit needs, AUM > €2m or hard triggers are never included."><Term t="control group">Control group</Term> · 3-month test</Badge>}
+          {a.controlGroup && <span data-testid="control-chip" className="cursor-help" title="Control group — digital only (3-month test). Drawn at random from clients with silent risk (seed 2026-11). The 2–3× churn gap between contacted and uncontacted clients is observed, not causal — this test measures the real effect of proactive contact. Never included: clients who told us what they need (transfer intent, liquidity need, capital call gap), AUM > €2m, or hard triggers."><Badge tone="blue">Control group · 3-month test ⓘ</Badge></span>}
           {a.overflow && <Badge tone="amber">Overflow — RM to review</Badge>}
           {a.churnReason && <Badge tone="red">Churn reason? {a.churnReason}</Badge>}
         </div>

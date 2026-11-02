@@ -62,7 +62,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const update = useCallback((fn: (s: DemoState) => DemoState) => setS((prev) => fn(prev)), []);
   const reset = useCallback(() => { try { localStorage.removeItem(KEY); } catch { /* ignore */ } setS(initial()); }, []);
   const value = useMemo(() => ({ s, update, reset, ready }), [s, update, reset, ready]);
-  return <StoreCtx.Provider value={value}>{children}</StoreCtx.Provider>;
+  // Render only after demo state is loaded from localStorage, so no screen shows (or acts on) a stale initial state.
+  return <StoreCtx.Provider value={value}>{ready ? children : <div className="p-8 text-sm text-slate-400">Loading…</div>}</StoreCtx.Provider>;
 }
 
 export function useStore() {

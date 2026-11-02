@@ -37,7 +37,7 @@ export async function step(name, fn) {
   catch (e) { failures++; console.log(`  ✗ ${name}\n    ${String(e.message).split('\n').slice(0, 4).join('\n    ')}`); }
 }
 export function expect(cond, msg) { if (!cond) throw new Error(msg); }
-export async function shot(page, name) { await page.screenshot({ path: `${SHOTS}/${name}.png`, fullPage: true }); }
+export async function shot(page, name, full = false) { await page.screenshot({ path: `${SHOTS}/${name}.png`, fullPage: full }); }
 export async function text(page, sel) { return (await page.locator(sel).first().innerText()); }
 export function done(errors) {
   const real = errors.filter((e) => !/favicon/.test(e));

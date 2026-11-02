@@ -1,10 +1,11 @@
 export const eur = (n: number, digits = 0) =>
-  '€' + n.toLocaleString('en-GB', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  (n < 0 ? '−€' : '€') + Math.abs(n).toLocaleString('en-GB', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 
 export const eurShort = (n: number) => {
   const a = Math.abs(n);
-  if (a >= 1_000_000) return '€' + (n / 1_000_000).toLocaleString('en-GB', { maximumFractionDigits: 1 }) + 'm';
-  if (a >= 1_000) return '€' + Math.round(n / 1_000).toLocaleString('en-GB') + 'k';
+  const sign = n < 0 ? '−' : '';
+  if (a >= 1_000_000) return sign + '€' + (a / 1_000_000).toLocaleString('en-GB', { maximumFractionDigits: 1 }) + 'm';
+  if (a >= 1_000) return sign + '€' + Math.round(a / 1_000).toLocaleString('en-GB') + 'k';
   return eur(n);
 };
 
