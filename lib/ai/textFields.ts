@@ -1,7 +1,6 @@
 import type { TaskId } from './schemas';
 
 /** Client- or RM-facing text produced by the model that must pass the number guard. */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function textOf(task: TaskId, out: any): string {
   if (!out) return '';
   switch (task) {

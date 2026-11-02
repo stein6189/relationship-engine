@@ -1493,11 +1493,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c020_msg_2026-10-07",
-    "date": "2026-10-07",
+    "id": "c020_msg_2026-10-03",
+    "date": "2026-10-03",
     "kind": "app_message",
     "from": "client",
-    "text": "I cannot log in on my new phone."
+    "text": "Thanks for the update!"
    }
   ],
   "questionnaire": {
@@ -1819,8 +1819,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c026_msg_2026-09-29",
-    "date": "2026-09-29",
+    "id": "c026_msg_2026-10-10",
+    "date": "2026-10-10",
     "kind": "app_message",
     "from": "client",
     "text": "All good, no need to call."
@@ -2060,8 +2060,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c030_msg_2026-10-23",
-    "date": "2026-10-23",
+    "id": "c030_msg_2026-10-26",
+    "date": "2026-10-26",
     "kind": "app_message",
     "from": "client",
     "text": "Thanks for the update!"
@@ -2463,11 +2463,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c037_msg_2026-10-11",
-    "date": "2026-10-11",
+    "id": "c037_msg_2026-10-19",
+    "date": "2026-10-19",
     "kind": "app_message",
     "from": "client",
-    "text": "Thanks for the update!"
+    "text": "Please update my address."
    }
   ],
   "questionnaire": {
@@ -3099,8 +3099,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c048_msg_2026-10-05",
-    "date": "2026-10-05",
+    "id": "c048_msg_2026-10-27",
+    "date": "2026-10-27",
     "kind": "app_message",
     "from": "client",
     "text": "Honestly, I expected more from the returns this year."
@@ -3674,8 +3674,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c057_msg_2026-10-07",
-    "date": "2026-10-07",
+    "id": "c057_msg_2026-10-13",
+    "date": "2026-10-13",
     "kind": "app_message",
     "from": "client",
     "text": "I don't understand the capital call letter."
@@ -4057,8 +4057,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c063_msg_2026-10-05",
-    "date": "2026-10-05",
+    "id": "c063_msg_2026-09-29",
+    "date": "2026-09-29",
     "kind": "app_message",
     "from": "client",
     "text": "All good, no need to call."
@@ -4708,8 +4708,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c074_msg_2026-10-26",
-    "date": "2026-10-26",
+    "id": "c074_msg_2026-10-05",
+    "date": "2026-10-05",
     "kind": "app_message",
     "from": "client",
     "text": "I don't understand the capital call letter."
@@ -4769,8 +4769,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c075_msg_2026-10-13",
-    "date": "2026-10-13",
+    "id": "c075_msg_2026-10-15",
+    "date": "2026-10-15",
     "kind": "app_message",
     "from": "client",
     "text": "All good, no need to call."
@@ -5001,8 +5001,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c079_msg_2026-10-09",
-    "date": "2026-10-09",
+    "id": "c079_msg_2026-09-29",
+    "date": "2026-09-29",
     "kind": "app_message",
     "from": "client",
     "text": "All good, no need to call."
@@ -5233,8 +5233,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c083_msg_2026-10-04",
-    "date": "2026-10-04",
+    "id": "c083_msg_2026-10-23",
+    "date": "2026-10-23",
     "kind": "app_message",
     "from": "client",
     "text": "All good, no need to call."
@@ -5359,11 +5359,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c085_msg_2026-10-31",
-    "date": "2026-10-31",
+    "id": "c085_msg_2026-10-07",
+    "date": "2026-10-07",
     "kind": "app_message",
     "from": "client",
-    "text": "My daughter is starting university, I'll need about €0k a year."
+    "text": "My daughter is starting university, I'll need about €40k a year."
    }
   ],
   "questionnaire": {
@@ -5942,11 +5942,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c095_msg_2026-10-25",
-    "date": "2026-10-25",
+    "id": "c095_msg_2026-10-22",
+    "date": "2026-10-22",
     "kind": "app_message",
     "from": "client",
-    "text": "My daughter is starting university, I'll need about €0k a year."
+    "text": "My daughter is starting university, I'll need about €40k a year."
    }
   ],
   "questionnaire": {
@@ -6003,11 +6003,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c096_msg_2026-10-18",
-    "date": "2026-10-18",
+    "id": "c096_msg_2026-10-15",
+    "date": "2026-10-15",
     "kind": "app_message",
     "from": "client",
-    "text": "My daughter is starting university, I'll need about €0k a year."
+    "text": "My daughter is starting university, I'll need about €30k a year."
    }
   ],
   "questionnaire": {
@@ -6383,8 +6383,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c102_msg_2026-10-03",
-    "date": "2026-10-03",
+    "id": "c102_msg_2026-10-31",
+    "date": "2026-10-31",
     "kind": "app_message",
     "from": "client",
     "text": "Please send me the tax certificate."
@@ -6562,8 +6562,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c105_msg_2026-10-31",
-    "date": "2026-10-31",
+    "id": "c105_msg_2026-10-26",
+    "date": "2026-10-26",
     "kind": "app_message",
     "from": "client",
     "text": "Please send me the tax certificate."
@@ -6839,8 +6839,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c109_msg_2026-10-13",
-    "date": "2026-10-13",
+    "id": "c109_msg_2026-10-05",
+    "date": "2026-10-05",
     "kind": "app_message",
     "from": "client",
     "text": "Why did my portfolio drop last month?"
@@ -7165,8 +7165,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c114_msg_2026-09-29",
-    "date": "2026-09-29",
+    "id": "c114_msg_2026-10-25",
+    "date": "2026-10-25",
     "kind": "app_message",
     "from": "client",
     "text": "Why did my portfolio drop last month?"
@@ -7409,8 +7409,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c118_msg_2026-10-15",
-    "date": "2026-10-15",
+    "id": "c118_msg_2026-10-12",
+    "date": "2026-10-12",
     "kind": "app_message",
     "from": "client",
     "text": "Honestly, I expected more from the returns this year."
@@ -8016,11 +8016,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c128_msg_2026-10-27",
-    "date": "2026-10-27",
+    "id": "c128_msg_2026-09-28",
+    "date": "2026-09-28",
     "kind": "app_message",
     "from": "client",
-    "text": "I cannot log in on my new phone."
+    "text": "Please update my address."
    }
   ],
   "questionnaire": {
@@ -8163,8 +8163,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c130_msg_2026-10-23",
-    "date": "2026-10-23",
+    "id": "c130_msg_2026-10-21",
+    "date": "2026-10-21",
     "kind": "app_message",
     "from": "client",
     "text": "Please send me the tax certificate."
@@ -8277,8 +8277,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c132_msg_2026-10-27",
-    "date": "2026-10-27",
+    "id": "c132_msg_2026-10-03",
+    "date": "2026-10-03",
     "kind": "app_message",
     "from": "client",
     "text": "Please send me the tax certificate."
@@ -8574,8 +8574,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c137_msg_2026-11-01",
-    "date": "2026-11-01",
+    "id": "c137_msg_2026-10-05",
+    "date": "2026-10-05",
     "kind": "app_message",
     "from": "client",
     "text": "All good, no need to call."
@@ -8709,11 +8709,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c139_msg_2026-10-26",
-    "date": "2026-10-26",
+    "id": "c139_msg_2026-10-09",
+    "date": "2026-10-09",
     "kind": "app_message",
     "from": "client",
-    "text": "Please update my address."
+    "text": "I cannot log in on my new phone."
    }
   ],
   "questionnaire": {
@@ -9198,8 +9198,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c147_msg_2026-10-01",
-    "date": "2026-10-01",
+    "id": "c147_msg_2026-10-05",
+    "date": "2026-10-05",
     "kind": "app_message",
     "from": "client",
     "text": "Thanks for the update!"
@@ -9365,8 +9365,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c150_msg_2026-10-08",
-    "date": "2026-10-08",
+    "id": "c150_msg_2026-10-13",
+    "date": "2026-10-13",
     "kind": "app_message",
     "from": "client",
     "text": "Why did my portfolio drop last month?"
@@ -9593,8 +9593,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c154_msg_2026-10-22",
-    "date": "2026-10-22",
+    "id": "c154_msg_2026-10-09",
+    "date": "2026-10-09",
     "kind": "app_message",
     "from": "client",
     "text": "Can my holding company invest in private equity too?"
@@ -9654,11 +9654,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c155_msg_2026-10-06",
-    "date": "2026-10-06",
+    "id": "c155_msg_2026-10-31",
+    "date": "2026-10-31",
     "kind": "app_message",
     "from": "client",
-    "text": "Is there a way to get about €0k in cash without selling everything?"
+    "text": "Is there a way to get about €220k in cash without selling everything?"
    }
   ],
   "questionnaire": {
@@ -9727,8 +9727,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c156_msg_2026-10-05",
-    "date": "2026-10-05",
+    "id": "c156_msg_2026-10-31",
+    "date": "2026-10-31",
     "kind": "app_message",
     "from": "client",
     "text": "Why did my portfolio drop last month?"
@@ -9841,8 +9841,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c158_msg_2026-10-11",
-    "date": "2026-10-11",
+    "id": "c158_msg_2026-10-07",
+    "date": "2026-10-07",
     "kind": "app_message",
     "from": "client",
     "text": "My bank offered me a better fee. Can you match it?"
@@ -10020,8 +10020,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c161_msg_2026-10-18",
-    "date": "2026-10-18",
+    "id": "c161_msg_2026-11-01",
+    "date": "2026-11-01",
     "kind": "app_message",
     "from": "client",
     "text": "I don't understand the capital call letter."
@@ -10146,8 +10146,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c163_msg_2026-10-07",
-    "date": "2026-10-07",
+    "id": "c163_msg_2026-10-23",
+    "date": "2026-10-23",
     "kind": "app_message",
     "from": "client",
     "text": "Please send me the tax certificate."
@@ -10281,8 +10281,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c165_msg_2026-10-15",
-    "date": "2026-10-15",
+    "id": "c165_msg_2026-10-04",
+    "date": "2026-10-04",
     "kind": "app_message",
     "from": "client",
     "text": "I don't understand the capital call letter."
@@ -10342,8 +10342,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c166_msg_2026-10-03",
-    "date": "2026-10-03",
+    "id": "c166_msg_2026-10-27",
+    "date": "2026-10-27",
     "kind": "app_message",
     "from": "client",
     "text": "My bank offered me a better fee. Can you match it?"
@@ -10521,8 +10521,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c169_msg_2026-10-21",
-    "date": "2026-10-21",
+    "id": "c169_msg_2026-10-08",
+    "date": "2026-10-08",
     "kind": "app_message",
     "from": "client",
     "text": "Please send me the tax certificate."
@@ -10818,8 +10818,8 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c174_msg_2026-10-26",
-    "date": "2026-10-26",
+    "id": "c174_msg_2026-09-29",
+    "date": "2026-09-29",
     "kind": "app_message",
     "from": "client",
     "text": "Why did my portfolio drop last month?"
@@ -11018,11 +11018,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "c177_msg_2026-10-31",
-    "date": "2026-10-31",
+    "id": "c177_msg_2026-10-11",
+    "date": "2026-10-11",
     "kind": "app_message",
     "from": "client",
-    "text": "Is there a way to get about €0k in cash without selling everything?"
+    "text": "Is there a way to get about €230k in cash without selling everything?"
    }
   ],
   "questionnaire": {

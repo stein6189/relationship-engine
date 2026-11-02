@@ -2338,7 +2338,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c026_msg_2026-09-29",
+      "itemId": "c026_msg_2026-10-10",
       "quote": "no need to call"
      }
     ],
@@ -2389,7 +2389,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c048_msg_2026-10-05",
+      "itemId": "c048_msg_2026-10-27",
       "quote": "I expected more from the returns this year"
      }
     ],
@@ -2416,7 +2416,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c057_msg_2026-10-07",
+      "itemId": "c057_msg_2026-10-13",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -2430,7 +2430,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c057_msg_2026-10-07",
+      "itemId": "c057_msg_2026-10-13",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -2457,7 +2457,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c063_msg_2026-10-05",
+      "itemId": "c063_msg_2026-09-29",
       "quote": "no need to call"
      }
     ],
@@ -2484,7 +2484,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c074_msg_2026-10-26",
+      "itemId": "c074_msg_2026-10-05",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -2498,7 +2498,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c074_msg_2026-10-26",
+      "itemId": "c074_msg_2026-10-05",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -2525,7 +2525,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c075_msg_2026-10-13",
+      "itemId": "c075_msg_2026-10-15",
       "quote": "no need to call"
      }
     ],
@@ -2552,7 +2552,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c079_msg_2026-10-09",
+      "itemId": "c079_msg_2026-09-29",
       "quote": "no need to call"
      }
     ],
@@ -2579,7 +2579,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c083_msg_2026-10-04",
+      "itemId": "c083_msg_2026-10-23",
       "quote": "no need to call"
      }
     ],
@@ -2600,14 +2600,14 @@ export const seedCache: Record<string, CacheEntry> = {
   "signals": [
    {
     "type": "liquidity_need",
-    "summary": "Needs about €0k a year for university costs",
-    "amountEur": 0,
+    "summary": "Needs about €40k a year for university costs",
+    "amountEur": 40000,
     "timing": null,
     "topic": null,
     "evidence": [
      {
-      "itemId": "c085_msg_2026-10-31",
-      "quote": "need about €0k a year"
+      "itemId": "c085_msg_2026-10-07",
+      "quote": "need about €40k a year"
      }
     ],
     "confidence": 0.85
@@ -2620,8 +2620,8 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c085_msg_2026-10-31",
-      "quote": "need about €0k a year"
+      "itemId": "c085_msg_2026-10-07",
+      "quote": "need about €40k a year"
      }
     ],
     "confidence": 0.9
@@ -2641,14 +2641,14 @@ export const seedCache: Record<string, CacheEntry> = {
   "signals": [
    {
     "type": "liquidity_need",
-    "summary": "Needs about €0k a year for university costs",
-    "amountEur": 0,
+    "summary": "Needs about €40k a year for university costs",
+    "amountEur": 40000,
     "timing": null,
     "topic": null,
     "evidence": [
      {
-      "itemId": "c095_msg_2026-10-25",
-      "quote": "need about €0k a year"
+      "itemId": "c095_msg_2026-10-22",
+      "quote": "need about €40k a year"
      }
     ],
     "confidence": 0.85
@@ -2661,8 +2661,8 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c095_msg_2026-10-25",
-      "quote": "need about €0k a year"
+      "itemId": "c095_msg_2026-10-22",
+      "quote": "need about €40k a year"
      }
     ],
     "confidence": 0.9
@@ -2682,14 +2682,14 @@ export const seedCache: Record<string, CacheEntry> = {
   "signals": [
    {
     "type": "liquidity_need",
-    "summary": "Needs about €0k a year for university costs",
-    "amountEur": 0,
+    "summary": "Needs about €30k a year for university costs",
+    "amountEur": 30000,
     "timing": null,
     "topic": null,
     "evidence": [
      {
-      "itemId": "c096_msg_2026-10-18",
-      "quote": "need about €0k a year"
+      "itemId": "c096_msg_2026-10-15",
+      "quote": "need about €30k a year"
      }
     ],
     "confidence": 0.85
@@ -2702,8 +2702,8 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c096_msg_2026-10-18",
-      "quote": "need about €0k a year"
+      "itemId": "c096_msg_2026-10-15",
+      "quote": "need about €30k a year"
      }
     ],
     "confidence": 0.9
@@ -2729,7 +2729,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c102_msg_2026-10-03",
+      "itemId": "c102_msg_2026-10-31",
       "quote": "send me the tax certificate"
      }
     ],
@@ -2756,7 +2756,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c105_msg_2026-10-31",
+      "itemId": "c105_msg_2026-10-26",
       "quote": "send me the tax certificate"
      }
     ],
@@ -2783,7 +2783,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c109_msg_2026-10-13",
+      "itemId": "c109_msg_2026-10-05",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -2851,7 +2851,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c114_msg_2026-09-29",
+      "itemId": "c114_msg_2026-10-25",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -2878,7 +2878,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c118_msg_2026-10-15",
+      "itemId": "c118_msg_2026-10-12",
       "quote": "I expected more from the returns this year"
      }
     ],
@@ -2917,7 +2917,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c130_msg_2026-10-23",
+      "itemId": "c130_msg_2026-10-21",
       "quote": "send me the tax certificate"
      }
     ],
@@ -2944,7 +2944,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c132_msg_2026-10-27",
+      "itemId": "c132_msg_2026-10-03",
       "quote": "send me the tax certificate"
      }
     ],
@@ -2971,7 +2971,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c137_msg_2026-11-01",
+      "itemId": "c137_msg_2026-10-05",
       "quote": "no need to call"
      }
     ],
@@ -3022,7 +3022,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c150_msg_2026-10-08",
+      "itemId": "c150_msg_2026-10-13",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -3076,7 +3076,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": "private_markets",
     "evidence": [
      {
-      "itemId": "c154_msg_2026-10-22",
+      "itemId": "c154_msg_2026-10-09",
       "quote": "Can my holding company invest in private equity too?"
      }
     ],
@@ -3097,14 +3097,14 @@ export const seedCache: Record<string, CacheEntry> = {
   "signals": [
    {
     "type": "liquidity_need",
-    "summary": "Needs about €0k in cash",
-    "amountEur": 0,
+    "summary": "Needs about €220k in cash",
+    "amountEur": 220000,
     "timing": null,
     "topic": null,
     "evidence": [
      {
-      "itemId": "c155_msg_2026-10-06",
-      "quote": "get about €0k in cash"
+      "itemId": "c155_msg_2026-10-31",
+      "quote": "get about €220k in cash"
      }
     ],
     "confidence": 0.85
@@ -3130,7 +3130,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c156_msg_2026-10-05",
+      "itemId": "c156_msg_2026-10-31",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -3157,7 +3157,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c158_msg_2026-10-11",
+      "itemId": "c158_msg_2026-10-07",
       "quote": "My bank offered me a better fee"
      }
     ],
@@ -3171,7 +3171,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c158_msg_2026-10-11",
+      "itemId": "c158_msg_2026-10-07",
       "quote": "My bank offered me a better fee"
      }
     ],
@@ -3198,7 +3198,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c161_msg_2026-10-18",
+      "itemId": "c161_msg_2026-11-01",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -3212,7 +3212,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c161_msg_2026-10-18",
+      "itemId": "c161_msg_2026-11-01",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -3239,7 +3239,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c163_msg_2026-10-07",
+      "itemId": "c163_msg_2026-10-23",
       "quote": "send me the tax certificate"
      }
     ],
@@ -3266,7 +3266,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c165_msg_2026-10-15",
+      "itemId": "c165_msg_2026-10-04",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -3280,7 +3280,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c165_msg_2026-10-15",
+      "itemId": "c165_msg_2026-10-04",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -3307,7 +3307,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c166_msg_2026-10-03",
+      "itemId": "c166_msg_2026-10-27",
       "quote": "My bank offered me a better fee"
      }
     ],
@@ -3321,7 +3321,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c166_msg_2026-10-03",
+      "itemId": "c166_msg_2026-10-27",
       "quote": "My bank offered me a better fee"
      }
     ],
@@ -3348,7 +3348,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c169_msg_2026-10-21",
+      "itemId": "c169_msg_2026-10-08",
       "quote": "send me the tax certificate"
      }
     ],
@@ -3375,7 +3375,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c174_msg_2026-10-26",
+      "itemId": "c174_msg_2026-09-29",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -3396,14 +3396,14 @@ export const seedCache: Record<string, CacheEntry> = {
   "signals": [
    {
     "type": "liquidity_need",
-    "summary": "Needs about €0k in cash",
-    "amountEur": 0,
+    "summary": "Needs about €230k in cash",
+    "amountEur": 230000,
     "timing": null,
     "topic": null,
     "evidence": [
      {
-      "itemId": "c177_msg_2026-10-31",
-      "quote": "get about €0k in cash"
+      "itemId": "c177_msg_2026-10-11",
+      "quote": "get about €230k in cash"
      }
     ],
     "confidence": 0.85

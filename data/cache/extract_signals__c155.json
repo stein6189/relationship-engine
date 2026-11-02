@@ -8,14 +8,14 @@
   "signals": [
    {
     "type": "liquidity_need",
-    "summary": "Needs about €0k in cash",
-    "amountEur": 0,
+    "summary": "Needs about €220k in cash",
+    "amountEur": 220000,
     "timing": null,
     "topic": null,
     "evidence": [
      {
-      "itemId": "c155_msg_2026-10-06",
-      "quote": "get about €0k in cash"
+      "itemId": "c155_msg_2026-10-31",
+      "quote": "get about €220k in cash"
      }
     ],
     "confidence": 0.85

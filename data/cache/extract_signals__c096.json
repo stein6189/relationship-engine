@@ -8,14 +8,14 @@
   "signals": [
    {
     "type": "liquidity_need",
-    "summary": "Needs about €0k a year for university costs",
-    "amountEur": 0,
+    "summary": "Needs about €30k a year for university costs",
+    "amountEur": 30000,
     "timing": null,
     "topic": null,
     "evidence": [
      {
-      "itemId": "c096_msg_2026-10-18",
-      "quote": "need about €0k a year"
+      "itemId": "c096_msg_2026-10-15",
+      "quote": "need about €30k a year"
      }
     ],
     "confidence": 0.85
@@ -28,8 +28,8 @@
     "topic": null,
     "evidence": [
      {
-      "itemId": "c096_msg_2026-10-18",
-      "quote": "need about €0k a year"
+      "itemId": "c096_msg_2026-10-15",
+      "quote": "need about €30k a year"
      }
     ],
     "confidence": 0.9
