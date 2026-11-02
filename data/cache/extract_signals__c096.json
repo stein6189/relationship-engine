@@ -1,0 +1,41 @@
+{
+ "promptId": "extract_signals",
+ "key": "c096",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "liquidity_need",
+    "summary": "Needs about €0k a year for university costs",
+    "amountEur": 0,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c096_msg_2026-10-18",
+      "quote": "need about €0k a year"
+     }
+    ],
+    "confidence": 0.85
+   },
+   {
+    "type": "life_event",
+    "summary": "Child starting university",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c096_msg_2026-10-18",
+      "quote": "need about €0k a year"
+     }
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

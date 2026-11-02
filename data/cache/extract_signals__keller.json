@@ -1,0 +1,31 @@
+{
+ "promptId": "extract_signals",
+ "key": "keller",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "pm_frustration",
+    "summary": "Worried about the negative value of Atlas Growth V (J-curve)",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "keller_msg_2026-09-30",
+      "quote": "Should I be worried?"
+     },
+     {
+      "itemId": "keller_msg_2026-10-19",
+      "quote": "Should I be worried?"
+     }
+    ],
+    "confidence": 0.86
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

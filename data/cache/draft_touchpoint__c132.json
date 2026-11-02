@@ -1,0 +1,32 @@
+{
+ "promptId": "draft_touchpoint",
+ "key": "c132",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "subject": "Your documents",
+  "body": "Dear Jan, your statements and tax certificate are in the app under Documents. Your portfolio currently stands at €479,000. If anything is unclear, reply here. Best, Jonas",
+  "messageType": "informational",
+  "factsUsed": [
+   "f1",
+   "f2"
+  ],
+  "callToAction": "reply",
+  "confidence": 0.9,
+  "trigger": "statement_info",
+  "facts": [
+   {
+    "id": "f1",
+    "label": "portfolio value",
+    "value": "€479,000"
+   },
+   {
+    "id": "f2",
+    "label": "year-to-date return",
+    "value": "+8.4%"
+   }
+  ],
+  "testCase": false
+ }
+}

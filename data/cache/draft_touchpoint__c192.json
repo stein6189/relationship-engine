@@ -1,0 +1,32 @@
+{
+ "promptId": "draft_touchpoint",
+ "key": "c192",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "subject": "It has been a while",
+  "body": "Dear Tobias, it's been some time since we last spoke. Your portfolio stands at €494,000, +2.8% this year. If your plans have changed, I'd be glad to catch up — just reply. Best, Jonas",
+  "messageType": "informational",
+  "factsUsed": [
+   "f1",
+   "f2"
+  ],
+  "callToAction": "reply",
+  "confidence": 0.9,
+  "trigger": "re_engagement",
+  "facts": [
+   {
+    "id": "f1",
+    "label": "portfolio value",
+    "value": "€494,000"
+   },
+   {
+    "id": "f2",
+    "label": "year-to-date return",
+    "value": "+2.8%"
+   }
+  ],
+  "testCase": false
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "promptId": "draft_touchpoint",
+ "key": "hofmann",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "subject": "Your quarterly update",
+  "body": "Dear Monika, your quarterly update: your portfolio stands at €700,000, +6.2% so far this year. That keeps your plan for retirement income from 2030 on track. No action needed — as agreed, I'll only call if something changes. Best, Jonas",
+  "messageType": "informational",
+  "factsUsed": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "callToAction": "reply",
+  "confidence": 0.9,
+  "trigger": "quarterly_progress",
+  "facts": [
+   {
+    "id": "f1",
+    "label": "portfolio value",
+    "value": "€700,000"
+   },
+   {
+    "id": "f2",
+    "label": "year-to-date return",
+    "value": "+6.2%"
+   },
+   {
+    "id": "f3",
+    "label": "retirement goal year",
+    "value": "2030"
+   }
+  ],
+  "testCase": false
+ }
+}

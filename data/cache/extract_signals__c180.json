@@ -1,0 +1,41 @@
+{
+ "promptId": "extract_signals",
+ "key": "c180",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "life_event",
+    "summary": "Plans to sell the company next year",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c180_msg_2026-10-15",
+      "quote": "We're selling the company next year"
+     }
+    ],
+    "confidence": 0.9
+   },
+   {
+    "type": "investment_interest",
+    "summary": "Wants to discuss investing the sale proceeds",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c180_msg_2026-10-15",
+      "quote": "We're selling the company next year"
+     }
+    ],
+    "confidence": 0.75
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

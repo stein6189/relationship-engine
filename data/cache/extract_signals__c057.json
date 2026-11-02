@@ -1,0 +1,41 @@
+{
+ "promptId": "extract_signals",
+ "key": "c057",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "pm_frustration",
+    "summary": "Confused by a capital call letter",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c057_msg_2026-10-07",
+      "quote": "I don't understand the capital call letter."
+     }
+    ],
+    "confidence": 0.85
+   },
+   {
+    "type": "factual_question",
+    "summary": "Asks about a capital call",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c057_msg_2026-10-07",
+      "quote": "I don't understand the capital call letter."
+     }
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

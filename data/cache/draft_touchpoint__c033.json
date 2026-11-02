@@ -1,0 +1,32 @@
+{
+ "promptId": "draft_touchpoint",
+ "key": "c033",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "subject": "Your quarterly update",
+  "body": "Dear Sebastian, a short update: your portfolio stands at €1,724,000, +6.6% so far this year. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
+  "messageType": "informational",
+  "factsUsed": [
+   "f1",
+   "f2"
+  ],
+  "callToAction": "reply",
+  "confidence": 0.9,
+  "trigger": "quarterly_progress",
+  "facts": [
+   {
+    "id": "f1",
+    "label": "portfolio value",
+    "value": "€1,724,000"
+   },
+   {
+    "id": "f2",
+    "label": "year-to-date return",
+    "value": "+6.6%"
+   }
+  ],
+  "testCase": false
+ }
+}

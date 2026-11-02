@@ -1,0 +1,54 @@
+[
+ {
+  "id": "mbo4",
+  "name": "Meridian Buyout IV",
+  "type": "AIF · buyout",
+  "vintage": 2021,
+  "status": "harvesting",
+  "minCommitment": 200000,
+  "termYears": 10,
+  "sri": 6
+ },
+ {
+  "id": "ag5",
+  "name": "Atlas Growth V",
+  "type": "AIF · growth",
+  "vintage": 2024,
+  "status": "investing",
+  "minCommitment": 200000,
+  "termYears": 10,
+  "sri": 6
+ },
+ {
+  "id": "hi2",
+  "name": "Harbor Infrastructure II",
+  "type": "AIF · infrastructure",
+  "vintage": 2022,
+  "status": "investing",
+  "minCommitment": 200000,
+  "termYears": 12,
+  "sri": 5
+ },
+ {
+  "id": "mbo5",
+  "name": "Meridian Buyout V",
+  "type": "AIF · buyout",
+  "vintage": 2026,
+  "status": "open for subscription",
+  "minCommitment": 200000,
+  "termYears": 10,
+  "sri": 6,
+  "firstCallPct": 0.2,
+  "firstClose": "2026-12-15"
+ },
+ {
+  "id": "epm",
+  "name": "Evergreen Private Markets ELTIF",
+  "type": "ELTIF · evergreen",
+  "vintage": 2025,
+  "status": "open",
+  "minCommitment": 10000,
+  "termYears": 0,
+  "sri": 5
+ }
+]

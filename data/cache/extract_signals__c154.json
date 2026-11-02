@@ -1,0 +1,27 @@
+{
+ "promptId": "extract_signals",
+ "key": "c154",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "investment_interest",
+    "summary": "Wants to invest via holding company in private equity",
+    "amountEur": null,
+    "timing": null,
+    "topic": "private_markets",
+    "evidence": [
+     {
+      "itemId": "c154_msg_2026-10-22",
+      "quote": "Can my holding company invest in private equity too?"
+     }
+    ],
+    "confidence": 0.85
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

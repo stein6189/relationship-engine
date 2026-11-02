@@ -1,0 +1,41 @@
+{
+ "promptId": "extract_signals",
+ "key": "albers",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "investment_interest",
+    "summary": "Asked twice about private equity; wants to diversify",
+    "amountEur": null,
+    "timing": null,
+    "topic": "private_markets",
+    "evidence": [
+     {
+      "itemId": "albers_msg_2026-10-08",
+      "quote": "I keep reading about private equity"
+     }
+    ],
+    "confidence": 0.88
+   },
+   {
+    "type": "factual_question",
+    "summary": "Asks what happens if she needs the money earlier",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "albers_msg_2026-10-24",
+      "quote": "what happens if I need the money earlier?"
+     }
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

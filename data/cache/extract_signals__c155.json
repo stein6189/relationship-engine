@@ -1,0 +1,27 @@
+{
+ "promptId": "extract_signals",
+ "key": "c155",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "liquidity_need",
+    "summary": "Needs about €0k in cash",
+    "amountEur": 0,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c155_msg_2026-10-06",
+      "quote": "get about €0k in cash"
+     }
+    ],
+    "confidence": 0.85
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

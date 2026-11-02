@@ -1,0 +1,12 @@
+{
+ "promptId": "extract_signals",
+ "key": "c147",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

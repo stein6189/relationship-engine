@@ -1,0 +1,38 @@
+{
+ "promptId": "draft_touchpoint",
+ "key": "c100",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "subject": "Your distribution has arrived",
+  "body": "Dear Miriam, Meridian Buyout IV paid you a distribution of €75,000. It is now in your cash account. A distribution means the fund sold a company and returned money to investors. If you'd like to discuss what to do with it, reply and I'll call you. Best, Jonas",
+  "messageType": "informational",
+  "factsUsed": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "callToAction": "reply",
+  "confidence": 0.9,
+  "trigger": "distribution_received",
+  "facts": [
+   {
+    "id": "f1",
+    "label": "portfolio value",
+    "value": "€766,000"
+   },
+   {
+    "id": "f2",
+    "label": "year-to-date return",
+    "value": "+6.8%"
+   },
+   {
+    "id": "f3",
+    "label": "distribution amount",
+    "value": "€75,000"
+   }
+  ],
+  "testCase": false
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "promptId": "extract_signals",
+ "key": "c102",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "factual_question",
+    "summary": "Asks for tax certificate",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c102_msg_2026-10-03",
+      "quote": "send me the tax certificate"
+     }
+    ],
+    "confidence": 0.95
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

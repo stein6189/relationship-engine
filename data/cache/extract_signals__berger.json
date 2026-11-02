@@ -1,0 +1,41 @@
+{
+ "promptId": "extract_signals",
+ "key": "berger",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "liquidity_need",
+    "summary": "Needs ~€300k next spring for an apartment purchase",
+    "amountEur": 300000,
+    "timing": "2027-04-01",
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "berger_msg_2026-10-21",
+      "quote": "I'll probably need around €300k"
+     }
+    ],
+    "confidence": 0.92
+   },
+   {
+    "type": "life_event",
+    "summary": "Buying an apartment in Munich",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "berger_msg_2026-10-21",
+      "quote": "We're buying an apartment in Munich next spring"
+     }
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "promptId": "extract_signals",
+ "key": "c158",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "dissatisfaction",
+    "summary": "Compares fees with his/her bank",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c158_msg_2026-10-11",
+      "quote": "My bank offered me a better fee"
+     }
+    ],
+    "confidence": 0.85
+   },
+   {
+    "type": "transfer_intent",
+    "summary": "May move assets if fee is not matched",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c158_msg_2026-10-11",
+      "quote": "My bank offered me a better fee"
+     }
+    ],
+    "confidence": 0.65
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

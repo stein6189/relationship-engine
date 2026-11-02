@@ -1,0 +1,27 @@
+{
+ "promptId": "extract_signals",
+ "key": "c114",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "factual_question",
+    "summary": "Asks why the portfolio dropped",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c114_msg_2026-09-29",
+      "quote": "Why did my portfolio drop last month?"
+     }
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

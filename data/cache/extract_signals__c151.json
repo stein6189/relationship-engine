@@ -1,0 +1,27 @@
+{
+ "promptId": "extract_signals",
+ "key": "c151",
+ "promptVersion": "v1",
+ "model": "seed (authored offline — replace with live output via warm-cache)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "transfer_intent",
+    "summary": "Considers moving money to private bank",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c151_msg_2026-10-27",
+      "quote": "moving part of my money to my private bank"
+     }
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}
