@@ -9,7 +9,7 @@ Prototype built for the LIQID case study *“AI-Native Advisory Copilot & Hybrid
 Service Engine”* (Senior PM – Private Wealth: Growth & Expansion).
 Synthetic data only · not investment advice · no LIQID branding.
 
-- **Production URL:** not deployed yet — see `PROGRESS.md` → Deployment (password protected via `DEMO_PASSWORD`, any user name)
+- **Production URL:** https://relationship-engine-delta.vercel.app (password protected via `DEMO_PASSWORD`, any user name)
 - **Demo script:** `DEMO.md` (12 minutes). It is also the end-to-end test (`tests/e2e/demo.mjs`).
 - **Start here in the app:** `/rm/plan` → `/split?client=albers` → `/rm/touchpoints` → `/split?client=keller` → `/rm/hood`
 

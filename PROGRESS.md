@@ -50,7 +50,11 @@ Last update: Mon 2 Nov 2026, ~23:30 CET — overnight session finished phases 2�
   with basic auth. Robustness suite passes. Zero console errors.
 - Not run: Round A on the deployed URL (no deployment, see below).
 
-## Deployment — NOT DONE (needs Daniel, ~5 minutes)
+## Deployment — DONE by Daniel on 3 Nov 2026
+**Production URL: https://relationship-engine-delta.vercel.app** (team stedao, imported from GitHub; pushes to main redeploy).
+To check: env vars set + redeployed, Vercel Authentication off, password prompt works.
+
+Original notes:
 The Vercel connector in this session could read the team "stedao" but got
 **403 "You don't have permission to create the project"**; no Vercel token/CLI
 was available. Steps:
