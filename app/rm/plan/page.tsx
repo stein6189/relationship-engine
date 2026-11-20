@@ -27,7 +27,7 @@ function SignalChip({ s }: { s: Signal }) {
   return (
     <span className="inline-flex items-center gap-0.5">
       <Badge tone={lowConf ? 'amber' : SIGNAL_TONE[s.type] ?? 'slate'} title={`${s.summary}\nSource: ${s.sourceIds.join(', ')}${s.quote ? `\n“${s.quote}”` : ''}\n${s.origin === 'ai' ? `AI-extracted · confidence ${Math.round(s.confidence * 100)}%` : 'From data (code)'}`}>
-        {s.origin === 'ai' ? '✦ ' : ''}{SIGNAL_LABEL[s.type]}{s.amountEur && s.origin === 'ai' ? ` ${eurShort(s.amountEur)}` : ''} · {srcLabel(s)}{s.origin === 'ai' ? ` · ${Math.round(s.confidence * 100)}%` : ''}{lowConf ? ' · please verify' : ''}
+        {s.origin === 'ai' ? '✦ ' : ''}{SIGNAL_LABEL[s.type]}{s.amountEur && (s.origin === 'ai' || s.type === 'withdrawal') ? ` ${eurShort(s.amountEur)}` : ''} · {srcLabel(s)}{s.origin === 'ai' ? ` · ${Math.round(s.confidence * 100)}%` : ''}{lowConf ? ' · please verify' : ''}
       </Badge>
       {s.origin === 'ai' && (
         <span className="ml-0.5 flex text-[11px]">
