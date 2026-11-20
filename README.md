@@ -26,7 +26,7 @@ Synthetic data only · not investment advice · no LIQID branding.
 | V6 Liquidity | `/rm/client/keller/liquidity` | 12-month cash-flow chart, gap step by step, options (sell / bridge / transfer) with code numbers and AI one-liners, stress test, concept label, RM-approved message |
 | V7 Client app | `/client/[id]` | Phone frame: Home (portfolio, advisor, capital call, J-curve with own numbers, messages), Invest (Albers journey), Activity (shared timeline), Ask (factual → AI answer; advice → RM) |
 | Split view | `/split?client=albers` · `keller` | RM workspace left, client phone right, one shared state |
-| V8 Under the hood | `/rm/hood` | 8 prompts with model routing, guardrails, log of every AI call with facts, raw JSON, validation, guard, latency, live/cached; RM overrides and feedback |
+| V8 Under the hood | `/rm/hood` | 9 prompts with model routing, guardrails, log of every AI call with facts, raw JSON, validation, guard, latency, live/cached; RM overrides and feedback |
 | About | `/rm/about` | Thesis, division of labour, guardrails, what is not built |
 
 ## Architecture
@@ -65,6 +65,7 @@ the advice · the client self-serves facts, reads, signs and funds.
 | `check_qualification_consistency` | fast | V5 — questionnaire vs notes; never decides eligibility |
 | `route_client_question` | fast | V7 — factual (answer from facts) / advice (to RM with draft) / out of scope |
 | `explain_option` | fast | V6 — one neutral line per option |
+| `read_fund_notice` | fast | V6 — reads the capital call notice; code checks amount and date against the schedule |
 
 Source of truth: `prompts/*.md` (system prompt, input, output schema, guardrails),
 bundled into `lib/promptIndex.ts`; schemas in `lib/ai/schemas.ts`.
@@ -80,6 +81,19 @@ bundled into `lib/promptIndex.ts`; schemas in `lib/ai/schemas.ts`.
 7. AI never recommends an investment or a loan to a client; advice questions go to the RM with a draft.
 8. Client messages never mention tracked behaviour (page views, logins).
 9. Seeded test cases (wrong number in one touchpoint, verifier test sentence) are always labelled **“Test case”**.
+
+## How I built this
+
+- **Daniel** defined the thesis ("one relationship, not two systems"), wrote the specs
+  (`SPEC.md`, `RULES.md`, `DATA.md`, `DEMO.md`, `prompts/`), set the non-negotiable rules
+  and made every product decision (`DECISIONS.md`).
+- **Claude Code** wrote and tested the code autonomously against those specs:
+  unit tests for every rule, Playwright runs of the demo script, screenshot reviews.
+- **Review rounds** through five lenses (Head of Product, MD, Compliance, RM, client),
+  logged in `QA_REPORT.md`.
+- **AI suggestions that were corrected**, for example: RM time counted as revenue
+  (business case reduced to €1.1m), a pipeline stage "Funded" before money arrived,
+  drift into prospects (kept out: existing clients only), third-person suitability text.
 
 ## Run locally
 
@@ -142,7 +156,7 @@ Import `stein6189/relationship-engine` as a Next.js project (defaults), set
 
 | Criterion | Evidence |
 |---|---|
-| AI nativeness (25%) | 8 prompts with schemas, fast/smart model split, verifier as separate call, number guard, confidence thresholds, cached fallback, V8 |
+| AI nativeness (25%) | 9 prompts with schemas, fast/smart model split, verifier as separate call, number guard, confidence thresholds, cached fallback, V8 |
 | Product thinking (20%) | Two users, split view, explicit scope and "not built" list, override + feedback |
 | Hybrid & domain judgment (20%) | MiFID flow order, KAGB qualification with RM attestation, capital calls / distributions / J-curve, liquidity bridge with stress test |
 | Strategic & commercial (20%) | One-pager; Excel model for the live session (not part of the prototype) |

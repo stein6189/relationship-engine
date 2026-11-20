@@ -30,7 +30,7 @@ await go('/rm/plan', '0 · Demo date 20 Nov 2026. The November plan ran on the 1
 await pause(3);
 await caption('1 · 4,000 meetings a year for 3,500 clients — yet half get no proactive contact. Capacity bar: 20 RM slots.');
 await pause(3.5);
-await caption('2 · Run monthly orchestration: fast model reads, rules score and allocate, smart model drafts.');
+await caption('2 · Run orchestration: fast model reads, rules score and allocate, smart model drafts.');
 await page.getByTestId('run-orchestration').click();
 await page.getByText(/clients read live/).waitFor({ timeout: 90000 });
 await pause(2.5);

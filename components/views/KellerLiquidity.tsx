@@ -13,6 +13,7 @@ import { numberGuard } from '@/lib/rules/numberGuard';
 import { eur, eurShort, fmtDate, pct } from '@/lib/rules/format';
 import { LENDING_VALUES, SIM_TODAY, STRESS, LOMBARD_RATE } from '@/lib/rules/config';
 import { AiMetaBadge } from '@/components/AiMetaBadge';
+import { dataConflicts, checkNotice } from '@/lib/rules/consistency';
 import { GuardedText } from '@/components/GuardedText';
 import { Badge, Button, Card, SectionTitle, Spinner, Term } from '@/components/ui';
 
@@ -85,6 +86,18 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { if (ready && !Object.keys(k.explanations).length) void explainAll(); }, [ready]);
 
+  async function readNotice() {
+    const doc = c.items.find((i) => i.kind === 'fund_document');
+    if (!doc) return;
+    const r = await ai<any>('read_fund_notice', { cacheKey: 'keller', document: { id: doc.id, text: doc.text } }, { clientId: 'keller', label: 'Fund notice · Atlas Growth V' });
+    update((x) => ({ ...x, keller: { ...x.keller, notice: { output: r.output, meta: r.meta } } }));
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { if (ready && !k.notice) void readNotice(); }, [ready]);
+  const notice = k.notice?.output;
+  const noticeCheck = notice ? checkNotice(c, notice) : null;
+  const conflicts = dataConflicts(c);
+
   async function draftMessage(opt: OptionId) {
     setBusy('draft');
     setK({ option: opt, draft: undefined, draftMeta: undefined, messageApproved: false, clientConfirmed: false });
@@ -107,7 +120,7 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
   const rows: { id: OptionId; cost: string; aum: string; fee: string; note: React.ReactNode }[] = [
     { id: 'sell', cost: `${eur(sell.taxEur)} tax (simplified estimate)`, aum: `−${eur(gap.gapEur)}`, fee: `−${eur(sell.feeLostPaEur)} p.a.`, note: <>Realises gains: {pct(sell.realisedGainEur / gap.gapEur, 0)} of the amount sold is gain → {eur(sell.realisedGainEur)} × 26.375%. Simplified: before the 30% partial exemption for equity funds (Teilfreistellung), which would lower it to about {eur(sell.taxWithPartialExemptionEur)}.</> },
     { id: 'bridge', cost: `${eur(bridge.interestEur)} interest (${KELLER_BRIDGE_MONTHS} months at ${pct(LOMBARD_RATE)})`, aum: 'unchanged', fee: '±€0', note: <><Badge tone="amber">Concept option — product availability assumed</Badge> Covered under stress test: {bridge.coveredUnderStress ? 'yes' : 'no'}.</> },
-    { id: 'transfer', cost: '€0', aum: `+${eur(transfer.aumChangeEur)}`, fee: `+${eur(transfer.feeGainPaEur)} p.a.`, note: <>Only if the client confirms the cash is available — ask the client.</> },
+    { id: 'transfer', cost: '€0', aum: `+${eur(transfer.aumChangeEur)}`, fee: `+${eur(transfer.feeGainPaEur)} p.a.`, note: <>Only if the client confirms the cash is available — ask the client. Cash in the holding (Keller Beteiligungs GmbH) is company money: taking it out privately has tax consequences.</> },
   ];
 
   return (
@@ -115,7 +128,7 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold">Liquidity · Dr. Thomas Keller</h1>
-          <p className="text-sm text-slate-500">Private account (the ETFs and funds below) · also invests via Keller Beteiligungs GmbH, not shown · {eur(c.aumEur)} with us · next <Term t="capital call">capital call</Term> {eur(gap.callsEur)} on {fmtDate(gap.firstDueDate!)}.</p>
+          <p className="text-sm text-slate-500">Private account (the ETFs and funds below) · {eur(c.aumEur)} with us (company account in Client 360, not used here) · next <Term t="capital call">capital call</Term> {eur(gap.callsEur)} on {fmtDate(gap.firstDueDate!)}.</p>
         </div>
         {!embedded && <div className="flex gap-1.5"><Link href="/rm/client/keller"><Button>Client 360</Button></Link><Link href="/split?client=keller"><Button variant="primary">Split view</Button></Link></div>}
       </div>
@@ -136,6 +149,33 @@ export function KellerLiquidity({ embedded }: { embedded?: boolean }) {
           </tbody></table>
           <p className="mt-2 text-xs text-slate-500">The Meridian Buyout IV distribution of {eur(c.cashflows.find((e) => e.type === 'distribution')!.amountEur)} expected {fmtDate(c.cashflows.find((e) => e.type === 'distribution')!.date)} is <Term t="distribution">indicative</Term> and comes after the due date, so it is not counted.</p>
           <p className="mt-2 text-xs text-slate-500">Atlas Growth V: paid in {eur(c.commitments.find((x) => x.fundId === 'ag5')!.calledEur)}, value {eur(c.commitments.find((x) => x.fundId === 'ag5')!.navEur)} → normal <Term t="J-curve">J-curve</Term> in year 2.</p>
+        </Card>
+      </div>
+
+      <div className="grid gap-4 xl:grid-cols-2">
+        <Card className="p-4" data-testid="fund-notice">
+          <SectionTitle right={k.notice?.meta && <AiMetaBadge meta={k.notice.meta} output={notice} />}>✦ Capital call notice (AI reads, code checks)</SectionTitle>
+          {!k.notice && <div className="flex items-center gap-2 text-sm text-slate-500"><Spinner /> Reading the fund document…</div>}
+          {k.notice && !notice && <p className="text-sm text-amber-800">Needs review — AI output could not be validated. Check the notice by hand.</p>}
+          {notice && noticeCheck && (
+            <table className="w-full text-sm"><tbody>
+              <tr className="border-b border-slate-100"><td className="py-1 text-slate-500">Fund · notice</td><td className="py-1">{notice.fund} · {notice.noticeType.replace('_', ' ')}</td><td /></tr>
+              <tr className="border-b border-slate-100"><td className="py-1 text-slate-500">Amount (read by AI)</td><td className="tnum py-1">{eur(notice.amountEur)}</td><td className="text-right">{noticeCheck.amountMatches ? <Badge tone="green">matches schedule</Badge> : <Badge tone="red">differs from schedule{noticeCheck.scheduled ? ` (${eur(noticeCheck.scheduled.amountEur)})` : ''}</Badge>}</td></tr>
+              <tr className="border-b border-slate-100"><td className="py-1 text-slate-500">Due date (read by AI)</td><td className="tnum py-1">{fmtDate(notice.dueDate)}</td><td className="text-right">{noticeCheck.dateMatches ? <Badge tone="green">matches schedule</Badge> : <Badge tone="red">no call on this date</Badge>}</td></tr>
+              <tr><td className="py-1 text-slate-500">Purpose</td><td className="py-1 text-xs" colSpan={2}>{notice.purpose}</td></tr>
+            </tbody></table>
+          )}
+          <p className="mt-2 text-[11px] text-slate-500">The amount the AI reads is only compared, never used to calculate. All calculations use the cash-flow schedule.</p>
+        </Card>
+        <Card className={clsx('p-4', conflicts.length && 'border-amber-300')} data-testid="data-check">
+          <SectionTitle right={conflicts.length ? <Badge tone="amber">needs fixing</Badge> : <Badge tone="green">consistent</Badge>}>Data check: CRM vs custodian (code)</SectionTitle>
+          {conflicts.length === 0 && <p className="text-sm text-slate-600">CRM and custodian agree.</p>}
+          {conflicts.map((d) => (
+            <div key={d.field} className="text-sm">
+              <div><b>{d.field}:</b> CRM says {d.crm}; custodian says <b>{d.custodian}</b>.</div>
+              <div className="mt-1 text-xs text-slate-600">{d.action} The gap above uses {d.custodian}. With the CRM value the RM would have seen a smaller gap.</div>
+            </div>
+          ))}
         </Card>
       </div>
 

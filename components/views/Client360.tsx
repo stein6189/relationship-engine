@@ -14,6 +14,9 @@ import { laneLabel } from '@/lib/rules/allocation';
 import { SIGNAL_LABEL } from '@/lib/labels';
 import { AiMetaBadge } from '@/components/AiMetaBadge';
 import { Badge, Button, Card, SectionTitle, Spinner, Term } from '@/components/ui';
+import { ContactActions } from '@/components/ContactActions';
+import { openItems } from '@/lib/openItems';
+import { dataConflicts } from '@/lib/rules/consistency';
 
 const ASSET: Record<string, string> = { equity_etf: 'Equity ETFs', bond_etf: 'Bond ETFs', cash: 'Cash', money_market: 'Money market', single_stock: 'Single stocks', pm: 'Private markets (NAV)' };
 
@@ -35,12 +38,13 @@ export function Brief({ id, compact }: { id: string; compact?: boolean }) {
   const b = s.briefs[id];
   const map = useMemo(() => sourceMap(c), [c]);
   const facts = useMemo(() => briefFacts(id), [id]);
+  const open = openItems(c, s);
 
   async function generate() {
     setBusy(true);
     const a = byId.get(id);
     const timeline = timelineFor(c, s).filter((t) => t.kind !== 'view').slice(0, 15).map((t) => ({ id: t.id, date: t.date, title: t.title, text: t.text }));
-    const r = await ai<any>('meeting_brief', { cacheKey: id, facts, signals: (a?.signals ?? []).map((x) => ({ type: x.type, summary: x.summary, sourceIds: x.sourceIds })), timeline, planReason: a?.reason }, { clientId: id, label: `Meeting brief · ${c.name}` });
+    const r = await ai<any>('meeting_brief', { cacheKey: id, facts, signals: (a?.signals ?? []).map((x) => ({ type: x.type, summary: x.summary, sourceIds: x.sourceIds })), timeline, planReason: a?.reason, openItems: openItems(c, s).map((o) => o.text) }, { clientId: id, label: `Meeting brief · ${c.name}` });
     update((x) => ({ ...x, briefs: { ...x.briefs, [id]: { output: r.output, meta: r.meta } }, minutesSaved: x.briefs[id] || !r.output ? x.minutesSaved : x.minutesSaved + MINUTES_SAVED.brief }));
     setBusy(false);
   }
@@ -50,6 +54,12 @@ export function Brief({ id, compact }: { id: string; compact?: boolean }) {
   return (
     <Card className="p-4" data-testid="ai-brief">
       <SectionTitle right={b?.meta && <AiMetaBadge meta={b.meta} output={b.output} facts={facts} confidence={b.output?.confidence} />}>✦ Meeting brief</SectionTitle>
+      {open.length > 0 && (
+        <div className="mb-3 rounded-lg bg-amber-50/70 p-2.5 text-sm" data-testid="open-items">
+          <div className="text-xs font-semibold text-amber-900">Open items from earlier contacts (from records, code)</div>
+          <ul className="mt-1 list-disc space-y-0.5 pl-4 text-slate-800">{open.map((o) => <li key={o.text}>{o.text}</li>)}</ul>
+        </div>
+      )}
       {busy && <div className="flex items-center gap-2 text-sm text-slate-500"><Spinner /> Reading messages, notes and portfolio…</div>}
       {!busy && !b && <div className="flex items-center justify-between gap-2 text-sm text-slate-500"><span>No brief yet.</span><Button onClick={generate}>Prepare brief</Button></div>}
       {!busy && b && !b.output && <div className="text-sm text-amber-800" data-testid="needs-review"><b>Needs review — AI output could not be validated.</b> {b.meta.fallbackReason ?? (b.meta.validation === "failed" ? "Invalid output twice, no cached brief for this client." : "")} <Button className="ml-2 text-xs" onClick={generate}>Retry</Button></div>}
@@ -88,6 +98,7 @@ export function Timeline({ items, side }: { items: TimelineItem[]; side: 'rm' | 
             <div className="mt-0.5 flex flex-wrap gap-x-1.5 whitespace-nowrap text-[10px]">
               {t.kind === 'view' ? <span className="text-slate-500">◆ client action · RM only — never shown in the app or used in client messages</span>
                 : t.kind === 'note' ? <span className="text-slate-500">◆ RM only — not visible to the client</span>
+                : t.kind === 'document' && t.actor === 'system' ? <><span className="text-sky-700">● visible to client</span><span className="text-accent">● visible to RM</span><span className="text-slate-500">● from the fund</span></>
                 : t.kind === 'sent' || t.kind === 'document' ? <><span className="text-sky-700">● delivered to the client app</span><span className="text-accent">● sent by RM</span></>
                 : <><span className="text-sky-700">● visible to client</span><span className="text-accent">● visible to RM</span></>}
             </div>
@@ -117,6 +128,7 @@ export function Client360({ id, embedded }: { id: string; embedded?: boolean }) 
             <Badge tone={a.lane === 'rm' ? 'teal' : a.lane === 'digital' ? 'blue' : 'slate'}>November: {laneLabel[a.lane]}</Badge>
             <span className="text-sm text-slate-700">{a.reason}</span>
           </div>
+          <ContactActions name={c.name} />
         </div>
         {!embedded && (
           <div className="flex flex-wrap gap-1.5">
@@ -141,7 +153,7 @@ export function Client360({ id, embedded }: { id: string; embedded?: boolean }) 
             <SectionTitle>Portfolio (code)</SectionTitle>
             <table className="w-full text-sm"><tbody>
               {c.holdings.map((h) => <tr key={h.name} className="border-b border-slate-100"><td className="py-1">{ASSET[h.assetClass]}<div className="text-[11px] text-slate-500">{h.name}</div></td><td className="tnum py-1 text-right">{eur(h.valueEur)}</td></tr>)}
-              <tr className="font-semibold"><td className="py-1">Assets with us</td><td className="tnum py-1 text-right">{eur(c.aumEur)}</td></tr>
+              <tr className="font-semibold"><td className="py-1">{c.companyAccount ? 'Private account with us' : 'Assets with us'}</td><td className="tnum py-1 text-right">{eur(c.aumEur)}</td></tr>
             </tbody></table>
             <dl className="mt-3 grid grid-cols-2 gap-y-1 text-sm">
               <dt className="text-slate-500">Stated investable wealth</dt><dd className="tnum text-right">{eur(c.statedInvestableEur)}</dd>
@@ -152,6 +164,29 @@ export function Client360({ id, embedded }: { id: string; embedded?: boolean }) 
               <dt className="text-slate-500">Objectives</dt><dd className="text-right text-xs">{c.objectives.join(', ')}{c.goal ? ` · ${c.goal}` : ''}</dd>
             </dl>
           </Card>
+          {c.companyAccount && (
+            <Card className="p-4" data-testid="company-account">
+              <SectionTitle right={<Badge tone="blue">holding structure</Badge>}>Company account · {c.companyAccount.name}</SectionTitle>
+              <table className="w-full text-sm"><tbody>
+                {c.companyAccount.holdings.map((h) => <tr key={h.name} className="border-b border-slate-100"><td className="py-1">{ASSET[h.assetClass]}<div className="text-[11px] text-slate-500">{h.name}</div></td><td className="tnum py-1 text-right">{eur(h.valueEur)}</td></tr>)}
+                <tr className="font-semibold"><td className="py-1">Company account</td><td className="tnum py-1 text-right">{eur(c.companyAccount.aumEur)}</td></tr>
+                <tr className="font-semibold text-accent"><td className="py-1">Relationship total with us</td><td className="tnum py-1 text-right">{eur(c.aumEur + c.companyAccount.aumEur)}</td></tr>
+              </tbody></table>
+              <p className="mt-2 text-xs text-slate-600">{c.companyAccount.mandate}. {c.companyAccount.note}</p>
+              <p className="mt-1 text-[11px] text-slate-500">Liquidity gap, credit line and tax in this prototype use the private account only.</p>
+            </Card>
+          )}
+          {dataConflicts(c).length > 0 && (
+            <Card className="border-amber-300 p-4" data-testid="data-check">
+              <SectionTitle right={<Badge tone="amber">needs fixing</Badge>}>Data check (code)</SectionTitle>
+              {dataConflicts(c).map((d) => (
+                <div key={d.field} className="text-sm">
+                  <div><b>{d.field}:</b> CRM says {d.crm}; custodian says <b>{d.custodian}</b>.</div>
+                  <div className="text-xs text-slate-600">{d.action}</div>
+                </div>
+              ))}
+            </Card>
+          )}
           {c.commitments.length > 0 && (
             <Card className="p-4">
               <SectionTitle>Private markets</SectionTitle>

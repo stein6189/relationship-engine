@@ -25,6 +25,7 @@ export function timelineFor(c: Client, s: DemoState): TimelineItem[] {
   const out: TimelineItem[] = [];
   for (const it of c.items) {
     if (it.kind === 'rm_note') out.push({ id: it.id, date: it.date, kind: 'note', actor: 'rm', title: 'RM note', text: it.text, seenByClient: false, seenByRm: true, clientVisible: false });
+    else if (it.kind === 'fund_document') out.push({ id: it.id, date: it.date, kind: 'document', actor: 'system', title: 'Capital call notice from the fund', text: it.text.length > 160 ? it.text.slice(0, 157).trimEnd() + '…' : it.text, seenByClient: true, seenByRm: true, clientVisible: true });
     else out.push({ id: it.id, date: it.date, kind: 'message', actor: it.from === 'client' ? 'client' : 'rm',
       title: it.kind === 'support_chat' ? `Support chat: ${c.firstName} asked` : it.kind === 'withdrawal_reason' ? 'Reason given on the withdrawal request' : it.from === 'client' ? `Message from ${c.firstName}` : 'Message from Jonas',
       text: it.text, seenByClient: true, seenByRm: true, clientVisible: true });
@@ -54,7 +55,7 @@ export function timelineFor(c: Client, s: DemoState): TimelineItem[] {
 /** Everything a source id in an AI output can point to. */
 export function sourceMap(c: Client): Record<string, string> {
   const m: Record<string, string> = {};
-  for (const it of c.items) m[it.id] = `${it.kind === 'rm_note' ? 'RM note' : it.kind === 'support_chat' ? 'Support chat' : it.kind === 'withdrawal_reason' ? 'Withdrawal reason' : 'Client message'} ${fmtDate(it.date)}: “${it.text}”`;
+  for (const it of c.items) m[it.id] = `${it.kind === 'rm_note' ? 'RM note' : it.kind === 'support_chat' ? 'Support chat' : it.kind === 'withdrawal_reason' ? 'Withdrawal reason' : it.kind === 'fund_document' ? 'Fund notice' : 'Client message'} ${fmtDate(it.date)}: “${it.text}”`;
   for (const f of factsFor(c.id)) m[f.id] = `${f.label}: ${f.value} (computed by code)`;
   m.cashflows = 'Fund cash-flow schedule (capital calls and distributions)';
   m.questionnaire = `Knowledge & experience questionnaire: private equity experience “${c.questionnaire.peExperience}”`;

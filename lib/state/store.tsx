@@ -35,7 +35,7 @@ export interface DemoState {
     verifySnapshot?: Record<string, string>; finalStatement?: string; contradictionReviewed?: boolean;
     clarification?: string; questionnaireUpdated?: boolean; questionnaireUpdatedAt?: string; attestedAt?: string; ackAt?: string; signedAt?: string; fundedAt?: string;
   };
-  keller: { option?: 'sell' | 'bridge' | 'transfer'; draft?: any; draftMeta?: AiMeta; messageApproved: boolean; clientConfirmed: boolean; explanations: Record<string, any> };
+  keller: { option?: 'sell' | 'bridge' | 'transfer'; draft?: any; draftMeta?: AiMeta; messageApproved: boolean; clientConfirmed: boolean; explanations: Record<string, any>; notice?: { output: any; meta: AiMeta } };
 }
 
 const initial = (): DemoState => ({

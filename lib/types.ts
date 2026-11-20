@@ -26,8 +26,8 @@ export interface CashflowEvent {
 export interface TextItem {
   id: string;
   date: string;
-  kind: 'app_message' | 'rm_note' | 'email' | 'support_chat' | 'withdrawal_reason';
-  from: 'client' | 'rm';
+  kind: 'app_message' | 'rm_note' | 'email' | 'support_chat' | 'withdrawal_reason' | 'fund_document';
+  from: 'client' | 'rm' | 'fund';
   text: string;
 }
 
@@ -68,6 +68,10 @@ export interface Client {
   questionnaire: { peExperience: 'none' | 'some' | 'extensive'; knowledgeScore: number; complete: boolean };
   documents: string[];
   extraFacts?: Record<string, string | number>;
+  /** A second account held through the client's company (holding structure). Not part of aumEur; own tax and mandate. */
+  companyAccount?: { name: string; aumEur: number; holdings: Holding[]; mandate: string; note: string };
+  /** What the CRM says, to compare with custodian data (portfolio holdings). */
+  crmRecord?: { cashEur: number; updatedAt: string };
 }
 
 export type SignalType =

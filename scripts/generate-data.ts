@@ -81,7 +81,17 @@ const personas: Client[] = [
     items: [
       { id: 'keller_msg_2026-09-30', date: '2026-09-30', kind: 'app_message', from: 'client', text: 'Why is Atlas Growth showing a loss? I thought this was a good fund.' },
       { id: 'keller_msg_2026-10-19', date: '2026-10-19', kind: 'app_message', from: 'client', text: 'Is the Atlas number still negative? Should I be worried?' },
+      { id: 'keller_doc_2026-11-04', date: '2026-11-04', kind: 'fund_document', from: 'fund', text: 'ATLAS GROWTH V SCSp - CAPITAL CALL NOTICE No. 4\nInvestor: Dr. Thomas Keller\nCommitment: EUR 400,000\nThis drawdown: EUR 150,000 (37.5% of commitment)\nDue date: 1 December 2026\nPurpose: investments in two portfolio companies and management fee\nPlease make sure the amount is available in your cash account for collection on the due date.' },
     ],
+    companyAccount: {
+      name: 'Keller Beteiligungs GmbH', aumEur: 650000, mandate: 'Company treasury mandate, low risk',
+      note: 'Company account: taxed under corporate rules, not the private flat tax. Moving money from the company to Thomas privately has tax consequences.',
+      holdings: [
+        { assetClass: 'money_market', name: 'Money market fund', valueEur: 250000 },
+        { assetClass: 'bond_etf', name: 'Short-term bond ETFs', valueEur: 400000 },
+      ],
+    },
+    crmRecord: { cashEur: 60000, updatedAt: '2026-09-15' },
     questionnaire: { peExperience: 'extensive', knowledgeScore: 9, complete: true }, documents: ['ID verified', 'Semi-professional investor declaration 2024'],
   },
   {

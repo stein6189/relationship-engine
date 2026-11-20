@@ -61,7 +61,11 @@ export const schemas = {
     confidence: conf,
   }),
   explain_option: z.object({ optionId: z.string(), sentence: z.string(), factsUsed: z.array(z.string()), confidence: conf }),
+  read_fund_notice: z.object({
+    fund: z.string(), investor: z.string(), noticeType: z.enum(['capital_call', 'distribution', 'other']),
+    amountEur: z.number(), dueDate: z.string(), purpose: z.string(), confidence: conf,
+  }),
 } as const;
 
 export type TaskId = keyof typeof schemas;
-export const FAST_TASKS: TaskId[] = ['extract_signals', 'check_qualification_consistency', 'route_client_question', 'explain_option'];
+export const FAST_TASKS: TaskId[] = ['extract_signals', 'check_qualification_consistency', 'route_client_question', 'explain_option', 'read_fund_notice'];

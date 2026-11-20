@@ -28,6 +28,8 @@ await step('3 · Berger card: liquidity need €300k, quote, confidence, RM lane
   const t = await card.innerText();
   expect(/Liquidity need/.test(t) && /300/.test(t) && /%/.test(t), 'berger chips: ' + t);
   expect(/€300k/.test(await card.getByTestId('card-quote').innerText()), 'client quote visible on card');
+  await card.getByTestId('action-meeting').click();
+  expect((await card.getByTestId('contact-actions').innerText()).includes('Prototype:'), 'dummy action shows prototype note');
   await card.scrollIntoViewIfNeeded(); await shot(page, P + '03-berger');
 });
 await step('3b · Case A: same €150k withdrawal, different reason → different lane', async () => {
@@ -130,6 +132,8 @@ await step('10 · Keller V6: timeline, gap, options, stress test', async () => {
   const st = await page.getByTestId('stress-test').innerText();
   expect(st.includes('€464,000') && st.includes('€355,200'), 'stress test values');
   expect((await page.getByTestId('option-bridge').innerText()).includes('Concept option'), 'concept label');
+  await page.getByTestId('fund-notice').getByText('matches schedule').first().waitFor(T);
+  expect((await page.getByTestId('data-check').innerText()).includes('€60,000'), 'CRM vs custodian conflict shown');
   await shot(page, P + '10a-liquidity');
   await page.getByTestId('pick-bridge').click();
   await page.getByTestId('approve-keller-msg').click(T);
@@ -144,6 +148,8 @@ await step('11 · split Keller: proposal in app, J-curve explained, factual answ
   await page.getByTestId('suggest-keller_sell').click();
   await page.getByTestId('answer-advice').first().waitFor(T);
   await page.getByTestId('split-requests').waitFor(T);
+  await page.getByTestId('suggest-keller_election').click();
+  await page.waitForFunction(() => document.querySelectorAll('[data-testid="answer-advice"]').length >= 2, null, T);
   await shot(page, P + '11-split-keller');
 });
 await step('11b · pipeline: Albers moved past "Qualified"', async () => {

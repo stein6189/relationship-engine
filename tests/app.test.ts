@@ -118,3 +118,34 @@ describe('Case A: same withdrawal, different context', () => {
     expect(riskProbability(s)).toBeCloseTo(0.1);
   });
 });
+
+import { dataConflicts, checkNotice } from '@/lib/rules/consistency';
+import { openItems } from '@/lib/openItems';
+
+describe('coverage additions', () => {
+  const keller = clientById('keller')!;
+  it('election question is routed as advice', () => {
+    expect(cacheKeyFor('keller', 'Should I sell everything before the election?')).toBe('keller_election');
+    expect(seedCache['route_client_question__keller_election']?.output?.category ?? 'advice').toBe('advice');
+  });
+  it('CRM cash conflicts with custodian; custodian wins', () => {
+    const d = dataConflicts(keller);
+    expect(d).toHaveLength(1);
+    expect(d[0].crm).toContain('€60,000');
+    expect(d[0].used).toBe('custodian');
+  });
+  it('fund notice matches the schedule', () => {
+    expect(checkNotice(keller, { amountEur: 150_000, dueDate: '2026-12-01' })).toMatchObject({ amountMatches: true, dateMatches: true });
+    expect(checkNotice(keller, { amountEur: 160_000, dueDate: '2026-12-01' }).amountMatches).toBe(false);
+  });
+  it('open items exist for the demo personas and cite a source', () => {
+    for (const id of ['albers', 'keller']) {
+      const items = openItems(clientById(id)!, { ...base, keller: {} });
+      expect(items.length).toBeGreaterThan(0);
+      items.forEach((i) => expect(i.source).toBeTruthy());
+    }
+  });
+  it('fund notice appears on the timeline as a document', () => {
+    expect(timelineFor(keller, base).some((x) => x.kind === 'document' && x.title.includes('Capital call notice'))).toBe(true);
+  });
+});

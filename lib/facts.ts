@@ -72,6 +72,8 @@ export function kellerFacts(): Fact[] {
     { id: 'k_bond', label: 'Bond ETFs', value: eur(c.holdings.find((h) => h.assetClass === 'bond_etf')!.valueEur) },
     { id: 'k_mbo4', label: 'Meridian Buyout IV commitment / paid in', value: `${eur(c.commitments.find((x) => x.fundId === 'mbo4')!.commitmentEur)} / ${eur(c.commitments.find((x) => x.fundId === 'mbo4')!.calledEur)}` },
     { id: 'k_months', label: 'Bridge duration', value: `${KELLER_BRIDGE_MONTHS} months` },
+    { id: 'k_horizon', label: 'Investment horizon', value: `${c.horizonYears} years` },
+    { id: 'k_company', label: 'Company account (Keller Beteiligungs GmbH)', value: eur(c.companyAccount?.aumEur ?? 0) },
   ];
 }
 

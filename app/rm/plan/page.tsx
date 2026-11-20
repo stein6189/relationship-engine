@@ -14,6 +14,7 @@ import { STAGES, seededPipeline, albersStage, avgDaysToFunded, type Opportunity 
 import { portfolioFacts } from '@/lib/facts';
 import type { Allocation, Lane, Signal } from '@/lib/types';
 import { Badge, Button, Card, Modal, SectionTitle, Spinner, Stat, Term } from '@/components/ui';
+import { ContactActions } from '@/components/ContactActions';
 
 const STEP_NAMES = ['Read signals (AI · fast model)', 'Score clients (rules)', 'Allocate fixed capacity (rules)', 'Draft touchpoints (AI · smart model)'];
 
@@ -64,6 +65,7 @@ function ClientCard({ a, onOverride }: { a: Allocation; onOverride: (a: Allocati
         {a.churnReason && <Badge tone="red" title="AI hypothesis from signals — to be confirmed by the RM">Churn reason? {a.churnReason}</Badge>}
         {ov && <Badge tone="violet" title={`Moved by RM: ${ov.reason}`}>RM override</Badge>}
       </div>
+      {a.lane === 'rm' && <ContactActions name={c.name} compact />}
     </Card>
   );
 }
@@ -182,7 +184,7 @@ export default function PlanPage() {
           <h1 className="text-xl font-semibold">November plan</h1>
           <p className="text-sm text-slate-500">Generated {fmtDate(PLAN_DATE)}{s.orchestratedAt ? ` · re-run ${new Date(s.orchestratedAt).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}` : ''} · one list, one reason per client.</p>
         </div>
-        <Button variant="primary" onClick={runOrchestration} disabled={running} data-testid="run-orchestration">{running ? <><Spinner /> Running…</> : 'Run monthly orchestration'}</Button>
+        <Button variant="primary" onClick={runOrchestration} disabled={running} data-testid="run-orchestration">{running ? <><Spinner /> Running…</> : 'Run orchestration'}</Button>
       </div>
 
       {step >= 0 && (

@@ -1,0 +1,16 @@
+{
+ "promptId": "read_fund_notice",
+ "key": "keller",
+ "promptVersion": "v1",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "fund": "Atlas Growth V",
+  "investor": "Dr. Thomas Keller",
+  "noticeType": "capital_call",
+  "amountEur": 150000,
+  "dueDate": "2026-12-01",
+  "purpose": "Investments in two portfolio companies and management fee",
+  "confidence": 0.93
+ }
+}

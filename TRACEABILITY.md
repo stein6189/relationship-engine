@@ -31,7 +31,7 @@ Put this table in the repo README. It lets the panel check every requirement.
 
 | Criterion | Evidence |
 |---|---|
-| AI nativeness (25%) | 8 prompts with schemas, fast/smart model split, verifier as separate call, number guard, confidence thresholds, cached fallback, V8 |
+| AI nativeness (25%) | 9 prompts with schemas, fast/smart model split, verifier as separate call, number guard, confidence thresholds, cached fallback, V8 |
 | Product thinking (20%) | Two users, split view, explicit scope and "not built" list, override + feedback |
 | Hybrid & domain judgment (20%) | MiFID flow order, KAGB qualification with RM attestation, capital calls / distributions / J-curve, liquidity bridge with stress test |
 | Strategic & commercial (20%) | One-pager; Excel model for the live session (not part of the prototype) |

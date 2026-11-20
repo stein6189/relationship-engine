@@ -4,6 +4,7 @@ export const SUGGESTED: Record<string, { q: string; key: string }[]> = {
     { q: 'When is the next capital call and how much?', key: 'keller_next_call' },
     { q: 'Why is Atlas Growth negative?', key: 'keller_negative' },
     { q: 'Should I sell ETFs to pay the call?', key: 'keller_sell' },
+    { q: 'Should I sell everything before the election?', key: 'keller_election' },
   ],
   albers: [
     { q: 'What happens if I need the money earlier?', key: 'albers_early' },
@@ -15,6 +16,7 @@ export function cacheKeyFor(clientId: string, q: string): string {
   const exact = SUGGESTED[clientId]?.find((s) => s.q.toLowerCase() === t);
   if (exact) return exact.key;
   if (clientId === 'keller') {
+    if (/election|everything/.test(t)) return 'keller_election';
     if (/\b(sell|borrow|loan|should i|invest|reinvest)\b/.test(t)) return 'keller_sell';
     if (/(negative|loss|minus|down|j-curve|why is atlas)/.test(t)) return 'keller_negative';
     if (/(capital call|next call|how much|when)/.test(t)) return 'keller_next_call';

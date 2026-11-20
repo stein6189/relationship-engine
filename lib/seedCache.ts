@@ -3784,6 +3784,22 @@ export const seedCache: Record<string, CacheEntry> = {
   "confidence": 0.87
  }
 },
+  "read_fund_notice__keller": {
+ "promptId": "read_fund_notice",
+ "key": "keller",
+ "promptVersion": "v1",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "fund": "Atlas Growth V",
+  "investor": "Dr. Thomas Keller",
+  "noticeType": "capital_call",
+  "amountEur": 150000,
+  "dueDate": "2026-12-01",
+  "purpose": "Investments in two portfolio companies and management fee",
+  "confidence": 0.93
+ }
+},
   "route_client_question__albers_early": {
  "promptId": "route_client_question",
  "key": "albers_early",
@@ -3798,6 +3814,22 @@ export const seedCache: Record<string, CacheEntry> = {
    "p_term"
   ],
   "confidence": 0.85
+ }
+},
+  "route_client_question__keller_election": {
+ "promptId": "route_client_question",
+ "key": "keller_election",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "category": "advice",
+  "clientAnswer": "That's a decision about your investments, so we've passed your question to Jonas. He'll get back to you shortly.",
+  "rmDraft": "Thomas asks whether to sell everything before the election. This is a timing question about the whole portfolio, so it needs a conversation, not an app answer. Suggest a short call: review his horizon of 12 years and the capital call due on 1 Dec 2026.",
+  "factsUsed": [
+   "k_due"
+  ],
+  "confidence": 0.9
  }
 },
   "route_client_question__keller_negative": {

@@ -42,6 +42,12 @@ await step('Clients list', async () => {
   await shot(page, 'clients');
 });
 
+await step('Keller 360: open items, company account, data check, contact actions', async () => {
+  await page.goto(BASE + '/rm/client/keller');
+  for (const id of ['open-items', 'company-account', 'data-check', 'contact-actions']) await page.getByTestId(id).first().waitFor({ timeout: 25000 });
+  expect((await page.getByTestId('company-account').innerText()).includes('€650,000'), 'company account total');
+});
+
 for (const [name, path, probe] of [
   ['V3 Albers 360', '/rm/client/albers', 'ai-brief'],
   ['V3 Keller 360', '/rm/client/keller', 'ai-brief'],

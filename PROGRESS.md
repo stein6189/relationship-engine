@@ -42,7 +42,7 @@ Last update: Mon 2 Nov 2026, ~23:30 CET — overnight session finished phases 2�
 - V7 `/client/[id]` phone app (Home, Invest for Albers, Activity, Ask with routing,
   Talk to my advisor → requests inbox + escalation).
 - `/split?client=albers|keller` (RM tabs left, scaled phone right, shared state).
-- V8 `/rm/hood` (8 prompts, model routing, guardrails, log with drawer), `/rm/about`.
+- V8 `/rm/hood` (9 prompts, model routing, guardrails, log with drawer), `/rm/about`.
 
 ### QA — DONE (3 rounds, see QA_REPORT.md)
 - lint, typecheck, vitest (42), clean-clone `npm ci && npm run build` green.

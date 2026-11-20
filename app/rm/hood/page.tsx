@@ -11,6 +11,7 @@ const USED_IN: Record<string, string> = {
   meeting_brief: 'V3 · sourced meeting brief', draft_suitability: 'V4 · suitability statement, client message, CRM note',
   verify_draft: 'V4 · independent sentence-by-sentence check', check_qualification_consistency: 'V5 · questionnaire vs notes',
   route_client_question: 'V7 · factual answer or hand-over to RM', explain_option: 'V6 · one neutral line per option',
+  read_fund_notice: 'V6 · reads the capital call notice; code checks it against the schedule',
 };
 
 export default function HoodPage() {
@@ -29,7 +30,7 @@ export default function HoodPage() {
       </div>
       <div className="grid gap-4 xl:grid-cols-[1fr_1fr]">
         <Card className="p-4">
-          <SectionTitle right={env && <Badge tone={env.liveAvailable ? 'green' : 'amber'}>{env.liveAvailable ? 'API key set — live calls possible' : 'no API key — seed / cached outputs'}</Badge>}>Orchestration · 8 prompts</SectionTitle>
+          <SectionTitle right={env && <Badge tone={env.liveAvailable ? 'green' : 'amber'}>{env.liveAvailable ? 'API key set — live calls possible' : 'no API key — seed / cached outputs'}</Badge>}>Orchestration · {Object.keys(promptIndexClient).length} prompts</SectionTitle>
           <div className="mb-3 rounded-lg bg-slate-50 p-2 text-xs" data-testid="health">
             <div className="flex items-center justify-between gap-2"><span>Live AI check: one tiny request to each model.</span><button onClick={check} disabled={checking} className="rounded-md border border-slate-300 bg-white px-2 py-1 font-medium hover:bg-slate-100" data-testid="health-check">{checking ? 'Checking…' : 'Test live AI'}</button></div>
             {health && (

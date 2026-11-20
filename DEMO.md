@@ -7,7 +7,7 @@ Target: 12 minutes, then Q&A. Run it end to end in **Live** mode and in
 |---|---|---|---|
 | 0 | Header | "It's 20 November. The November plan ran on the 1st; Albers' meeting was yesterday." | Demo date visible |
 | 1 | `/rm/plan` | "4,080 meetings a year for 3,500 clients. Enough to see everyone once — yet half get none. This is an allocation problem." | KPIs and capacity bar visible (the 4,080 line is spoken, not on screen) |
-| 2 | `/rm/plan` | "Every month the engine reads the whole book." | Click "Run monthly orchestration" → 4 steps animate, lanes fill, capacity bar 20/20 |
+| 2 | `/rm/plan` | "Every month the engine reads the whole book." | Click "Run orchestration" → 4 steps animate, lanes fill, capacity bar 20/20 |
 | 3 | Berger card | "She asked support how fast she can withdraw €300k. Today nobody would notice until the transfer request." | Card shows liquidity need €300k, quote from the support chat, confidence, lane RM |
 | 3b | Plan search "Schwarz", then "Schmidt" | "Same €150k withdrawal request, twice. The transaction is identical — only the reason differs. Daughter's apartment: a digital confirmation. A cheaper bank: an RM call today. Code reads the transaction, AI reads the why." | Laura Schwarz in Digital lane (no risk), Ines Schmidt in RM lane (hard trigger: transfer intent), both with the withdrawal chip and the quote |
 | 4 | Control group chip | "The 2–3× churn gap is observed, not causal. So 10% of at-risk clients are a control group." | Tooltip explains |
