@@ -20,7 +20,8 @@ http.createServer((req, res) => {
     const j = JSON.parse(body || '{}');
     const sys = typeof j.system === 'string' ? j.system : '';
     const task = Object.entries(prompts).find(([, first]) => sys.startsWith(first))?.[0];
-    const input = JSON.parse(j.messages?.[0]?.content ?? '{}');
+    let input = {};
+    try { input = JSON.parse(j.messages?.[0]?.content ?? '{}'); } catch { /* plain-text prompt, e.g. the health ping */ }
     const m = mode();
     let out = cache[`${task}__${input.cacheKey}`] ?? generic[task] ?? {};
     if (task === 'draft_touchpoint' && out.facts) { const { trigger, facts, testCase, ...rest } = out; out = rest; }

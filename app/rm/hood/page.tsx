@@ -17,6 +17,9 @@ export default function HoodPage() {
   const { s } = useStore();
   const [env, setEnv] = useState<{ liveAvailable: boolean; fast: string; smart: string } | null>(null);
   const [open, setOpen] = useState<AiLogEntry | null>(null);
+  const [health, setHealth] = useState<any>(null);
+  const [checking, setChecking] = useState(false);
+  const check = async () => { setChecking(true); try { setHealth(await fetch('/api/health').then((r) => r.json())); } catch (e) { setHealth({ verdict: `Check failed: ${(e as Error).message}` }); } setChecking(false); };
   useEffect(() => { fetch('/api/ai/extract_signals').then((r) => r.json()).then(setEnv).catch(() => setEnv(null)); }, []);
   return (
     <div className="space-y-4" data-testid="hood">
@@ -27,6 +30,15 @@ export default function HoodPage() {
       <div className="grid gap-4 xl:grid-cols-[1fr_1fr]">
         <Card className="p-4">
           <SectionTitle right={env && <Badge tone={env.liveAvailable ? 'green' : 'amber'}>{env.liveAvailable ? 'API key set — live calls possible' : 'no API key — seed / cached outputs'}</Badge>}>Orchestration · 8 prompts</SectionTitle>
+          <div className="mb-3 rounded-lg bg-slate-50 p-2 text-xs" data-testid="health">
+            <div className="flex items-center justify-between gap-2"><span>Live AI check: one tiny request to each model.</span><button onClick={check} disabled={checking} className="rounded-md border border-slate-300 bg-white px-2 py-1 font-medium hover:bg-slate-100" data-testid="health-check">{checking ? 'Checking…' : 'Test live AI'}</button></div>
+            {health && (
+              <div className="mt-1.5 space-y-0.5">
+                <div className={health.MODEL_FAST?.ok && health.MODEL_SMART?.ok ? 'font-medium text-green-800' : 'font-medium text-red-700'}>{health.verdict}</div>
+                {['MODEL_FAST', 'MODEL_SMART'].map((k) => health[k] && <div key={k} className="font-mono">{k}: {health[k].model} → {health[k].ok ? `ok · ${health[k].latencyMs} ms` : `error: ${health[k].error}`}</div>)}
+              </div>
+            )}
+          </div>
           <table className="w-full text-sm">
             <thead className="text-left text-xs text-slate-500"><tr><th className="py-1">Prompt</th><th>Model</th><th>Used in</th></tr></thead>
             <tbody>{Object.entries(promptIndexClient).map(([id, p]) => (
