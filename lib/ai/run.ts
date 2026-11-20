@@ -42,7 +42,7 @@ async function callModel(task: TaskId, input: unknown, signal: AbortSignal) {
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   const p = promptIndex[task];
   const msg = await client.messages.create(
-    { model: modelFor(task), max_tokens: 2500, temperature: 0, system: p.system, messages: [{ role: 'user', content: JSON.stringify(input) }] },
+    { model: modelFor(task), max_tokens: 2500, system: p.system, messages: [{ role: 'user', content: JSON.stringify(input) }] },
     { signal },
   );
   return msg.content.map((b) => (b.type === 'text' ? b.text : '')).join('');
