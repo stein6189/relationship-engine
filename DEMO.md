@@ -1,6 +1,6 @@
 # DEMO.md — demo script and final acceptance test
 
-Target: 12 minutes, then Q&A. Run it end to end in **Live** mode and in
+Target: 10–12 minutes, then Q&A. Run it end to end in **Live** mode and in
 **Cached** mode before deploying. Every step must work in both.
 
 | # | Screen | What Daniel says | What must happen |
@@ -18,7 +18,7 @@ Target: 12 minutes, then Q&A. Run it end to end in **Live** mode and in
 | 9 | `/rm/touchpoints` | "Personal at scale: 60 messages, each with the client's own numbers, approved in minutes. Hofmann gets a note — Keller gets a conversation. Same engine, different service." | Hofmann message; labelled test case flagged red; batch approve |
 | 10 | V6 Keller | "Capital call €150k, €40k cash. Sell and pay ~€10k tax, or bridge three months for ~€1.2k." | Timeline, gap, fund notice read by AI and checked by code (matches schedule), CRM vs custodian data check, options, stress test |
 | 11 | Split view Keller | "He asked twice why Atlas is negative. Now the app explains the J-curve with his numbers. And 'should I sell?' goes to the RM." | Factual answer + advice routed; "Sell everything before the election?" also goes to the RM |
-| 11b | `/rm/plan` pipeline strip | "Albers moved from conversation to qualified — and signed — in one day. Today this takes 3–6 weeks." | Pipeline updated (5 Nov conversation → 6 Nov qualified → 6 Nov signed; funding at first close 15 Dec) |
+| 11b | `/rm/plan` pipeline strip | "Albers moved from conversation to qualified — and signed — in one day. Today this takes 3–6 weeks." | Pipeline updated (19 Nov conversation → 20 Nov qualified → 20 Nov signed; funding at first close 15 Dec) |
 | 12 | Under the hood | "Fast model reads, smart model writes, a second call checks, code does every number." | Prompt id/version, model, facts, guard + verifier results |
 
 ## Pre-submission checklist
