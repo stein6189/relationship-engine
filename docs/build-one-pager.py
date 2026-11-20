@@ -9,10 +9,10 @@ TEAL = RGBColor(0x0F, 0x76, 0x6E); INK = RGBColor(0x0F, 0x17, 0x2A); GREY = RGBC
 doc = Document()
 sec = doc.sections[0]
 sec.page_height, sec.page_width = Cm(29.7), Cm(21.0)
-sec.top_margin = sec.bottom_margin = Cm(1.2); sec.left_margin = sec.right_margin = Cm(1.6)
+sec.top_margin = sec.bottom_margin = Cm(0.9); sec.left_margin = sec.right_margin = Cm(1.6)
 st = doc.styles['Normal']; st.font.name = 'Calibri'; st.font.size = Pt(9.5); st.font.color.rgb = INK
 st.element.rPr.rFonts.set(qn('w:eastAsia'), 'Calibri')
-st.paragraph_format.space_after = Pt(2); st.paragraph_format.line_spacing = 1.08
+st.paragraph_format.space_after = Pt(2); st.paragraph_format.line_spacing = 1.03
 
 def runs(p, text, size=None, color=None):
     # **bold** markup
@@ -104,6 +104,7 @@ table(['Code', 'AI', 'RM', 'Client'], [
 ], [4.45, 4.45, 4.45, 4.45])
 bullet('The AI answers clients only on facts about their own account. Questions about what to do go to the RM, with a draft answer.')
 bullet('The service depends on need, not on wealth. A happy client with €700,000 gets a short update every quarter. An entrepreneur with €4m and fund payments gets an RM call at every payment event.')
+bullet('Self-service saves RM time: today there are 60 to 90 support tickets per 1,000 clients a month, and RMs handle 50 to 70% of simple requests. The app answers fact questions itself.')
 
 h2('4. Choices and risks')
 para('**Focus:** only existing clients. They bring 45 to 60% of new money and keep 65 to 80% of their wealth at other banks. Not built: new prospects, real system connections, automatic sending, a chatbot, a real loan process.', after=3)
@@ -122,6 +123,7 @@ table(['Lever', 'Assumption', 'Revenue per year'], [
   ['More RM time', 'AI halves preparation and notes: about 9 more meetings per RM per month. Used for clients, not to cut jobs.', 'not counted'],
   ['**Total**', '', '**about €1.1m (+5%)**'],
 ], [4.0, 9.4, 4.4], total=True)
+para('**Costs:** RM time is the main cost (about €750 per client per year). To build: a small team, compliance review, links to CRM and custodian. AI model costs are small.', before=3)
 para('**Plan:** week 1, check the data. Then plan and briefs. Then suitability drafts, after compliance agrees. Then the learning model.', before=3)
 
 doc.save('/tmp/claude-0/op/Relationship_Engine_One-Pager.docx')
