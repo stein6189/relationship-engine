@@ -106,8 +106,8 @@ Each AIF has a call and distribution schedule (dates + % of commitment).
 ### Sabine Berger (id `berger`) — liquidity need, outflow risk
 - 44, CFO of a mid-sized company. AUM €1,400,000 (equity ETFs €900,000,
   bond ETFs €450,000, cash €50,000). Stated investable €4,500,000.
-- Message 2026-10-21: "We're buying an apartment in Munich next spring,
-  so I'll probably need around €300k from my portfolio."
+- Support chat 2026-10-21: "What's the fastest way to withdraw around €300k?
+  We're buying an apartment in Munich next spring." (realistic channel: clients ask *how* to get money)
 - Last proactive contact: 14 months ago. Would be in "no action" by habit.
 
 ### Monika Hofmann (id `hofmann`) — happy, digital lane

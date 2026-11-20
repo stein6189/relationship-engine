@@ -26,7 +26,7 @@ export interface CashflowEvent {
 export interface TextItem {
   id: string;
   date: string;
-  kind: 'app_message' | 'rm_note' | 'email';
+  kind: 'app_message' | 'rm_note' | 'email' | 'support_chat' | 'withdrawal_reason';
   from: 'client' | 'rm';
   text: string;
 }
@@ -61,6 +61,8 @@ export interface Client {
   logins60d: number;
   loginsPrev60d: number;
   withdrawals90dEur: number;
+  /** A withdrawal request that has not been paid out yet; its free-text reason is a TextItem. */
+  pendingWithdrawal?: { date: string; executionDate: string; amountEur: number; reasonItemId: string };
   appEvents: AppEvent[];
   items: TextItem[];
   questionnaire: { peExperience: 'none' | 'some' | 'extensive'; knowledgeScore: number; complete: boolean };

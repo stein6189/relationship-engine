@@ -297,11 +297,11 @@
   "appEvents": [],
   "items": [
    {
-    "id": "berger_msg_2026-10-21",
+    "id": "berger_chat_2026-10-21",
     "date": "2026-10-21",
-    "kind": "app_message",
+    "kind": "support_chat",
     "from": "client",
-    "text": "We're buying an apartment in Munich next spring, so I'll probably need around €300k from my portfolio."
+    "text": "What's the fastest way to withdraw around €300k? We're buying an apartment in Munich next spring."
    }
   ],
   "questionnaire": {
@@ -1332,7 +1332,15 @@
   "loginsPrev60d": 2,
   "withdrawals90dEur": 0,
   "appEvents": [],
-  "items": [],
+  "items": [
+   {
+    "id": "c017_wd_2026-11-18",
+    "date": "2026-11-18",
+    "kind": "withdrawal_reason",
+    "from": "client",
+    "text": "Down payment for our daughter's first apartment."
+   }
+  ],
   "questionnaire": {
    "peExperience": "none",
    "knowledgeScore": 7,
@@ -1340,7 +1348,13 @@
   },
   "documents": [
    "ID verified"
-  ]
+  ],
+  "pendingWithdrawal": {
+   "date": "2026-11-18",
+   "executionDate": "2026-11-25",
+   "amountEur": 150000,
+   "reasonItemId": "c017_wd_2026-11-18"
+  }
  },
  {
   "id": "c018",
@@ -5166,7 +5180,15 @@
   "loginsPrev60d": 8,
   "withdrawals90dEur": 0,
   "appEvents": [],
-  "items": [],
+  "items": [
+   {
+    "id": "c082_wd_2026-11-18",
+    "date": "2026-11-18",
+    "kind": "withdrawal_reason",
+    "from": "client",
+    "text": "Moving part of my portfolio to my private bank, they offered me lower fees."
+   }
+  ],
   "questionnaire": {
    "peExperience": "some",
    "knowledgeScore": 8,
@@ -5174,7 +5196,13 @@
   },
   "documents": [
    "ID verified"
-  ]
+  ],
+  "pendingWithdrawal": {
+   "date": "2026-11-18",
+   "executionDate": "2026-11-25",
+   "amountEur": 150000,
+   "reasonItemId": "c082_wd_2026-11-18"
+  }
  },
  {
   "id": "c083",

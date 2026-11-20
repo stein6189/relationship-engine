@@ -1,0 +1,41 @@
+{
+ "promptId": "extract_signals",
+ "key": "c082",
+ "promptVersion": "v1",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "transfer_intent",
+    "summary": "Withdrawal is a move to a private bank for lower fees",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c082_wd_2026-11-18",
+      "quote": "Moving part of my portfolio to my private bank"
+     }
+    ],
+    "confidence": 0.92
+   },
+   {
+    "type": "dissatisfaction",
+    "summary": "Finds our fees too high",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c082_wd_2026-11-18",
+      "quote": "they offered me lower fees"
+     }
+    ],
+    "confidence": 0.8
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+}

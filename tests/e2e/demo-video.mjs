@@ -32,9 +32,14 @@ await caption('2 · Run monthly orchestration: fast model reads, rules score and
 await page.getByTestId('run-orchestration').click();
 await page.getByText(/clients read live/).waitFor({ timeout: 90000 });
 await pause(2.5);
-await caption('3 · Berger wrote one line in the app — now she is in the RM lane, with quote, source and confidence.');
+await caption('3 · Berger asked support how fast she can withdraw €300k — now she is in the RM lane, with quote, source and confidence.');
 await page.getByTestId('plan-find').fill('Berger');
 await pause(1); await page.getByTestId('card-berger').scrollIntoViewIfNeeded(); await pause(3.5);
+await page.getByTestId('plan-find').fill('');
+await caption('3b · Same €150k withdrawal request, twice. Daughter’s apartment → digital confirmation…');
+await page.getByTestId('plan-find').fill('Laura Schwarz'); await pause(3.5);
+await caption('3b · …cheaper bank → RM call today. Code reads the transaction, AI reads the why.');
+await page.getByTestId('plan-find').fill('Ines Schmidt'); await pause(4);
 await page.getByTestId('plan-find').fill('');
 await caption('4 · Control group: 10% of silent-risk clients stay digital for 3 months — the churn gap is observed, not causal.');
 const chip = page.getByTestId('control-chip').first(); await chip.scrollIntoViewIfNeeded(); await chip.hover(); await pause(4);

@@ -68,3 +68,16 @@
     yesterday". Generated book is relative to `SIM_TODAY` and was regenerated;
     lanes, triggers and control group are unchanged (20 / 60 / 120, 11 hard, 7).
     Albers' gap since her last proactive contact now reads ~12 months.
+23. **Berger's need comes from a support-chat question** ("What's the fastest
+    way to withdraw around €300k?…"), not a spontaneous app message — clients
+    rarely announce plans, but they do ask how to get money.
+24. **Case A — same transaction, different context:** two generated clients
+    (Laura Schwarz, Ines Schmidt) file the identical €150k withdrawal request.
+    Code flags the transaction; the AI reads the reason field. A withdrawal the
+    client explained (life event / liquidity need, no transfer intent or
+    complaint) carries no churn weight. Advice need with nothing at stake
+    (priority 0) no longer takes an RM slot. Lanes unchanged: 20 / 60 / 120;
+    hard triggers 11 → 12.
+25. **Cadence: monthly plan, daily watch.** Signals are read daily and hard
+    triggers reach the RM at once; RM capacity is allocated monthly so RMs can
+    schedule. (One-pager; the prototype simulates one monthly run.)

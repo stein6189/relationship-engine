@@ -1,0 +1,44 @@
+{
+ "promptId": "draft_touchpoint",
+ "key": "c017",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "subject": "Your withdrawal request",
+  "body": "Dear Laura, we have received your withdrawal request of €150,000 for your daughter's first apartment. It will be paid to your reference account on 25 Nov 2026. Congratulations to her! If you would like to talk it through, just reply. Best, Jonas",
+  "messageType": "informational",
+  "factsUsed": [
+   "f1",
+   "f2",
+   "f3",
+   "f4"
+  ],
+  "callToAction": "reply",
+  "confidence": 0.9,
+  "trigger": "withdrawal_confirmation",
+  "facts": [
+   {
+    "id": "f1",
+    "label": "portfolio value",
+    "value": "€666,000"
+   },
+   {
+    "id": "f2",
+    "label": "year-to-date return",
+    "value": "+2.1%"
+   },
+   {
+    "id": "f3",
+    "label": "withdrawal amount",
+    "value": "€150,000"
+   },
+   {
+    "id": "f4",
+    "label": "payout date",
+    "value": "25 Nov 2026"
+   }
+  ],
+  "testCase": false
+ }
+}

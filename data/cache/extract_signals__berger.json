@@ -14,8 +14,8 @@
     "topic": null,
     "evidence": [
      {
-      "itemId": "berger_msg_2026-10-21",
-      "quote": "I'll probably need around €300k"
+      "itemId": "berger_chat_2026-10-21",
+      "quote": "withdraw around €300k"
      }
     ],
     "confidence": 0.92
@@ -28,7 +28,7 @@
     "topic": null,
     "evidence": [
      {
-      "itemId": "berger_msg_2026-10-21",
+      "itemId": "berger_chat_2026-10-21",
       "quote": "We're buying an apartment in Munich next spring"
      }
     ],

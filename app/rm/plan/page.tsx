@@ -17,7 +17,7 @@ import { Badge, Button, Card, Modal, SectionTitle, Spinner, Stat, Term } from '@
 
 const STEP_NAMES = ['Read signals (AI · fast model)', 'Score clients (rules)', 'Allocate fixed capacity (rules)', 'Draft touchpoints (AI · smart model)'];
 
-const srcLabel = (s: Signal) => s.origin === 'data' ? 'data' : s.sourceIds.some((x) => x.includes('_msg_')) ? 'app message' : s.sourceIds.some((x) => x.includes('_note_')) ? 'RM note' : 'text';
+const srcLabel = (s: Signal) => s.origin === 'data' ? 'data' : s.sourceIds.some((x) => x.includes('_msg_')) ? 'app message' : s.sourceIds.some((x) => x.includes('_chat_')) ? 'support chat' : s.sourceIds.some((x) => x.includes('_wd_')) ? 'withdrawal form' : s.sourceIds.some((x) => x.includes('_note_')) ? 'RM note' : 'text';
 
 function SignalChip({ s }: { s: Signal }) {
   const { s: st, update } = useStore();

@@ -28,6 +28,11 @@ export function dataSignals(c: Client, today: string): Signal[] {
   if (c.withdrawals90dEur > 0.1 * c.aumEur)
     s.push({ clientId: c.id, type: 'withdrawal', origin: 'data', confidence: 1, sourceIds: ['transactions'], amountEur: c.withdrawals90dEur, summary: `Withdrew ${eur(c.withdrawals90dEur)} in 90 days` });
   const since = c.lastProactiveContact ? daysBetween(c.lastProactiveContact, today) : 999;
+  if (c.pendingWithdrawal) {
+    const w = c.pendingWithdrawal;
+    s.push({ clientId: c.id, type: 'withdrawal', origin: 'data', confidence: 1, sourceIds: ['transactions'], amountEur: w.amountEur, dueDate: w.executionDate,
+      summary: `Withdrawal request ${eur(w.amountEur)} · pays out ${fmtDate(w.executionDate)}` });
+  }
   if (since > 270) s.push({ clientId: c.id, type: 'no_contact_long', origin: 'data', confidence: 1, sourceIds: ['crm'], summary: `No proactive contact for ${Math.round(since / 30)} months` });
   const sinceTouch = c.lastTouchpoint ? daysBetween(c.lastTouchpoint, today) : 999;
   if (sinceTouch > 90) s.push({ clientId: c.id, type: 'quarterly_progress', origin: 'data', confidence: 1, sourceIds: ['crm'], summary: 'Quarterly progress update due' });
@@ -36,6 +41,8 @@ export function dataSignals(c: Client, today: string): Signal[] {
 
 export function riskProbability(signals: Signal[], onlyTypes?: string[]) {
   const types = new Set(signals.filter((x) => x.origin === 'data' || x.confidence >= AI_SIGNAL_MIN_CONFIDENCE).map((x) => x.type));
+  // Context: a withdrawal the client explained (life event, liquidity need) and that comes with no transfer intent or complaint is not a churn signal.
+  if (types.has('withdrawal') && (types.has('life_event') || types.has('liquidity_need')) && !types.has('transfer_intent') && !types.has('dissatisfaction')) types.delete('withdrawal');
   let p = 0;
   for (const t of types) if (RISK_WEIGHTS[t] && (!onlyTypes || onlyTypes.includes(t))) p += RISK_WEIGHTS[t];
   return Math.min(p, RISK_CAP);
@@ -130,7 +137,8 @@ export function allocate({ clients, aiSignals, today, overrides = {}, escalation
   hard.slice(0, RM_SLOTS).forEach((b) => result.set(b.c.id, mk(b, 'rm')));
   hard.slice(RM_SLOTS).forEach((b) => result.set(b.c.id, mk(b, 'digital', { overflow: true, reason: 'Overflow — RM to review: ' + reasonFor(b.c, b.signals, b.trig) })));
   // 2. remaining slots by priority where an advice need exists
-  const advice = pool.filter((b) => !result.has(b.c.id) && b.signals.some((x) => usable(x) && advisoryTypes.includes(x.type)))
+  // Advice need with nothing at stake (e.g. an explained withdrawal) does not take an RM slot; it gets a digital touchpoint.
+  const advice = pool.filter((b) => !result.has(b.c.id) && b.prio > 0 && b.signals.some((x) => usable(x) && advisoryTypes.includes(x.type)))
     .sort((a, b) => b.prio - a.prio || (a.c.lastProactiveContact ?? '').localeCompare(b.c.lastProactiveContact ?? ''));
   let rmCount = [...result.values()].filter((a) => a.lane === 'rm').length;
   for (const b of advice) { if (rmCount >= RM_SLOTS) break; result.set(b.c.id, mk(b, 'rm')); rmCount++; }

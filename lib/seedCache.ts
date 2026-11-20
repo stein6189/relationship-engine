@@ -312,6 +312,50 @@ export const seedCache: Record<string, CacheEntry> = {
   "testCase": false
  }
 },
+  "draft_touchpoint__c017": {
+ "promptId": "draft_touchpoint",
+ "key": "c017",
+ "promptVersion": "v2",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "subject": "Your withdrawal request",
+  "body": "Dear Laura, we have received your withdrawal request of €150,000 for your daughter's first apartment. It will be paid to your reference account on 25 Nov 2026. Congratulations to her! If you would like to talk it through, just reply. Best, Jonas",
+  "messageType": "informational",
+  "factsUsed": [
+   "f1",
+   "f2",
+   "f3",
+   "f4"
+  ],
+  "callToAction": "reply",
+  "confidence": 0.9,
+  "trigger": "withdrawal_confirmation",
+  "facts": [
+   {
+    "id": "f1",
+    "label": "portfolio value",
+    "value": "€666,000"
+   },
+   {
+    "id": "f2",
+    "label": "year-to-date return",
+    "value": "+2.1%"
+   },
+   {
+    "id": "f3",
+    "label": "withdrawal amount",
+    "value": "€150,000"
+   },
+   {
+    "id": "f4",
+    "label": "payout date",
+    "value": "25 Nov 2026"
+   }
+  ],
+  "testCase": false
+ }
+},
   "draft_touchpoint__c020": {
  "promptId": "draft_touchpoint",
  "key": "c020",
@@ -531,38 +575,6 @@ export const seedCache: Record<string, CacheEntry> = {
     "id": "f2",
     "label": "year-to-date return",
     "value": "+3.9%"
-   }
-  ],
-  "testCase": false
- }
-},
-  "draft_touchpoint__c038": {
- "promptId": "draft_touchpoint",
- "key": "c038",
- "promptVersion": "v2",
- "model": "seed · pre-authored example (used when live AI is off or unavailable)",
- "createdAt": "2026-11-02T22:00:00Z",
- "output": {
-  "subject": "Your quarterly update",
-  "body": "Dear Markus, a short update: your portfolio stands at €300,000, +2.0% so far this year. It stays set up to preserve your wealth, as agreed. Nothing needs your attention right now. If you would like to talk, just reply here. Best, Jonas",
-  "messageType": "informational",
-  "factsUsed": [
-   "f1",
-   "f2"
-  ],
-  "callToAction": "reply",
-  "confidence": 0.9,
-  "trigger": "quarterly_progress",
-  "facts": [
-   {
-    "id": "f1",
-    "label": "portfolio value",
-    "value": "€300,000"
-   },
-   {
-    "id": "f2",
-    "label": "year-to-date return",
-    "value": "+2.0%"
    }
   ],
   "testCase": false
@@ -2323,8 +2335,8 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "berger_msg_2026-10-21",
-      "quote": "I'll probably need around €300k"
+      "itemId": "berger_chat_2026-10-21",
+      "quote": "withdraw around €300k"
      }
     ],
     "confidence": 0.92
@@ -2337,8 +2349,35 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "berger_msg_2026-10-21",
+      "itemId": "berger_chat_2026-10-21",
       "quote": "We're buying an apartment in Munich next spring"
+     }
+    ],
+    "confidence": 0.9
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+},
+  "extract_signals__c017": {
+ "promptId": "extract_signals",
+ "key": "c017",
+ "promptVersion": "v1",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "life_event",
+    "summary": "Withdrawal is for the daughter's first apartment — explained, not a churn signal",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c017_wd_2026-11-18",
+      "quote": "Down payment for our daughter's first apartment"
      }
     ],
     "confidence": 0.9
@@ -2595,6 +2634,47 @@ export const seedCache: Record<string, CacheEntry> = {
      }
     ],
     "confidence": 0.9
+   }
+  ],
+  "churnReasonHypothesis": "none",
+  "uncertainty": ""
+ }
+},
+  "extract_signals__c082": {
+ "promptId": "extract_signals",
+ "key": "c082",
+ "promptVersion": "v1",
+ "model": "seed · pre-authored example (used when live AI is off or unavailable)",
+ "createdAt": "2026-11-02T22:00:00Z",
+ "output": {
+  "signals": [
+   {
+    "type": "transfer_intent",
+    "summary": "Withdrawal is a move to a private bank for lower fees",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c082_wd_2026-11-18",
+      "quote": "Moving part of my portfolio to my private bank"
+     }
+    ],
+    "confidence": 0.92
+   },
+   {
+    "type": "dissatisfaction",
+    "summary": "Finds our fees too high",
+    "amountEur": null,
+    "timing": null,
+    "topic": null,
+    "evidence": [
+     {
+      "itemId": "c082_wd_2026-11-18",
+      "quote": "they offered me lower fees"
+     }
+    ],
+    "confidence": 0.8
    }
   ],
   "churnReasonHypothesis": "none",
@@ -3624,21 +3704,21 @@ export const seedCache: Record<string, CacheEntry> = {
  "output": {
   "sentences": [
    {
-    "text": "Sabine wrote that she will need around €300,000 next spring for an apartment in Munich.",
+    "text": "Sabine asked in the support chat how fast she can withdraw around €300,000; she is buying an apartment in Munich next spring.",
     "sourceIds": [
-     "berger_msg_2026-10-21"
+     "berger_chat_2026-10-21"
     ]
    },
    {
-    "text": "Without a conversation this would likely arrive as a withdrawal request.",
+    "text": "Without a conversation this would arrive as a withdrawal request and leave the portfolio.",
     "sourceIds": [
-     "berger_msg_2026-10-21"
+     "berger_chat_2026-10-21"
     ]
    },
    {
     "text": "Prepare options: a partial withdrawal or a loan against the portfolio, so the investments can stay in place.",
     "sourceIds": [
-     "berger_msg_2026-10-21"
+     "berger_chat_2026-10-21"
     ]
    }
   ],

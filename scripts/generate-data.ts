@@ -5,7 +5,7 @@ import path from 'path';
 import type { Client, Holding, Commitment, CashflowEvent, TextItem, Signal } from '../lib/types';
 import { seededRandom, allocate } from '../lib/rules/allocation';
 import { SIM_TODAY } from '../lib/rules/config';
-import { addDays } from '../lib/rules/format';
+import { addDays, daysBetween } from '../lib/rules/format';
 
 const rnd = seededRandom('liqid-case');
 const pick = <T,>(a: T[]) => a[Math.floor(rnd() * a.length)];
@@ -95,7 +95,7 @@ const personas: Client[] = [
     commitments: [], cashflows: [], statedInvestableEur: 4500000, riskClass: 5, horizonYears: 10, objectives: ['wealth preservation', 'property purchase'], ytdReturn: 0.061,
     prefersLowContact: false, lastProactiveContact: '2025-09-01', lastTouchpoint: '2026-09-20',
     logins30d: 3, logins60d: 5, loginsPrev60d: 6, withdrawals90dEur: 0, appEvents: [],
-    items: [{ id: 'berger_msg_2026-10-21', date: '2026-10-21', kind: 'app_message', from: 'client', text: "We're buying an apartment in Munich next spring, so I'll probably need around €300k from my portfolio." }],
+    items: [{ id: 'berger_chat_2026-10-21', date: '2026-10-21', kind: 'support_chat', from: 'client', text: "What's the fastest way to withdraw around €300k? We're buying an apartment in Munich next spring." }],
     questionnaire: { peExperience: 'some', knowledgeScore: 6, complete: true }, documents: ['ID verified'],
   },
   {
@@ -237,6 +237,27 @@ for (const b of BANK) {
     seedSignals[c.id] = b.t.signals(amt).map((s) => ({ ...s, clientId: c.id, origin: 'ai' as const, sourceIds: [item.id], quote: b.t.quote(amt) || undefined }));
   }
 }
+// Case A — same transaction, different context: two clients file the same €150k withdrawal request.
+// The structured event is identical; only the free-text reason tells a life event from churn. (No PRNG calls here.)
+const wdCands = gen.filter((c) => !c.items.length && !c.commitments.length && !c.withdrawals90dEur && c.aumEur >= 600_000 && c.aumEur <= 2_000_000 &&
+  c.lastProactiveContact !== null && daysBetween(c.lastProactiveContact, SIM_TODAY) < 270 && !c.prefersLowContact &&
+  !(c.loginsPrev60d >= 4 && c.logins60d < 0.3 * c.loginsPrev60d) && (!c.lastTouchpoint || daysBetween(c.lastTouchpoint, SIM_TODAY) <= 90)).sort((a, b) => a.id.localeCompare(b.id));
+const [wdFamily, wdChurn] = wdCands;
+const wdDate = addDays(SIM_TODAY, -2);
+const wdExec = addDays(SIM_TODAY, 5);
+const WD_TEXT: [Client, string][] = [[wdFamily, "Down payment for our daughter's first apartment."], [wdChurn, 'Moving part of my portfolio to my private bank, they offered me lower fees.']];
+for (const [c, text] of WD_TEXT) {
+  const item: TextItem = { id: `${c.id}_wd_${wdDate}`, date: wdDate, kind: 'withdrawal_reason', from: 'client', text };
+  c.items.push(item);
+  c.pendingWithdrawal = { date: wdDate, executionDate: wdExec, amountEur: 150_000, reasonItemId: item.id };
+}
+seedSignals[wdFamily.id] = [{ clientId: wdFamily.id, type: 'life_event', summary: "Withdrawal is for the daughter's first apartment — explained, not a churn signal", confidence: 0.9, origin: 'ai', sourceIds: [`${wdFamily.id}_wd_${wdDate}`], quote: "Down payment for our daughter's first apartment" }];
+seedSignals[wdChurn.id] = [
+  { clientId: wdChurn.id, type: 'transfer_intent', summary: 'Withdrawal is a move to a private bank for lower fees', confidence: 0.92, origin: 'ai', sourceIds: [`${wdChurn.id}_wd_${wdDate}`], quote: 'Moving part of my portfolio to my private bank' },
+  { clientId: wdChurn.id, type: 'dissatisfaction', summary: 'Finds our fees too high', confidence: 0.8, origin: 'ai', sourceIds: [`${wdChurn.id}_wd_${wdDate}`], quote: 'they offered me lower fees' },
+];
+console.log('case A', wdFamily.id, wdFamily.name, '| churn', wdChurn.id, wdChurn.name);
+
 // persona AI signals (seed = expected extraction)
 seedSignals.albers = [
   { clientId: 'albers', type: 'investment_interest', topic: 'private_markets', summary: 'Asked twice about private equity; wants to diversify', confidence: 0.88, origin: 'ai', sourceIds: ['albers_msg_2026-10-08'], quote: 'I keep reading about private equity' },
@@ -246,8 +267,8 @@ seedSignals.keller = [
   { clientId: 'keller', type: 'pm_frustration', summary: 'Worried about the negative value of Atlas Growth V (J-curve)', confidence: 0.86, origin: 'ai', sourceIds: ['keller_msg_2026-10-19', 'keller_msg_2026-09-30'], quote: 'Should I be worried?' },
 ];
 seedSignals.berger = [
-  { clientId: 'berger', type: 'liquidity_need', summary: 'Needs ~€300k next spring for an apartment purchase', amountEur: 300000, dueDate: '2027-04-01', confidence: 0.92, origin: 'ai', sourceIds: ['berger_msg_2026-10-21'], quote: "I'll probably need around €300k" },
-  { clientId: 'berger', type: 'life_event', summary: 'Buying an apartment in Munich', confidence: 0.9, origin: 'ai', sourceIds: ['berger_msg_2026-10-21'], quote: "We're buying an apartment in Munich next spring" },
+  { clientId: 'berger', type: 'liquidity_need', summary: 'Needs ~€300k next spring for an apartment purchase', amountEur: 300000, dueDate: '2027-04-01', confidence: 0.92, origin: 'ai', sourceIds: ['berger_chat_2026-10-21'], quote: 'withdraw around €300k' },
+  { clientId: 'berger', type: 'life_event', summary: 'Buying an apartment in Munich', confidence: 0.9, origin: 'ai', sourceIds: ['berger_chat_2026-10-21'], quote: "We're buying an apartment in Munich next spring" },
 ];
 seedSignals.hofmann = [
   { clientId: 'hofmann', type: 'prefers_low_contact', summary: 'Prefers quarterly updates, no calls', confidence: 0.9, origin: 'ai', sourceIds: ['hofmann_msg_2026-04-20'], quote: 'no need to call' },
@@ -282,7 +303,8 @@ for (const a of digital) {
   const ytd = (c.ytdReturn >= 0 ? '+' : '') + (c.ytdReturn * 100).toFixed(1) + '%';
   const types = a.signals.map((s) => s.type);
   let trigger = 'quarterly_progress';
-  if (types.includes('distribution_received')) trigger = 'distribution_received';
+  if (c.pendingWithdrawal && types.includes('life_event')) trigger = 'withdrawal_confirmation';
+  else if (types.includes('distribution_received')) trigger = 'distribution_received';
   else if (types.includes('distribution_upcoming')) trigger = 'distribution_upcoming';
   else if (types.includes('pm_frustration')) trigger = c.items.some((i) => /capital call/i.test(i.text)) ? 'capital_call_explainer' : 'j_curve_explainer';
   else if (types.includes('factual_question')) trigger = 'statement_info';
@@ -300,6 +322,13 @@ for (const a of digital) {
     facts.push({ id: 'f3', label: 'distribution amount', value: '€' + (d.amountEur ?? 0).toLocaleString('en-GB') });
     subject = 'Your distribution has arrived';
     body = `Dear ${c.firstName}, Meridian Buyout IV paid you a distribution of €${(d.amountEur ?? 0).toLocaleString('en-GB')}. It is now in your cash account. A distribution means the fund sold a company and returned money to investors. If you'd like to discuss what to do with it, reply and I'll call you. Best, Jonas`;
+  } else if (trigger === 'withdrawal_confirmation') {
+    const w = c.pendingWithdrawal!;
+    const exec = new Date(w.executionDate + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+    facts.push({ id: 'f3', label: 'withdrawal amount', value: '€' + w.amountEur.toLocaleString('en-GB') });
+    facts.push({ id: 'f4', label: 'payout date', value: exec });
+    subject = 'Your withdrawal request';
+    body = `Dear ${c.firstName}, we have received your withdrawal request of €${w.amountEur.toLocaleString('en-GB')} for your daughter's first apartment. It will be paid to your reference account on ${exec}. Congratulations to her! If you would like to talk it through, just reply. Best, Jonas`;
   } else if (trigger === 'distribution_upcoming') {
     const d = a.signals.find((s) => s.type === 'distribution_upcoming')!;
     facts.push({ id: 'f3', label: 'expected distribution (indicative)', value: '€' + (d.amountEur ?? 0).toLocaleString('en-GB') });

@@ -93,3 +93,28 @@ describe('Keller sell option', () => {
     expect(Math.round(s.taxWithPartialExemptionEur)).toBe(7108);
   });
 });
+
+import { allocate, riskProbability } from '@/lib/rules/allocation';
+import { clients, loadSeedSignals } from '@/lib/data';
+import { SIM_TODAY } from '@/lib/rules/config';
+describe('Case A: same withdrawal, different context', () => {
+  const plan = allocate({ clients, aiSignals: loadSeedSignals(), today: SIM_TODAY });
+  const wd = clients.filter((c) => c.pendingWithdrawal);
+  it('two clients file the identical €150k request', () => {
+    expect(wd).toHaveLength(2);
+    expect(new Set(wd.map((c) => c.pendingWithdrawal!.amountEur))).toEqual(new Set([150_000]));
+  });
+  it('explained withdrawal → digital, no risk; transfer reason → RM lane hard trigger', () => {
+    const lanes = wd.map((c) => plan.find((a) => a.clientId === c.id)!);
+    const family = lanes.find((a) => a.signals.some((s) => s.type === 'life_event'))!;
+    const churn = lanes.find((a) => a.signals.some((s) => s.type === 'transfer_intent'))!;
+    expect(family.lane).toBe('digital');
+    expect(family.riskProbability).toBe(0);
+    expect(churn.lane).toBe('rm');
+    expect(churn.hardTrigger).toBe('transfer_intent');
+  });
+  it('an unexplained withdrawal still counts as risk', () => {
+    const s = [{ clientId: 'x', type: 'withdrawal' as const, summary: '', confidence: 1, sourceIds: [], origin: 'data' as const }];
+    expect(riskProbability(s)).toBeCloseTo(0.1);
+  });
+});

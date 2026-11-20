@@ -30,6 +30,19 @@ await step('3 · Berger card: liquidity need €300k, quote, confidence, RM lane
   expect(/€300k/.test(await card.getByTestId('card-quote').innerText()), 'client quote visible on card');
   await card.scrollIntoViewIfNeeded(); await shot(page, P + '03-berger');
 });
+await step('3b · Case A: same €150k withdrawal, different reason → different lane', async () => {
+  await page.getByTestId('plan-find').fill('Laura Schwarz');
+  const fam = page.getByTestId('lane-digital').getByTestId('row-c017');
+  await fam.waitFor();
+  expect(/daughter/.test(await fam.innerText()), 'family reason shown');
+  await page.getByTestId('plan-find').fill('Ines Schmidt');
+  const churn = page.getByTestId('lane-rm').getByTestId('card-c082');
+  await churn.waitFor();
+  const t = await churn.innerText();
+  expect(/Withdrawal/.test(t) && /private bank/.test(t) && /transfer intent/i.test(t), 'transaction + reason + hard trigger: ' + t);
+  await shot(page, P + '03b-case-a');
+  await page.getByTestId('plan-find').fill('');
+});
 await step('4 · control group chip with tooltip', async () => {
   const chip = page.getByTestId('control-chip').first();
   await chip.scrollIntoViewIfNeeded();

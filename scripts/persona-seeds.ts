@@ -151,9 +151,9 @@ tp('keller_transfer', 'Your capital call on 1 Dec 2026', 'Dear Thomas, Atlas Gro
 // ---------------- Berger ----------------
 write('meeting_brief', 'berger', {
   sentences: [
-    S('Sabine wrote that she will need around €300,000 next spring for an apartment in Munich.', 'berger_msg_2026-10-21'),
-    S('Without a conversation this would likely arrive as a withdrawal request.', 'berger_msg_2026-10-21'),
-    S('Prepare options: a partial withdrawal or a loan against the portfolio, so the investments can stay in place.', 'berger_msg_2026-10-21'),
+    S('Sabine asked in the support chat how fast she can withdraw around €300,000; she is buying an apartment in Munich next spring.', 'berger_chat_2026-10-21'),
+    S('Without a conversation this would arrive as a withdrawal request and leave the portfolio.', 'berger_chat_2026-10-21'),
+    S('Prepare options: a partial withdrawal or a loan against the portfolio, so the investments can stay in place.', 'berger_chat_2026-10-21'),
   ],
   openQuestionsForClient: ['When exactly do you need the money?', 'Would you rather keep your investments and borrow against them?'],
   prepareDocuments: ['Portfolio overview', 'Liquidity options (concept)'],

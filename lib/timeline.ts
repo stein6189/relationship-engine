@@ -25,8 +25,11 @@ export function timelineFor(c: Client, s: DemoState): TimelineItem[] {
   const out: TimelineItem[] = [];
   for (const it of c.items) {
     if (it.kind === 'rm_note') out.push({ id: it.id, date: it.date, kind: 'note', actor: 'rm', title: 'RM note', text: it.text, seenByClient: false, seenByRm: true, clientVisible: false });
-    else out.push({ id: it.id, date: it.date, kind: 'message', actor: it.from === 'client' ? 'client' : 'rm', title: it.from === 'client' ? `Message from ${c.firstName}` : 'Message from Jonas', text: it.text, seenByClient: true, seenByRm: true, clientVisible: true });
+    else out.push({ id: it.id, date: it.date, kind: 'message', actor: it.from === 'client' ? 'client' : 'rm',
+      title: it.kind === 'support_chat' ? `Support chat: ${c.firstName} asked` : it.kind === 'withdrawal_reason' ? 'Reason given on the withdrawal request' : it.from === 'client' ? `Message from ${c.firstName}` : 'Message from Jonas',
+      text: it.text, seenByClient: true, seenByRm: true, clientVisible: true });
   }
+  if (c.pendingWithdrawal) out.push({ id: 'withdrawal_request', date: c.pendingWithdrawal.date, kind: 'event', actor: 'client', title: `Withdrawal request ${eur(c.pendingWithdrawal.amountEur)}`, text: `pays out ${fmtDate(c.pendingWithdrawal.executionDate)}`, seenByClient: true, seenByRm: true, clientVisible: true });
   c.appEvents.filter((e) => e.type === 'view').forEach((e, i) => out.push({ id: `view_${i}`, date: e.date, kind: 'view', actor: 'client', title: `Viewed “${e.detail}” in the app`, seenByClient: true, seenByRm: true, clientVisible: false }));
   for (const e of c.cashflows) {
     const f = fundById(e.fundId);
@@ -51,7 +54,7 @@ export function timelineFor(c: Client, s: DemoState): TimelineItem[] {
 /** Everything a source id in an AI output can point to. */
 export function sourceMap(c: Client): Record<string, string> {
   const m: Record<string, string> = {};
-  for (const it of c.items) m[it.id] = `${it.kind === 'rm_note' ? 'RM note' : 'Client message'} ${fmtDate(it.date)}: “${it.text}”`;
+  for (const it of c.items) m[it.id] = `${it.kind === 'rm_note' ? 'RM note' : it.kind === 'support_chat' ? 'Support chat' : it.kind === 'withdrawal_reason' ? 'Withdrawal reason' : 'Client message'} ${fmtDate(it.date)}: “${it.text}”`;
   for (const f of factsFor(c.id)) m[f.id] = `${f.label}: ${f.value} (computed by code)`;
   m.cashflows = 'Fund cash-flow schedule (capital calls and distributions)';
   m.questionnaire = `Knowledge & experience questionnaire: private equity experience “${c.questionnaire.peExperience}”`;

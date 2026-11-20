@@ -21,7 +21,7 @@ import { Badge, Button, Card, Spinner, Term } from '@/components/ui';
 const TRIGGER: Record<string, string> = {
   quarterly_progress: 'Quarterly progress', distribution_received: 'Distribution received', j_curve_explainer: 'J-curve explainer',
   statement_info: 'Statement / tax info', re_engagement: 'Re-engagement after long silence',
-  distribution_upcoming: 'Distribution expected', capital_call_explainer: 'Capital call explainer',
+  distribution_upcoming: 'Distribution expected', capital_call_explainer: 'Capital call explainer', withdrawal_confirmation: 'Withdrawal confirmed (reason: life event)',
 };
 
 interface Draft {
