@@ -7,18 +7,20 @@ const BASE = process.env.BASE_URL || 'http://localhost:3100';
 const mode = process.argv[2] || 'cached';
 const dir = 'test-results/video';
 fs.rmSync(dir, { recursive: true, force: true });
-const browser = await chromium.launch({ slowMo: 120 });
+const PACE = Number(process.env.PACE || 1);
+const browser = await chromium.launch({ slowMo: Math.round(120 * PACE) });
 const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, recordVideo: { dir, size: { width: 1440, height: 900 } },
   httpCredentials: process.env.DEMO_PASSWORD ? { username: 'demo', password: process.env.DEMO_PASSWORD } : undefined });
 ctx.setDefaultTimeout(60000);
 const page = await ctx.newPage();
-const pause = (s = 2.5) => page.waitForTimeout(s * 1000);
+const pause = (s = 2.5) => page.waitForTimeout(s * 1000 * PACE);
 const caption = async (text) => {
   await page.evaluate((t) => {
     let el = document.getElementById('demo-caption');
     if (!el) { el = document.createElement('div'); el.id = 'demo-caption'; Object.assign(el.style, { position: 'fixed', left: '50%', bottom: '18px', transform: 'translateX(-50%)', zIndex: 9999, background: 'rgba(15,23,42,.92)', color: '#fff', font: '500 15px Inter, sans-serif', padding: '10px 16px', borderRadius: '10px', maxWidth: '980px', textAlign: 'center', pointerEvents: 'none' }); document.body.appendChild(el); }
     el.textContent = t;
   }, text);
+  await page.waitForTimeout(1500 * PACE);
 };
 const go = async (path, text) => { await page.goto(BASE + path); await page.waitForLoadState('networkidle').catch(() => {}); if (text) await caption(text); };
 
