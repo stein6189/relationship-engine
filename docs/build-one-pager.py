@@ -9,8 +9,8 @@ TEAL = RGBColor(0x0F, 0x76, 0x6E); INK = RGBColor(0x0F, 0x17, 0x2A); GREY = RGBC
 doc = Document()
 sec = doc.sections[0]
 sec.page_height, sec.page_width = Cm(29.7), Cm(21.0)
-sec.top_margin = sec.bottom_margin = Cm(1.4); sec.left_margin = sec.right_margin = Cm(1.6)
-st = doc.styles['Normal']; st.font.name = 'Calibri'; st.font.size = Pt(10); st.font.color.rgb = INK
+sec.top_margin = sec.bottom_margin = Cm(1.2); sec.left_margin = sec.right_margin = Cm(1.6)
+st = doc.styles['Normal']; st.font.name = 'Calibri'; st.font.size = Pt(9.5); st.font.color.rgb = INK
 st.element.rPr.rFonts.set(qn('w:eastAsia'), 'Calibri')
 st.paragraph_format.space_after = Pt(2); st.paragraph_format.line_spacing = 1.08
 
@@ -29,7 +29,7 @@ def para(text, size=None, color=None, after=2, before=0):
     return runs(p, text, size, color)
 
 def h2(text):
-    p = doc.add_paragraph(); p.paragraph_format.space_before = Pt(7); p.paragraph_format.space_after = Pt(2)
+    p = doc.add_paragraph(); p.paragraph_format.space_before = Pt(5); p.paragraph_format.space_after = Pt(2)
     r = p.add_run(text); r.bold = True; r.font.size = Pt(11); r.font.color.rgb = TEAL
     p.paragraph_format.keep_with_next = True
 
@@ -58,11 +58,11 @@ def table(header, rows, widths, total=False):
         for row in t.rows: row.cells[i].width = Cm(w)
     for i, h in enumerate(header):
         c = t.rows[0].cells[i]; shade(c, 'E6F2F1'); p = c.paragraphs[0]; p.paragraph_format.space_after = Pt(0)
-        r = p.add_run(h); r.bold = True; r.font.size = Pt(9); r.font.color.rgb = TEAL
+        r = p.add_run(h); r.bold = True; r.font.size = Pt(8.5); r.font.color.rgb = TEAL
     for ri, row in enumerate(rows):
         for ci, val in enumerate(row):
             c = t.rows[ri + 1].cells[ci]; p = c.paragraphs[0]; p.paragraph_format.space_after = Pt(0)
-            runs(p, val, 9)
+            runs(p, val, 8.5)
             if total and ri == len(rows) - 1: shade(c, 'F1F5F9')
     for row in t.rows:
         for c in row.cells:
@@ -74,56 +74,55 @@ def table(header, rows, widths, total=False):
 
 def bullet(text):
     p = doc.add_paragraph(style='List Bullet'); p.paragraph_format.space_after = Pt(1)
-    runs(p, text, 10)
+    runs(p, text, 9.5)
 
 W = 17.8
-# Title
 p = doc.add_paragraph(); p.paragraph_format.space_after = Pt(0)
-r = p.add_run('Relationship Engine — Strategic One-Pager'); r.bold = True; r.font.size = Pt(16); r.font.color.rgb = INK
+r = p.add_run('Relationship Engine: One-Pager'); r.bold = True; r.font.size = Pt(16); r.font.color.rgb = INK
 para('Daniel Stein · LIQID case study · Senior PM Private Wealth · 20 Nov 2026', 8.5, GREY, after=4)
-para('**One relationship, not two systems: read the whole book, spend RM time where it changes the outcome, show RM and client the same picture.**', 10, TEAL, after=2)
+para("**Our idea: read every client's data, give RM time to the clients who need it most, and let RM and client see the same information.**", 10, TEAL, after=2)
 
-h2('1. Problem & hypothesis')
-table(['Problem', 'Evidence (case)', 'Answer'], [
-  ['**Wrong clients**', '≈ 4,000 meetings for ≈ 3,500 clients, yet half get no proactive contact; churn 2–3× higher there', 'Allocate deliberately — **first**'],
-  ['**Too much admin**', '≈ 60% of RM time away from clients; ≈ 2 h prep + docs per meeting', 'AI drafts brief and documentation — **second**'],
-  ['**Two truths**', 'Client sees a capital call in the app; the RM doesn\'t', 'One shared timeline'],
-], [3.2, 9.6, 5.0])
-para('**Why AI:** signals are contextual. Same €150k withdrawal — “daughter\'s apartment” is a life event, “my bank is cheaper” is churn. Code reads the transaction, AI reads the why.', before=3)
+h2('1. Problem and idea')
+table(['Problem', 'What the case says', 'Our answer'], [
+  ['**RM time goes to the wrong clients**', 'About 4,000 meetings a year for about 3,500 clients. Still, half of the clients get no call from their RM. These clients leave 2 to 3 times more often.', 'Plan RM time better. We do this **first**.'],
+  ['**Too much paperwork**', 'RMs spend about 60% of their time without clients. Each meeting needs about 2 hours of preparation and notes.', 'AI writes first drafts of preparation and notes. We do this **second**.'],
+  ['**Two systems**', 'The client sees a capital call in the app. The RM does not know this.', 'One shared timeline for both.'],
+], [3.6, 9.0, 5.2])
+para("**Why AI:** the same data can mean different things. Two clients ask to withdraw €150,000. One writes “for my daughter's apartment”. The other writes “my bank is cheaper”. The first is a life event. The second wants to leave. Code reads the numbers. AI reads the reason.", before=3)
 
-h2('2. Solution: monthly plan, daily watch')
-table(['Daily', 'Monthly', 'Per contact'], [
-  ['Code flags transactions and cash flows; AI reads notes, emails, chats. Hard triggers reach the RM at once.',
-   'Value at stake × urgency → 20 RM slots, ≈ 60 digital touchpoints, rest nothing.',
-   'AI drafts a sourced brief or a personal message; the RM approves; the client sees the same timeline.'],
+h2('2. How it works')
+table(['Every day', 'Every month', 'For each contact'], [
+  ['Code checks transactions and payments. AI reads notes, emails and chats. Urgent cases go to the RM the same day.',
+   'Code ranks clients by money at stake and urgency. It fills 20 RM meetings and about 60 digital messages per RM.',
+   'AI writes a brief or a personal message. The RM checks and sends it. The client sees the same timeline.'],
 ], [5.93, 5.93, 5.94])
-para('**Guardrails:** numbers only from code (a guard flags any other) · a second AI call verifies suitability text · nothing reaches a client without the RM.', before=3)
+para('**Safety rules:** all numbers come from code. A check marks any other number in red. A second AI call checks the suitability text. Nothing goes to a client without the RM.', before=3)
 
-h2('3. Hybrid orchestration')
+h2('3. Who does what')
 table(['Code', 'AI', 'RM', 'Client'], [
-  ['Numbers, eligibility, allocation', 'Reads, drafts, checks — never sends, never advises', 'Decides, attests, owns the advice', 'Facts, reading, signing, funding'],
+  ['Numbers, rules, planning', 'Reads, writes drafts, checks drafts. Never sends, never gives advice.', 'Decides, signs off, is responsible for advice', 'Looks up facts, reads, signs, pays in'],
 ], [4.45, 4.45, 4.45, 4.45])
-bullet('AI faces the client only for facts on their own data; advice goes to the RM with a draft.')
-bullet('Need, not AUM, sets service: happy €700k client → quarterly note; €4m entrepreneur → RM at every cash-flow event.')
+bullet('The AI answers clients only on facts about their own account. Questions about what to do go to the RM, with a draft answer.')
+bullet('The service depends on need, not on wealth. A happy client with €700,000 gets a short update every quarter. An entrepreneur with €4m and fund payments gets an RM call at every payment event.')
 
-h2('4. Trade-offs & risks')
-para('**Scope:** existing clients only — 45–60% of net new money, 65–80% of their wealth still elsewhere. Not built: prospects, integrations, auto-send, chatbot, real Lombard process.', after=3)
-table(['Risk', 'Mitigation'], [
-  ['Wrong suitability text', 'Verifier + number guard; the RM is named author'],
-  ['Churn gap not causal', '10% control group for 3 months, then an uplift model'],
-  ['Data can\'t be matched to clients', 'Week-1 data check before setting targets'],
-  ['RMs don\'t adopt', 'Monday start screen; the brief saves prep from day one'],
+h2('4. Choices and risks')
+para('**Focus:** only existing clients. They bring 45 to 60% of new money and keep 65 to 80% of their wealth at other banks. Not built: new prospects, real system connections, automatic sending, a chatbot, a real loan process.', after=3)
+table(['Risk', 'What we do'], [
+  ['AI writes wrong suitability text', 'A second AI check and a number check. The RM signs as author.'],
+  ['Contact may not really reduce churn', 'For 3 months, 10% of quiet at-risk clients get no RM call. We compare. Later, a model learns which clients really react to a call.'],
+  ['Data cannot be linked to clients', 'In week 1 we check the data before we set goals.'],
+  ['RMs do not use it', 'It is their start screen on Monday. The brief saves preparation time from day one.'],
 ], [5.5, 12.3])
 
-h2('5. Commercial impact: ≈ €1.1m revenue a year (+5%)')
-para('Baseline (case midpoints): €3.0bn segment AUM · €22.5m revenue · €165m AUM lost to churn a year.', after=3)
-table(['Lever', 'Assumption', 'Revenue p.a.'], [
-  ['Coverage → churn', 'Uncontacted half reached; half the gap causal → €36m AUM kept', '≈ €0.27m (range 0–0.55m)'],
-  ['Share of wallet', '+1 pp of €10.9bn stated wealth → €109m new money', '≈ €0.82m'],
-  ['RM time', 'AI halves prep + docs → ≈ +9 meetings per RM per month, reinvested', 'not counted'],
-  ['**Total**', '', '**≈ €1.1m (+5%)**'],
-], [3.6, 10.0, 4.2], total=True)
-para('**Rollout:** week-1 data check → plan + brief → suitability drafting (after compliance) → uplift model.', before=3)
+h2('5. Business impact: about €1.1m more revenue per year (+5%)')
+para('Starting point (middle values from the case): €3.0bn client money in the segment, €22.5m revenue, €165m lost to churn each year.', after=3)
+table(['Lever', 'Assumption', 'Revenue per year'], [
+  ['Fewer clients leave', 'We reach the half without contact. Half of their extra churn comes from missing contact. We keep €36m.', 'about €0.27m (between 0 and €0.55m)'],
+  ["More of the client's wealth with us", '1 percentage point more of €10.9bn total client wealth: €109m new money', 'about €0.82m'],
+  ['More RM time', 'AI halves preparation and notes: about 9 more meetings per RM per month. Used for clients, not to cut jobs.', 'not counted'],
+  ['**Total**', '', '**about €1.1m (+5%)**'],
+], [4.0, 9.4, 4.4], total=True)
+para('**Plan:** week 1, check the data. Then plan and briefs. Then suitability drafts, after compliance agrees. Then the learning model.', before=3)
 
 doc.save('/tmp/claude-0/op/Relationship_Engine_One-Pager.docx')
 print('ok')
