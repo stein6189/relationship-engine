@@ -7,7 +7,7 @@ import { usePlan } from '@/lib/state/usePlan';
 import { useAi } from '@/lib/ai/client';
 import { clients, clientById, signalsFromExtract } from '@/lib/data';
 import { daysBetween, eur, eurShort, pct, fmtDate } from '@/lib/rules/format';
-import { RM_SLOTS, SIM_TODAY, PLAN_DATE, MINUTES_SAVED } from '@/lib/rules/config';
+import { RM_SLOTS, SIM_TODAY, PLAN_DATE, MINUTES_SAVED, MEETING_DATE } from '@/lib/rules/config';
 import { priority } from '@/lib/rules/allocation';
 import { SIGNAL_LABEL, SIGNAL_TONE, TRIGGER_LABEL } from '@/lib/labels';
 import { STAGES, seededPipeline, albersStage, avgDaysToFunded, type Opportunity } from '@/lib/pipeline';
@@ -89,7 +89,7 @@ function Row({ a, onOverride }: { a: Allocation; onOverride: (a: Allocation) => 
 
 function Pipeline() {
   const { s } = useStore();
-  const list: Opportunity[] = [...seededPipeline, { clientId: 'albers', product: 'Meridian Buyout V', amountEur: 200000, stage: albersStage(s.albers), stageSince: SIM_TODAY, enteredConversation: '2026-11-05' }];
+  const list: Opportunity[] = [...seededPipeline, { clientId: 'albers', product: 'Meridian Buyout V', amountEur: 200000, stage: albersStage(s.albers), stageSince: SIM_TODAY, enteredConversation: MEETING_DATE }];
   const avg = avgDaysToFunded(seededPipeline);
   return (
     <Card className="p-3">
@@ -102,7 +102,7 @@ function Pipeline() {
               <div className="text-[11px] font-medium text-slate-500">{st}</div>
               <div className="tnum text-sm font-semibold">{eurShort(items.reduce((x, o) => x + o.amountEur, 0))}</div>
               <div className="mt-1 space-y-0.5">
-                {items.map((o) => <div key={o.clientId} className={clsx('text-[11px]', o.clientId === 'albers' ? 'font-semibold text-accent' : 'truncate text-slate-600')} data-testid={o.clientId === 'albers' ? `pipeline-albers-${st}` : undefined}>{clientById(o.clientId)?.name} · {o.product}{o.clientId === 'albers' && <span className="block font-normal text-slate-500">5 Nov conversation{s.albers.attested ? ' → 6 Nov qualified' : ''}{s.albers.signed ? ' → 6 Nov signed' : ''}{s.albers.funded ? ' · funding 15 Dec' : ''}</span>}</div>)}
+                {items.map((o) => <div key={o.clientId} className={clsx('text-[11px]', o.clientId === 'albers' ? 'font-semibold text-accent' : 'truncate text-slate-600')} data-testid={o.clientId === 'albers' ? `pipeline-albers-${st}` : undefined}>{clientById(o.clientId)?.name} · {o.product}{o.clientId === 'albers' && <span className="block font-normal text-slate-500">{`${fmtDate(MEETING_DATE).slice(0, -5)} conversation`}{s.albers.attested ? ` → ${fmtDate(SIM_TODAY).slice(0, -5)} qualified` : ''}{s.albers.signed ? ` → ${fmtDate(SIM_TODAY).slice(0, -5)} signed` : ''}{s.albers.funded ? ' · funding 15 Dec' : ''}</span>}</div>)}
               </div>
             </div>
           );

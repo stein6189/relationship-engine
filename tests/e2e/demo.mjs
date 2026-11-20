@@ -8,7 +8,7 @@ const T = { timeout: 30000 };
 
 await step('0 · demo date visible', async () => {
   await page.goto(BASE + '/rm/plan');
-  await page.getByText('Demo date: 6 Nov 2026').waitFor();
+  await page.getByText('Demo date: 20 Nov 2026').waitFor();
   expect(await page.getByText('Prototype · synthetic data · not investment advice').count() > 0, 'banner');
 });
 await step('1 · KPIs and capacity bar', async () => {

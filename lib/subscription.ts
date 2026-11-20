@@ -34,6 +34,6 @@ export const PREFILLED_FIELDS = [
   { field: 'Tax ID', value: '•••• •••• 4471', source: 'client record' },
   { field: 'Commitment', value: '€200,000', source: 'approved advice record' },
   { field: 'Investor category', value: 'Semi-professional investor', source: 'qualification step' },
-  { field: 'Risk declaration', value: 'signed 5 Nov 2026', source: 'documents' },
+  { field: 'Risk declaration', value: 'signed 19 Nov 2026', source: 'documents' },
   { field: 'Account for capital calls', value: 'Cash account with us', source: 'client record' },
 ];

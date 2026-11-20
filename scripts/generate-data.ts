@@ -50,8 +50,8 @@ const personas: Client[] = [
       { id: 'albers_msg_2026-10-24', date: '2026-10-24', kind: 'app_message', from: 'client', text: 'Also — what happens if I need the money earlier?' },
     ],
     questionnaire: { peExperience: 'none', knowledgeScore: 7, complete: true },
-    documents: ['ID verified', 'MiFID questionnaire 2026-10-30', 'Risk declaration (semi-professional) 2026-11-05'],
-    extraFacts: { bankDepositsEur: 1400000, houseBankSecuritiesEur: 700000, meetingDate: '2026-11-05' },
+    documents: ['ID verified', 'MiFID questionnaire 2026-10-30', 'Risk declaration (semi-professional) 2026-11-19'],
+    extraFacts: { bankDepositsEur: 1400000, houseBankSecuritiesEur: 700000, meetingDate: '2026-11-19' },
   },
   {
     id: 'keller', name: 'Dr. Thomas Keller', firstName: 'Thomas', age: 52, occupation: 'Founder and managing director, mechanical engineering company (holding: Keller Beteiligungs GmbH)', persona: true,

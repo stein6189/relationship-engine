@@ -8,10 +8,11 @@ import { clientById } from '@/lib/data';
 import { albersRuleResults, albersAllFacts } from '@/lib/albers';
 import { subscriptionSteps, prefilledFields, firstCallEur, firstClose, type StepState } from '@/lib/subscription';
 import { eur, fmtDate } from '@/lib/rules/format';
+import { SIM_TODAY } from '@/lib/rules/config';
 import { AiMetaBadge } from '@/components/AiMetaBadge';
 import { Badge, Button, Card, SectionTitle, Spinner, Term } from '@/components/ui';
 
-const CLARIFY_FROM_NOTES = 'Meeting notes 5 Nov: client invested directly in startups as an angel investor (one exit in 2019); no investments in private equity funds so far.';
+const CLARIFY_FROM_NOTES = 'Meeting notes 19 Nov: client invested directly in startups as an angel investor (one exit in 2019); no investments in private equity funds so far.';
 
 export function StepDot({ state, n }: { state: StepState; n: number }) {
   return <span className={clsx('grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-semibold', state === 'done' ? 'bg-green-600 text-white' : state === 'open' ? 'bg-accent text-white' : 'bg-slate-200 text-slate-500')}>{state === 'done' ? '✓' : state === 'locked' ? '🔒︎' : n}</span>;
@@ -99,7 +100,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
                       <textarea aria-label="Clarification" placeholder="Write the client's answer…" className="mt-0.5 h-14 w-full rounded border border-amber-300 bg-white p-1.5 text-xs font-normal" value={a.clarification ?? ''} onChange={(e) => setA({ clarification: e.target.value })} data-testid="clarification" />
                     </label>
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <button className="text-[11px] text-accent underline" onClick={() => setA({ clarification: CLARIFY_FROM_NOTES })} data-testid="use-notes">Insert from meeting notes (5 Nov)</button>
+                      <button className="text-[11px] text-accent underline" onClick={() => setA({ clarification: CLARIFY_FROM_NOTES })} data-testid="use-notes">Insert from meeting notes (19 Nov)</button>
                       <Button className="text-xs" variant="primary" disabled={(a.clarification ?? '').trim().length < 10} onClick={() => setA({ questionnaireUpdated: true, contradictionReviewed: true, questionnaireUpdatedAt: new Date().toISOString() })} data-testid="update-questionnaire">Update questionnaire: “none” → “some (direct, no funds)”</Button>
                     </div>
                   </div>
@@ -112,7 +113,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
           <Card className={clsx('p-4', a.attested && 'border-green-300 bg-green-50/40')} data-testid="attestation">
             <SectionTitle>RM attestation</SectionTitle>
             {a.attested ? (
-              <p className="text-sm"><Badge tone="green">Attested</Badge> by Jonas Weber · {fmtDate('2026-11-06')}. Step 1 done.</p>
+              <p className="text-sm"><Badge tone="green">Attested</Badge> by Jonas Weber · {fmtDate(SIM_TODAY)}. Step 1 done.</p>
             ) : (
               <>
                 <label className="flex items-start gap-2 text-sm"><input type="checkbox" className="mt-1" checked={attestTick} onChange={(e) => setAttestTick(e.target.checked)} data-testid="attest-tick" /> I am sufficiently satisfied that the client can make their own investment decisions and understands the risks.</label>
@@ -129,7 +130,7 @@ export function AlbersSubscription({ embedded }: { embedded?: boolean }) {
       <div className="grid gap-4 xl:grid-cols-3">
         <Card className="p-4">
           <SectionTitle>2 · Suitability + costs</SectionTitle>
-          <p className="text-sm">{a.audit ? <>Delivered {fmtDate('2026-11-06')}. {a.ack ? <Badge tone="green">Client: “I have read and understood”</Badge> : <Badge tone="amber">waiting for the client</Badge>}</> : <>Not sent yet. <Link href="/rm/client/albers/advice" className="text-accent underline">Approve the documentation</Link>.</>}</p>
+          <p className="text-sm">{a.audit ? <>Delivered {fmtDate(SIM_TODAY)}. {a.ack ? <Badge tone="green">Client: “I have read and understood”</Badge> : <Badge tone="amber">waiting for the client</Badge>}</> : <>Not sent yet. <Link href="/rm/client/albers/advice" className="text-accent underline">Approve the documentation</Link>.</>}</p>
         </Card>
         <Card className="p-4">
           <SectionTitle>3 · Documents (pre-filled)</SectionTitle>

@@ -5,7 +5,7 @@ import { liquidityGap } from './rules/liquidity';
 import { bridgeOption, sellOption } from './rules/lombard';
 import { exAnteCosts } from './rules/costs';
 import { qualificationChecks } from './rules/qualification';
-import { SIM_TODAY } from './rules/config';
+import { SIM_TODAY, MEETING_DATE } from './rules/config';
 
 export const ALBERS_COMMITMENT = 200_000;
 export const KELLER_BRIDGE_MONTHS = 3;
@@ -26,7 +26,7 @@ export function albersFacts(): Fact[] {
     { id: 'f_elsewhere', label: 'Held elsewhere (stated wealth minus assets with us)', value: `${eur(c.statedInvestableEur - c.aumEur)} (${pct(1 - c.aumEur / c.statedInvestableEur, 0)})` },
     { id: 'f_housebank', label: 'Securities account at house bank', value: eur(Number(c.extraFacts!.houseBankSecuritiesEur)) },
     { id: 'f_angelexit', label: 'Year she sold a startup stake (RM note)', value: '2019' },
-    { id: 'f_meeting', label: 'Advisory meeting', value: fmtDate('2026-11-05') },
+    { id: 'f_meeting', label: 'Advisory meeting', value: fmtDate(MEETING_DATE) },
     { id: 'p_name', label: 'Product', value: f.name },
     { id: 'p_commit', label: 'Proposed commitment', value: eur(ALBERS_COMMITMENT) },
     { id: 'p_min', label: 'Minimum commitment', value: eur(f.minCommitment) },

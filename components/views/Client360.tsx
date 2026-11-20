@@ -9,7 +9,7 @@ import { clientById, fundById } from '@/lib/data';
 import { factsFor } from '@/lib/facts';
 import { timelineFor, sourceMap, type TimelineItem } from '@/lib/timeline';
 import { eur, fmtDate, pct, daysBetween } from '@/lib/rules/format';
-import { MINUTES_SAVED, SIM_TODAY } from '@/lib/rules/config';
+import { MINUTES_SAVED, SIM_TODAY, MEETING_DATE } from '@/lib/rules/config';
 import { laneLabel } from '@/lib/rules/allocation';
 import { SIGNAL_LABEL } from '@/lib/labels';
 import { AiMetaBadge } from '@/components/AiMetaBadge';
@@ -112,7 +112,7 @@ export function Client360({ id, embedded }: { id: string; embedded?: boolean }) 
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold">{c.name}</h1>
-          <p className="text-sm text-slate-500">{c.age} · {c.occupation} · {id === 'albers' ? `advisory meeting ${fmtDate('2026-11-05')} (before that: no proactive contact for ${Math.round(daysBetween(c.lastProactiveContact!, '2026-11-01') / 30)} months)` : since !== null ? `last proactive contact ${Math.round(since / 30)} months ago` : 'never contacted proactively'}</p>
+          <p className="text-sm text-slate-500">{c.age} · {c.occupation} · {id === 'albers' ? `advisory meeting ${fmtDate(MEETING_DATE)} (before that: no proactive contact for ${Math.round(daysBetween(c.lastProactiveContact!, MEETING_DATE) / 30)} months)` : since !== null ? `last proactive contact ${Math.round(since / 30)} months ago` : 'never contacted proactively'}</p>
           <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
             <Badge tone={a.lane === 'rm' ? 'teal' : a.lane === 'digital' ? 'blue' : 'slate'}>November: {laneLabel[a.lane]}</Badge>
             <span className="text-sm text-slate-700">{a.reason}</span>

@@ -5,12 +5,12 @@ Target: 12 minutes, then Q&A. Run it end to end in **Live** mode and in
 
 | # | Screen | What Daniel says | What must happen |
 |---|---|---|---|
-| 0 | Header | "It's 6 November. The November plan ran on the 1st; Albers' meeting was yesterday." | Demo date visible |
+| 0 | Header | "It's 20 November. The November plan ran on the 1st; Albers' meeting was yesterday." | Demo date visible |
 | 1 | `/rm/plan` | "4,080 meetings a year for 3,500 clients. Enough to see everyone once — yet half get none. This is an allocation problem." | KPIs and capacity bar visible (the 4,080 line is spoken, not on screen) |
 | 2 | `/rm/plan` | "Every month the engine reads the whole book." | Click "Run monthly orchestration" → 4 steps animate, lanes fill, capacity bar 20/20 |
 | 3 | Berger card | "She wrote one line in the app. Today nobody would notice until the transfer request." | Card shows liquidity_need €300k, quote, confidence, lane RM |
 | 4 | Control group chip | "The 2–3× churn gap is observed, not causal. So 10% of at-risk clients are a control group." | Tooltip explains |
-| 5 | Albers card → V3 | "Why her: two questions about private equity, 11 months without contact, 70% of her wealth elsewhere." | Brief with sourced sentences |
+| 5 | Albers card → V3 | "Why her: two questions about private equity, almost a year without contact, 70% of her wealth elsewhere." | Brief with sourced sentences |
 | 6 | V4 | "After the meeting, the AI drafts — the RM owns it. Costs come from code, not the model." | Draft generated; cost table from code; verifier result per sentence |
 | 7 | V4 | "Here is a test: an unsupported forecast. The verifier catches it." Then approve. | "Run verifier test" → red; remove; approve; audit drawer complete |
 | 8 | V5 split view | "Rules check eligibility. AI finds the contradiction. Only the RM attests. The client reads the suitability statement and costs before signing." | Checklist ✓; contradiction flagged; acknowledgment; sign unlocks |

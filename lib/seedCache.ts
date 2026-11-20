@@ -174,7 +174,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "A distribution is expected",
-  "body": "Dear Florian, Meridian Buyout IV expects to pay you a distribution of about €85,000 around 25 Dec 2026. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
+  "body": "Dear Florian, Meridian Buyout IV expects to pay you a distribution of about €85,000 around 8 Jan 2027. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -204,7 +204,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "id": "f4",
     "label": "expected date",
-    "value": "25 Dec 2026"
+    "value": "8 Jan 2027"
    }
   ],
   "testCase": false
@@ -1444,7 +1444,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "A distribution is expected",
-  "body": "Dear Philipp, Meridian Buyout IV expects to pay you a distribution of about €125,000 around 28 Nov 2026. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
+  "body": "Dear Philipp, Meridian Buyout IV expects to pay you a distribution of about €125,000 around 12 Dec 2026. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -1474,7 +1474,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "id": "f4",
     "label": "expected date",
-    "value": "28 Nov 2026"
+    "value": "12 Dec 2026"
    }
   ],
   "testCase": false
@@ -2038,7 +2038,7 @@ export const seedCache: Record<string, CacheEntry> = {
  "createdAt": "2026-11-02T22:00:00Z",
  "output": {
   "subject": "A distribution is expected",
-  "body": "Dear Sandra, Meridian Buyout IV expects to pay you a distribution of about €95,000 around 13 Dec 2026. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
+  "body": "Dear Sandra, Meridian Buyout IV expects to pay you a distribution of about €95,000 around 27 Dec 2026. This is an estimate from the fund, not yet confirmed. When it arrives, the money goes to your cash account and I will let you know. Best, Jonas",
   "messageType": "informational",
   "factsUsed": [
    "f1",
@@ -2068,7 +2068,7 @@ export const seedCache: Record<string, CacheEntry> = {
    {
     "id": "f4",
     "label": "expected date",
-    "value": "13 Dec 2026"
+    "value": "27 Dec 2026"
    }
   ],
   "testCase": false
@@ -2376,7 +2376,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c026_msg_2026-10-10",
+      "itemId": "c026_msg_2026-10-24",
       "quote": "no need to call"
      }
     ],
@@ -2427,7 +2427,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c048_msg_2026-10-27",
+      "itemId": "c048_msg_2026-11-10",
       "quote": "I expected more from the returns this year"
      }
     ],
@@ -2454,7 +2454,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c057_msg_2026-10-13",
+      "itemId": "c057_msg_2026-10-27",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -2468,7 +2468,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c057_msg_2026-10-13",
+      "itemId": "c057_msg_2026-10-27",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -2495,7 +2495,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c063_msg_2026-09-29",
+      "itemId": "c063_msg_2026-10-13",
       "quote": "no need to call"
      }
     ],
@@ -2522,7 +2522,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c074_msg_2026-10-05",
+      "itemId": "c074_msg_2026-10-19",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -2536,7 +2536,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c074_msg_2026-10-05",
+      "itemId": "c074_msg_2026-10-19",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -2563,7 +2563,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c075_msg_2026-10-15",
+      "itemId": "c075_msg_2026-10-29",
       "quote": "no need to call"
      }
     ],
@@ -2590,7 +2590,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c079_msg_2026-09-29",
+      "itemId": "c079_msg_2026-10-13",
       "quote": "no need to call"
      }
     ],
@@ -2617,7 +2617,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c083_msg_2026-10-23",
+      "itemId": "c083_msg_2026-11-06",
       "quote": "no need to call"
      }
     ],
@@ -2644,7 +2644,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c085_msg_2026-10-07",
+      "itemId": "c085_msg_2026-10-21",
       "quote": "need about €40k a year"
      }
     ],
@@ -2658,7 +2658,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c085_msg_2026-10-07",
+      "itemId": "c085_msg_2026-10-21",
       "quote": "need about €40k a year"
      }
     ],
@@ -2685,7 +2685,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c095_msg_2026-10-22",
+      "itemId": "c095_msg_2026-11-05",
       "quote": "need about €40k a year"
      }
     ],
@@ -2699,7 +2699,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c095_msg_2026-10-22",
+      "itemId": "c095_msg_2026-11-05",
       "quote": "need about €40k a year"
      }
     ],
@@ -2726,7 +2726,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c096_msg_2026-10-15",
+      "itemId": "c096_msg_2026-10-29",
       "quote": "need about €30k a year"
      }
     ],
@@ -2740,7 +2740,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c096_msg_2026-10-15",
+      "itemId": "c096_msg_2026-10-29",
       "quote": "need about €30k a year"
      }
     ],
@@ -2767,7 +2767,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c102_msg_2026-10-31",
+      "itemId": "c102_msg_2026-11-14",
       "quote": "send me the tax certificate"
      }
     ],
@@ -2794,7 +2794,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c105_msg_2026-10-26",
+      "itemId": "c105_msg_2026-11-09",
       "quote": "send me the tax certificate"
      }
     ],
@@ -2821,7 +2821,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c109_msg_2026-10-05",
+      "itemId": "c109_msg_2026-10-19",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -2848,7 +2848,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c111_msg_2026-10-05",
+      "itemId": "c111_msg_2026-10-19",
       "quote": "We're selling the company next year"
      }
     ],
@@ -2862,7 +2862,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c111_msg_2026-10-05",
+      "itemId": "c111_msg_2026-10-19",
       "quote": "We're selling the company next year"
      }
     ],
@@ -2889,7 +2889,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c114_msg_2026-10-25",
+      "itemId": "c114_msg_2026-11-08",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -2916,7 +2916,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c118_msg_2026-10-12",
+      "itemId": "c118_msg_2026-10-26",
       "quote": "I expected more from the returns this year"
      }
     ],
@@ -2955,7 +2955,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c130_msg_2026-10-21",
+      "itemId": "c130_msg_2026-11-04",
       "quote": "send me the tax certificate"
      }
     ],
@@ -2982,7 +2982,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c132_msg_2026-10-03",
+      "itemId": "c132_msg_2026-10-17",
       "quote": "send me the tax certificate"
      }
     ],
@@ -3009,7 +3009,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c137_msg_2026-10-05",
+      "itemId": "c137_msg_2026-10-19",
       "quote": "no need to call"
      }
     ],
@@ -3060,7 +3060,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c150_msg_2026-10-13",
+      "itemId": "c150_msg_2026-10-27",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -3087,7 +3087,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c151_msg_2026-10-27",
+      "itemId": "c151_msg_2026-11-10",
       "quote": "moving part of my money to my private bank"
      }
     ],
@@ -3114,7 +3114,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": "private_markets",
     "evidence": [
      {
-      "itemId": "c154_msg_2026-10-09",
+      "itemId": "c154_msg_2026-10-23",
       "quote": "Can my holding company invest in private equity too?"
      }
     ],
@@ -3141,7 +3141,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c155_msg_2026-10-31",
+      "itemId": "c155_msg_2026-11-14",
       "quote": "get about €220k in cash"
      }
     ],
@@ -3168,7 +3168,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c156_msg_2026-10-31",
+      "itemId": "c156_msg_2026-11-14",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -3195,7 +3195,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c158_msg_2026-10-07",
+      "itemId": "c158_msg_2026-10-21",
       "quote": "My bank offered me a better fee"
      }
     ],
@@ -3209,7 +3209,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c158_msg_2026-10-07",
+      "itemId": "c158_msg_2026-10-21",
       "quote": "My bank offered me a better fee"
      }
     ],
@@ -3236,7 +3236,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c161_msg_2026-11-01",
+      "itemId": "c161_msg_2026-11-15",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -3250,7 +3250,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c161_msg_2026-11-01",
+      "itemId": "c161_msg_2026-11-15",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -3277,7 +3277,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c163_msg_2026-10-23",
+      "itemId": "c163_msg_2026-11-06",
       "quote": "send me the tax certificate"
      }
     ],
@@ -3304,7 +3304,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c165_msg_2026-10-04",
+      "itemId": "c165_msg_2026-10-18",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -3318,7 +3318,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c165_msg_2026-10-04",
+      "itemId": "c165_msg_2026-10-18",
       "quote": "I don't understand the capital call letter."
      }
     ],
@@ -3345,7 +3345,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c166_msg_2026-10-27",
+      "itemId": "c166_msg_2026-11-10",
       "quote": "My bank offered me a better fee"
      }
     ],
@@ -3359,7 +3359,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c166_msg_2026-10-27",
+      "itemId": "c166_msg_2026-11-10",
       "quote": "My bank offered me a better fee"
      }
     ],
@@ -3386,7 +3386,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c169_msg_2026-10-08",
+      "itemId": "c169_msg_2026-10-22",
       "quote": "send me the tax certificate"
      }
     ],
@@ -3413,7 +3413,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c174_msg_2026-09-29",
+      "itemId": "c174_msg_2026-10-13",
       "quote": "Why did my portfolio drop last month?"
      }
     ],
@@ -3440,7 +3440,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c177_msg_2026-10-11",
+      "itemId": "c177_msg_2026-10-25",
       "quote": "get about €230k in cash"
      }
     ],
@@ -3467,7 +3467,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c180_msg_2026-10-15",
+      "itemId": "c180_msg_2026-10-29",
       "quote": "We're selling the company next year"
      }
     ],
@@ -3481,7 +3481,7 @@ export const seedCache: Record<string, CacheEntry> = {
     "topic": null,
     "evidence": [
      {
-      "itemId": "c180_msg_2026-10-15",
+      "itemId": "c180_msg_2026-10-29",
       "quote": "We're selling the company next year"
      }
     ],

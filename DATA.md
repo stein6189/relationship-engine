@@ -6,9 +6,9 @@ Hand-written personas from this file override generated values.
 
 ## 0. Simulated clock (use everywhere, never the real date)
 
-- `SIM_TODAY = 2026-11-06`. Show it in the header: "Demo date: 6 Nov 2026".
+- `SIM_TODAY = 2026-11-20` (moved from 6 Nov on 20 Nov 2026, see DECISIONS #22). Show it in the header: "Demo date: 20 Nov 2026".
 - The November plan was generated on **1 Nov 2026** (the demo re-runs it).
-- Albers' advisory meeting took place on **5 Nov 2026**; the follow-up
+- Albers' advisory meeting took place on **19 Nov 2026** (the day before the demo date; `MEETING_DATE` in config); the follow-up
   documentation is drafted "today".
 - All "days since", "due in" and "last 60 days" calculations use `SIM_TODAY`.
 

@@ -63,3 +63,8 @@
     screen shows or acts on a stale initial state.
 21. **Client actions in Keller's app never execute anything**: "Sounds good —
     let's set it up" only tells Jonas; the loan stays a concept.
+22. **Demo date moved to 20 Nov 2026** (`SIM_TODAY`), Albers' meeting to the
+    day before (`MEETING_DATE` = 19 Nov) so the story stays "the meeting was
+    yesterday". Generated book is relative to `SIM_TODAY` and was regenerated;
+    lanes, triggers and control group are unchanged (20 / 60 / 120, 11 hard, 7).
+    Albers' gap since her last proactive contact now reads ~12 months.

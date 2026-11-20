@@ -7,8 +7,8 @@ import { useAi } from '@/lib/ai/client';
 import { clientById } from '@/lib/data';
 import { SECTIONS, sentencesOf, albersAllFacts, albersSources, albersRuleResults, type Sentence } from '@/lib/albers';
 import { numberGuard } from '@/lib/rules/numberGuard';
-import { simStamp } from '@/lib/rules/format';
-import { MINUTES_SAVED, RM_NAME, SIM_TODAY } from '@/lib/rules/config';
+import { simStamp, fmtDate } from '@/lib/rules/format';
+import { MINUTES_SAVED, RM_NAME, SIM_TODAY, MEETING_DATE } from '@/lib/rules/config';
 import { DATA_NOTES_ALBERS } from '@/lib/notes';
 import { sourceMap } from '@/lib/timeline';
 import { AiMetaBadge } from '@/components/AiMetaBadge';
@@ -124,7 +124,7 @@ export function AlbersAdvice({ embedded }: { embedded?: boolean }) {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold">Advisory follow-up · Claudia Albers</h1>
-          <p className="text-sm text-slate-500">Meeting 5 Nov 2026 · Meridian Buyout V (<Term t="AIF">AIF</Term>) · €200,000. The AI drafts, a second AI call checks, code adds the costs — you own the result.</p>
+          <p className="text-sm text-slate-500">Meeting {fmtDate(MEETING_DATE)} · Meridian Buyout V (<Term t="AIF">AIF</Term>) · €200,000. The AI drafts, a second AI call checks, code adds the costs — you own the result.</p>
         </div>
         {!embedded && <div className="flex gap-1.5"><Link href="/rm/client/albers"><Button>Client 360</Button></Link><Link href="/rm/client/albers/subscription"><Button>Subscription →</Button></Link></div>}
       </div>

@@ -1,6 +1,7 @@
 // All values marked ASSUMPTION are prototype settings, not LIQID facts.
-export const SIM_TODAY = '2026-11-06';
+export const SIM_TODAY = '2026-11-20';
 export const PLAN_DATE = '2026-11-01';
+export const MEETING_DATE = '2026-11-19'; // Albers' advisory meeting: the day before the demo date
 
 export const RM_NAME = 'Jonas Weber';
 export const RM_SLOTS = 20; // ASSUMPTION: case midpoint (15–25 meetings / month)
