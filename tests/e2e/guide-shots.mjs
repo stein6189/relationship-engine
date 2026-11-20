@@ -10,7 +10,7 @@ const id = (x) => page.getByTestId(x).first();
 const settle = () => page.waitForTimeout(500);
 
 async function shot(name, marks = []) {
-  if (marks[0]) await marks[0].scrollIntoViewIfNeeded().catch(() => {});
+  const tgt = marks[marks.length - 1]; if (tgt) await tgt.evaluate((e) => e.scrollIntoView({ block: 'center', inline: 'nearest' })).catch(() => {});
   await settle();
   for (const [i, m] of marks.entries()) await m.evaluate((e, n) => { e.dataset.guideMark = String(n); }, i + 1);
   await page.evaluate(() => {
@@ -121,9 +121,9 @@ await page.goto(BASE + '/split?client=keller');
 await id('keller-proposal').waitFor(T);
 await shot('11a-split-keller', [id('keller-proposal'), id('ctab-ask')]);
 await id('ctab-ask').click();
+await shot('11b-ask', [id('suggest-keller_negative'), id('suggest-keller_sell'), id('suggest-keller_election')]);
 await id('suggest-keller_negative').click();
 await id('answer-factual').waitFor(T);
-await shot('11b-ask', [id('suggest-keller_negative'), id('suggest-keller_sell'), id('suggest-keller_election')]);
 await id('suggest-keller_sell').click(); await id('answer-advice').waitFor(T);
 await id('suggest-keller_election').click();
 await page.waitForFunction(() => document.querySelectorAll('[data-testid="answer-advice"]').length >= 2, null, T);
